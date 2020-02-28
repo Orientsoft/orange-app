@@ -1,0 +1,218 @@
+page{
+	background:#FFFEF5;
+}
+.nav-bg{
+	background-color: #FFFFFF;
+}
+.nav-title {
+	font-size: 44upx;
+	color: #333;
+	font-weight: bold;
+}
+
+.margin-lr-item{
+	margin-left: 20upx;
+	margin-right: 20upx;
+}
+.top-card-bg{
+	position: absolute;
+	top: 330upx;
+	width: 100%;
+	z-index: 20;
+	padding-left: 20upx;
+	padding-right: 20upx;
+}
+.top-card{
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFFFF;
+	height: 120upx;
+	border-radius: 15upx;
+	/* border: 1upx solid #F49100; */
+	box-shadow:inset 0upx 0upx  10upx #ccc;
+	flex: 1;
+	/* background:radial-gradient(40upx at right bottom,transparent 50%,#1889F6 50%); */
+}
+
+.icon{
+	height: 80upx;
+	width: 80upx;
+	margin-right: 20upx;
+}
+.title{
+	font-size: 36upx;
+	color: #882411;
+	/* margin-top: 30upx; */
+}
+.sub-title{
+	font-size: 18upx;
+	color: #F49100;
+	text-align: left;
+	margin-left: 10upx;
+}
+
+.image{
+	height: 154upx;
+	width: 154upx;
+	border-radius: 8upx;
+	position: relative;
+	/* background: #8DC63F; */
+}
+.hot{
+	height: 24upx;
+	width: 24upx;
+	position: absolute;
+	top:30upx;
+	left: 100upx;
+}
+.image-round{
+	height: 154upx;
+	width: 154upx;
+	border-radius: 77upx;
+}
+/* 专家 */
+.image-class{
+	height: 300upx;
+	width: 100%;
+	border-radius: 30upx;
+}
+
+.tag-class{
+	color: #999;
+	font-size: 18upx;
+	/* background: #fef1d9; */
+	border-radius: 20upx;
+	height: 40upx;
+	padding-left: 10upx;
+	padding-right: 10upx;
+	text-align: center;
+	border: 1upx solid #f0f0f0;
+}
+.name-class{
+	color: #F49100;
+	font-weight: bold;
+	font-size: 24upx;
+	border: 1upx solid #ed7100;
+	border-radius: 20upx;
+	padding-left: 20upx;
+	padding-right: 20upx;
+	margin-right: 10upx;
+}
+
+.home-swiper{
+	height: 240upx;
+	z-index: -1;
+}
+.screen-swiper image,
+.screen-swiper video,
+.swiper-item image,
+.swiper-item video {
+	width: 100%;
+	display: block;
+	height: 100%;
+	margin: 0;
+	pointer-events: none;
+}
+
+.card-list{
+	background: #FFFFFF;
+	padding: 30upx;
+	border-radius: 30upx;
+	/* border: 1upx solid #F49100; */
+	box-shadow:inset 0upx 0upx  10upx #F0F0F0;
+	margin-bottom: 40upx;
+	position: relative;
+}
+.card-item-title{
+	color: #000000;
+	font-size: 32upx;
+	font-weight: 400;
+}
+.card-item-sign{
+	background: #02cfa9;
+	padding: 5upx 10upx 5upx 10upx;
+	margin-left: 20upx;
+	border-radius: 10upx;
+	color: #FFFFFF;
+	font-size: 20upx;
+}
+.active-price{
+	color: #aa1700;
+}
+.active-price-big{
+	color: #aa1700;
+	font-weight: bold;
+	font-size: 36upx;
+	margin-right: 10upx;
+}
+.card-item-desc{
+	color: #888;
+	font-size: 24upx;
+	margin-top: 5upx;
+	margin-bottom: 5upx;
+}
+.card-item-desc-phone{
+	height: 24upx;
+	width: 24upx;
+	margin-right: 10upx;
+}
+.card-item{
+	border-bottom:1upx #f0f0f0 solid;
+	align-items: center;
+}
+.card-item:last-child{
+	border-bottom: 0px #f0f0f0 solid;
+}
+
+.card-item-row{
+	align-items: center;
+	flex: 1;
+}
+
+.more{
+	font-size: 24upx;
+	color: #F49100;
+}
+/* 产品tag */
+.tag{
+	color: #919191;
+	font-size: 24upx;
+	background: #F0F0F0;
+	border-radius: 20upx;
+	height: 38upx;
+	width: 100upx;
+	text-align: center;
+}
+.tag-active{
+	color: #F49100;
+	font-size: 24upx;
+	background: #fef1d9;
+	border-radius: 20upx;
+	height: 38upx;
+	width: 100upx;
+	text-align: center;
+	border: 1upx solid #F49100;
+}
+/* 新闻tag */
+.tag2{
+	color: #888;
+	font-size: 24upx;
+}
+.tag2-active{
+	color: #F49100;
+	font-weight: bold;
+	font-size: 24upx;
+	border-bottom: 3upx solid #ed7100;
+}
+/* 健康头部 */
+.tagTop{
+	color: #E0E0E0;
+	font-size: 34upx;
+}
+.tagTop-active{
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 34upx;
+	border-bottom: 6upx solid #FFFFFF;
+}

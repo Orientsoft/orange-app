@@ -1,0 +1,185 @@
+<template>
+	<view>
+		<cu-custom :isBack="false" bgColor="bg-orange-lg title-white">
+			<block slot="content">我的订单</block>
+		</cu-custom>
+		<view class="gray-shadow"></view>
+		<view class="space-s"></view>
+		<view class="flex justify-around">
+			<view @click="onTag2(index)" v-for="(item,index) in tagList2" :key="index" :class="index==tag2?'tag2-active':'tag2'">
+				{{item.name}}
+			</view>
+		</view>
+		<view class="space-s"></view>
+		<!--医院-->
+		<view class="hospital-card-list">
+			<view v-for="(item,index) in orderList" :key="index" class="padding-tb-sm card-list">
+				<view class="flex justify-between card-item-desc">
+					<view>{{$utils.dateUtils.format(item.updatedAt)}}</view>
+					<view>{{tagList2[item.status].name}}</view>
+				</view>
+				<view class="flex">
+					<view class="image align-center justify-center">
+						<image :src="item.product.logo" class="image" mode="aspectFill"></image>
+					</view>
+					<view @click="getInfo(item.id)" class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
+						<view class="card-item-title">产品:{{item.product.name}}</view>
+						<view class="card-item-desc">总价:{{item.product.price}}</view>
+					</view>
+					<view>
+						<view @click="getInfo(item.id)" v-if="item.status==0" class="pay-class">去支付</view>
+						<view @click="buyMore(item.product.id)" v-if="item.status!=0" class="more-class">再来一单</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+	</view>
+</template>
+
+<script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	export default {
+		computed: {...mapState(['app','inter'])},
+		data() {
+			return {
+				userInfo: {},
+				orderList:[
+					{"appointment":null,"connect":{"name":"zhangsan","phone":"13666232613"},
+						"createdAt":"Wed, 19 Feb 2020 18:18:07 GMT","id":"5e4d0b5f5383df71a85a13af",
+						"pay":"ALIPAY","payAt":"Wed, 19 Feb 2020 18:18:07 GMT",
+						"price":68.8,"product":{"id":"5e3a769098db262eb6e1d4a5","name":"医用3L制氧机",
+						"price":300,"support":["5e4630f2a8817182eab66ddc","5e4b3fb99586a3cb5f20677f"]},
+						"status":1,"updatedAt":"Wed, 19 Feb 2020 18:18:07 GMT"}
+				],
+				current: 0,
+				tagList2:[
+					{
+						value:0,
+						name:'待支付'
+					},
+					{
+						value:1,
+						name:'待预约'
+					},
+					{
+						value:2,
+						name:'待挂号'
+					},
+					{
+						value:3,
+						name:'待使用'
+					},
+					{
+						value:4,
+						name:'待评价'
+					},
+					{
+						value:5,
+						name:'已完成'
+					},
+					{
+						value:6,
+						name:'已关闭'
+					},
+					{
+						value:7,
+						name:'已退款'
+					},
+				],
+				tag2:0,
+			}
+		},
+		onLoad() {
+		},
+		onShow() {
+			this.loadData();
+			this.userInfo = this.app.User.Info;
+		},
+		methods: {
+			...mapMutations(['TO','S']),
+			onTag2(index){
+				this.tag2 = index;
+			},
+			getInfo(id){
+				let t = this;
+				uni.navigateTo({
+					url:'/pages/my/order/orderInfo?id='+id
+				})
+			},
+			buyMore(id){
+				uni.navigateTo({
+					url:'/pages/home/mall/productInfo?id='+id
+				})
+			},
+			loadData(){
+				let t= this;
+				t.S({
+					url:"order/me",
+					callback:function(res){
+						if(res.statusCode===200){
+							console.log(JSON.stringify(res))
+							if(res.data.status==1){
+								t.orderList = res.data.data;
+							}else{
+								console.log(JSON.stringify(res));
+							}
+						}else{
+							if(res.statusCode==401){
+								t.TO({
+									url:'/pages/auth/login'
+								})
+							}else{
+								t.$utils.msg(res.errMsg);
+							}
+						}
+					}
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	@import url("../../../css/home.css");
+	page{
+		background-color: #FFFFFF;
+	}
+	.gray-shadow{
+		height: 1upx;
+		box-shadow:inset 0upx 0upx  10upx #F0F0F0;
+	}
+	.hospital-card-list{
+		background: #FFFFFF;
+		padding: 30upx;
+		/* border-radius: 30upx; */
+		/* border: 1upx solid #F49100; */
+		box-shadow:inset 0upx 0upx  10upx #F0F0F0;
+		margin-bottom: 40upx;
+	}
+	
+	.pay-class{
+		color: #F49100;
+		font-size: 24upx;
+		border: 1upx solid #ed7100;
+		border-radius: 20upx;
+		padding-left: 20upx;
+		padding-right: 20upx;
+		margin-right: 10upx;
+		margin-top: 100upx;
+	}
+	
+	.more-class{
+		color: #888;
+		font-size: 24upx;
+		border: 1upx solid #888;
+		border-radius: 20upx;
+		padding-left: 20upx;
+		padding-right: 20upx;
+		margin-right: 10upx;
+		margin-top: 100upx;
+	}
+</style>

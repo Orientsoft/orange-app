@@ -1,0 +1,55 @@
+/**
+ * 标题css
+ */
+.nav-image-btn{
+	width: 56upx;
+	height: 56upx;
+	padding: 10upx;
+}
+.nav-title{
+	font-size: 36upx;
+	font-weight: bold;
+	color: #1d1c1c;
+}
+.nav-title-right{
+	font-size: 32upx;
+	color: #999;
+	font-weight: bold;
+}
+.title-orange{
+	color: #F49100;
+}
+.title-white{
+	color: #FFFFFF;
+}
+.title-black{
+	color: #1D1C1C;
+}
+
+.bg-red{
+	background-color: #fc8686;
+}
+.bg-white{
+	background-color: #FFFFFF;
+}
+.bg-lwhite{
+	background-color: #fffef5;
+}
+.bg-orange{
+	background-color: #F49100;
+}
+.bg-orange-lg{
+	background-image: linear-gradient(to right,#ff6e00,#f79200);
+}
+.container{
+	background-color: #fffef5;
+}
+.space-m{
+	height: 40upx;
+}
+.space-s{
+	height: 20upx;
+}
+.space-l{
+	height: 80upx;
+}

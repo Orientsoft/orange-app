@@ -1,0 +1,202 @@
+<template>
+	<view class="container bg-white">
+		<view>
+			<cu-custom :isBack="true" bgColor="container title-orange">
+				<block slot="backText"><text class="title-black">订单详情</text></block>
+			</cu-custom>
+		</view>
+		
+		<image style="width: 100%;margin-bottom: -320upx;height: 350upx" src="../../../static/home/head_bg_order.png" mode="scaleToFill"></image>
+		<view class="harf-top">
+			<view class="store-v padding-tb-sm align-center">
+				<view class="top-status"><text class="cuIcon-info margin-right-sm"></text>{{statusArr[info.status].name}}</view>
+				<view v-if="info.status==0" class="top-status-s">剩余23小时59分28秒关闭订单</view>
+			</view>
+			<!-- 信息 -->
+			<view class="card">
+				<view class="cro_left_bottom"></view>
+				<view class="cro_right_bottom"></view>
+				<view class="flex align-end">
+					<view class="card-desc">
+						<view class="card-title">{{info.product.name}}</view>
+						<view>{{info.product.desc_1}}</view>
+						<view>{{info.product.desc_2}}</view>
+						<view class="active-price">¥<text class="card-active-price">&ensp;{{info.product.price}}</text><text class="card-desc">¥{{info.product.sale}}</text></view>
+						<view class="space-l"></view>
+					</view>
+					<image :src="info.product.logo" class="card-logo" mode="aspectFit"></image>
+				</view>	
+			</view>
+			
+					
+			<view class="info-border-top"></view>
+			<!-- 用户信息 -->
+			<view v-if="info.status == statusArr[0].value||info.status == statusArr[1].value||info.status == statusArr[2].value" class="card">
+				<view class="cro_left_top"></view>
+				<view class="cro_right_top"></view>
+				<view>
+					<view class="name-connect">订单信息</view>
+					<view class="space-s"></view>
+					<view class="flex text-v">
+						<view class="info">订单编号:</view>
+						<view class="info">202001293785</view>
+					</view>
+					<view class="flex text-v">
+						<view class="info">下单时间:</view>
+						<view class="info">2020-01-29 03:45:30</view>
+					</view>
+					<view class="flex text-v">
+						<view class="info">联系电话:</view>
+						<view class="info">1366637478</view>
+					</view>
+					<view class="space-s"></view>
+					<view class="flex justify-end align-end">
+						<view class="info">共一件商品需支付:</view>
+						<view class="active-price">¥<text class="card-active-price">{{info.price}}</text></view>
+					</view>
+					<view class="space-s"></view>
+				</view>
+			</view>
+			<view class="space-l"></view>
+			<!-- 订单信息 -->
+			<view v-if="info.status > statusArr[2].value" class="card">
+				<view>
+					<view class="name-connect">订单信息</view>
+					<view class="space-s"></view>
+					<view class="flex text-v">
+						<view class="info">订单编号:</view>
+						<view class="info">202001293785</view>
+					</view>
+					<view class="flex text-v">
+						<view class="info">下单时间:</view>
+						<view class="info">2020-01-29 03:45:30</view>
+					</view>
+					<view class="flex text-v">
+						<view class="info">联系电话:</view>
+						<view class="info">1366637478</view>
+					</view>
+					<view class="space-s"></view>
+					<view class="flex justify-end align-end">
+						<view class="info">共一件商品需支付:</view>
+						<view class="active-price">¥<text class="card-active-price">{{info.price}}</text></view>
+					</view>
+					<view class="space-s"></view>
+				</view>
+			</view>
+		</view>
+		
+		
+		
+		<!-- 底部 -->
+		<view class="flex padding-tb-sm padding-lr-lg" style="background: #fcfcfc;position: fixed;bottom: 0;justify-content: flex-end;width: 100%;animation: show 2s  ;z-index: 1000;">
+			<view class="active-price"></view>
+			<view v-if="info.status==1||info.status==2" @click="drawBack()" class="drawback-btn">退款</view>
+			<view v-if="info.status==0" @click="goPay()" class="order-btn text-center text-white">去支付</view>
+			<view v-if="info.status==1" @click="goPagesById('/pages/my/order/appointment',id)" class="order-btn text-center text-white">预约时间</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	import {
+		mapState,
+		mapMutations
+	} from 'vuex';
+	export default {
+		data() {
+			return {
+				id:'',
+				statusArr:[
+					{
+						value:0,
+						name:'待支付'
+					},
+					{
+						value:1,
+						name:'待预约'
+					},
+					{
+						value:2,
+						name:'待挂号'
+					},
+					{
+						value:3,
+						name:'待使用'
+					},
+					{
+						value:4,
+						name:'待评价'
+					},
+					{
+						value:5,
+						name:'已完成'
+					},
+					{
+						value:6,
+						name:'已关闭'
+					},
+					{
+						value:7,
+						name:'已退款'
+					},
+				],
+				info:{},
+				payIndex:1
+			}
+		},
+		onLoad:function(option){
+			this.id = option.id;
+			this.getInfo();
+		},
+		methods: {
+			...mapMutations(['TO','S']),
+			radioChange(e){
+				console.log(e);
+				// this.payIndex = index;
+			},
+			drawBack(){
+				let t = this;
+				uni.navigateTo({
+					url:'/pages/my/order/drawback?id='+t.id
+				})
+			},
+			goPay(){
+				
+			},
+			goPagesById(url,id){
+				let t = this;
+				uni.navigateTo({
+					url:url+'?id='+id
+				})
+			},
+			getInfo(){
+				let t=this;
+				t.S({
+					url:"order/"+t.id,
+					callback:function(res){
+						if(res.statusCode===200){
+							console.log(JSON.stringify(res))
+							if(res.errMsg=='request:ok'){
+								t.info = res.data.data
+							}else{
+								console.log(JSON.stringify(res));
+							}
+						}else{
+							if(res.statusCode==401){
+								t.TO({
+									url:'/pages/auth/login'
+								})
+							}else{
+								t.$utils.msg(res.errMsg);
+							}
+						}
+					}
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	@import url("../../../css/mall.css");
+</style>

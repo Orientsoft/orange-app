@@ -1,0 +1,246 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	{
+		"path": "pages/health/index",
+		"style": {
+			"navigationBarTitleText" : "测试",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	},
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText" : "橙子",
+				"app-plus": {
+					"bounce": "none",
+					"scrollIndicator": "none"
+				}
+			}
+		},{
+			"path": "pages/health/index",
+			"style": {
+				"navigationBarTitleText" : "健康",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/message/index",
+			"style": {
+				"navigationBarTitleText" : "消息",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText" : "我的",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/auth/login",
+			"style": {
+				"navigationBarTitleText" : "登陆",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/auth/login2",
+			"style": {
+				"navigationBarTitleText" : "验证码登陆",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/auth/reg",
+			"style": {
+				"navigationBarTitleText" : "注册",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/auth/reg2",
+			"style": {
+				"navigationBarTitleText" : "设置密码",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/auth/reset",
+			"style": {
+				"navigationBarTitleText" : "找回密码",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/auth/reset2",
+			"style": {
+				"navigationBarTitleText" : "找回密码-设置",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},{
+			"path": "pages/auth/reset3",
+			"style": {
+				"navigationBarTitleText" : "找回密码-完成",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		}
+	    ,{
+            "path" : "pages/home/mall/productInfo",
+            "style" : {}
+        }
+		,{
+		    "path" : "pages/home/mall/productList",
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/home/mall/order",//下订单
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/my/order/orderList",//下订单
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/my/order/orderInfo",//订单信息
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/my/order/appointment",//预约
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/my/order/appointmentModify",//预约修改
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/my/order/drawback",//退款申请
+		    "style" : {}
+		}
+		,{
+		    "path" : "pages/home/hospitalList",//热门医院
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/home/hospitalInfo",//医院信息
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/home/classList",//讲堂
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/home/classInfo",//讲堂详情
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/home/newsList",//新闻热点
+		    "style" : {
+				"navigationBarBackgroundColor": "#fffef6"
+			}
+		},
+		{
+		    "path" : "pages/home/newInfo",//新闻内容
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/health/healthList",//健康自诊
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/health/diseaseList",//常见疾病
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/health/mealList",//营养餐
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/my/set/setting",//设置
+		    "style" : {}
+		}
+        ,{
+            "path" : "pages/my/exclusiveService/exclusiveService",//专属客服
+            "style" : {}
+        },{
+            "path" : "pages/my/myFamily",//家庭成员
+            "style" : {}
+        },{
+            "path" : "pages/my/myApointment",//我的精准预约
+            "style" : {}
+        },{
+            "path" : "pages/home/doApointment",//精准预约
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/my/mySign",//公司认证
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/my/myCase",//我的病历
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/my/myFollow",//我的关注
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		//自定义app标题栏
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#fffef6",
+		"backgroundColor": "#fffef6",
+		//隐藏滚动条
+		"scrollIndicator": "none"
+	},
+	"tabBar" : {
+	    "color" : "#C0C4CC",
+	    "selectedColor" : "#F49100",
+	    "borderStyle" : "black",
+	    "backgroundColor" : "#ffffff",
+	    "list" : [
+	        {
+	            "pagePath" : "pages/home/index",
+	            "iconPath" : "static/home/home.png",
+	            "selectedIconPath" : "static/home/home_active.png",
+	            "text" : "橙子"
+	        },{
+	            "pagePath" : "pages/health/index",
+	            "iconPath" : "static/home/mall.png",
+	            "selectedIconPath" : "static/home/mall_active.png",
+	            "text" : "健康"
+	        },{
+	            "pagePath" : "pages/message/index",
+	            "iconPath" : "static/home/charge.png",
+	            "selectedIconPath" : "static/home/charge_active.png",
+	            "text" : "消息"
+	        },{
+	            "pagePath" : "pages/my/order/orderList",
+	            "iconPath" : "static/home/charge.png",
+	            "selectedIconPath" : "static/home/charge_active.png",
+	            "text" : "订单"
+	        },{
+	            "pagePath" : "pages/my/index",
+	            "iconPath" : "static/home/my.png",
+	            "selectedIconPath" : "static/home/my_active.png",
+	            "text" : "我的"
+	        }
+	    ]
+	}
+}
