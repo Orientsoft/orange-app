@@ -30,6 +30,34 @@
 			<view class="card">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
+				<view class="name-connect">付款方式</view>
+					<radio-group @change="radioChange" style="width: 100%;">
+						<view class="flex justify-between input-v">
+							<view class="flex align-center">
+								<image src="../../../static/charge-old/telephone_expense.png" class="icon-pay"></image>
+								<text class="name-connect">微信</text>
+							</view>
+							<label class="radio">
+								<radio :value="channelList[0]" :checked="channel==channelList[0]"/>
+							</label>
+						</view>
+						<view class="flex justify-between input-v">
+							<view class="flex align-center">
+								<image src="../../../static/charge-old/telephone_expense.png" class="icon-pay"></image>
+								<text class="name-connect">支付宝</text>
+							</view>
+							<label class="radio">
+								<radio :value="channelList[1]" :checked="channel==channelList[1]"/>
+							</label>
+						</view>
+					</radio-group>
+				</view>
+				
+			</view>
+			
+			<view class="space-s"></view>
+			<!-- 付款方式 -->
+			<!-- <view class="card-pay">
 				<view>
 					<view class="flex input-v">
 						<view class="name-connect">联系人:</view>
@@ -41,34 +69,7 @@
 					</view>
 					<view class="space-s"></view>
 				</view>
-			</view>
-			
-			<view class="space-s"></view>
-			<!-- 付款方式 -->
-			<view class="card-pay">
-				<view class="name-connect">付款方式</view>
-				<radio-group @change="radioChange" style="width: 100%;">
-					<view class="flex justify-between input-v">
-						<view class="flex align-center">
-							<image src="../../../static/charge-old/telephone_expense.png" class="icon-pay"></image>
-							<text class="name-connect">微信</text>
-						</view>
-						<label class="radio">
-							<radio :value="channelList[0]" :checked="channel==channelList[0]"/>
-						</label>
-					</view>
-					<view class="flex justify-between input-v">
-						<view class="flex align-center">
-							<image src="../../../static/charge-old/telephone_expense.png" class="icon-pay"></image>
-							<text class="name-connect">支付宝</text>
-						</view>
-						<label class="radio">
-							<radio :value="channelList[1]" :checked="channel==channelList[1]"/>
-						</label>
-					</view>
-				</radio-group>
-			</view>
-		</view>
+			</view> -->
 		
 		
 		
@@ -146,14 +147,14 @@
 			},
 			doBuy(){
 				let t = this;
-				if(!t.name){
-					t.$utils.msg("请输入联系人");
-					return
-				}
-				if(t.$utils.checkStr(t.phone,'phone')){
-					t.$utils.msg("请输入正确的手机号码");
-					return;
-				}
+				// if(!t.name){
+				// 	t.$utils.msg("请输入联系人");
+				// 	return
+				// }
+				// if(t.$utils.checkStr(t.phone,'phone')){
+				// 	t.$utils.msg("请输入正确的手机号码");
+				// 	return;
+				// }
 				uni.showLoading({
 					title:"提交中...",
 					mask: true,

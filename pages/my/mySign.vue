@@ -8,6 +8,9 @@
 		
 		<view class="harf-top">
 			<!-- 用户信息 -->
+			<view class="padding-tb-sm align-center bg-orange-lg padding-lr-lg">
+				<view v-if="!status" class="top-status"><text class="cuIcon-info margin-right-sm"></text>{{userInfo.status}}</view>
+			</view>
 			<view class="card">
 				<view>
 					<view class="flex input-v">
@@ -22,18 +25,20 @@
 						<view class="name-connect">营业执照:</view>
 						<view class="flex justify-between">
 							<image @click="goChoose" :src="selectImages[0].data" class="image-select" mode="aspectFill"></image>
-							<image src="../../static/mall-old/demo_product.png" class="image-select" mode="aspectFill"></image>
+							<image v-if="status" src="../../static/mall-old/demo_product.png" class="image-select" mode="aspectFill"></image>
+							<image v-if="!status" :src="userInfo.doc[0]" class="image-select" mode="aspectFill"></image>
 						</view>
 					</view>
 					<view class="input-image">
 						<view class="name-connect">授权委托书:</view>
 						<view class="flex justify-between">
 							<image @click="goChoose2" :src="selectImages2[0].data" class="image-select" mode="aspectFill"></image>
-							<image src="../../static/mall-old/demo_product.png" class="image-select" mode="aspectFill"></image>
+							<image v-if="status" src="../../static/mall-old/demo_product.png" class="image-select" mode="aspectFill"></image>
+							<image v-if="!status" :src="userInfo.doc[1]" class="image-select" mode="aspectFill"></image>
 						</view>
 					</view>
 					<view class="space-m"></view>
-					<view @click="upload" class="long-bg">提交申请</view>
+					<view v-if="status" @click="upload" class="long-bg">提交申请</view>
 				</view>
 			</view>
 			
@@ -53,7 +58,6 @@
 			
 			return {
 				id:'',
-				info:{},
 				modalName:'',
 				modalName2:'',
 				count:1,
@@ -65,12 +69,19 @@
 				}],
 				doc:[],
 				idcard:'',
-				name:''
+				name:'',
+				userInfo:{},
+				status:0
 			}
 		},
 		onLoad:function(option){
 			this.id = option.id;
-			this.getInfo();
+			this.userInfo = this.app.User;
+			this.status = (this.userInfo.status == '未认证')
+			if(!this.status){
+				this.name = this.userInfo.name;
+				this.idcard = this.userInfo.idcard;
+			}
 		},
 		methods: {
 			...mapMutations(['TO','S','PUT','P']),
@@ -117,30 +128,6 @@
 					}
 				})
 				
-			},
-			getInfo(){
-				let t=this;
-				t.S({
-					url:"order/"+t.id,
-					callback:function(res){
-						if(res.statusCode===200){
-							console.log(JSON.stringify(res))
-							if(res.errMsg=='request:ok'){
-								t.info = res.data.data
-							}else{
-								console.log(JSON.stringify(res));
-							}
-						}else{
-							if(res.statusCode==401){
-								t.TO({
-									url:'/pages/auth/login'
-								})
-							}else{
-								t.$utils.msg(res.errMsg);
-							}
-						}
-					}
-				})
 			},
 			goChoose(){
 				let t = this;

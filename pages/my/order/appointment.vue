@@ -31,7 +31,7 @@
 				<view>
 					<view class="flex input-v">
 						<view class="name-connect">预约门店:</view>
-						<input :value="storeList[addressIndex].name" disabled style="flex: 1;" placeholder="到店门店" placeholder-style="font-size:12px;color:#bbb"/>
+						<input :value="addressIndex.name" disabled style="flex: 1;" placeholder="到店门店" placeholder-style="font-size:12px;color:#bbb"/>
 						<view @click="showModal" class="more-right"><text class="cuIcon-right"></text></view>
 					</view>
 					<view class="flex input-v">
@@ -68,22 +68,22 @@
 					</view>
 				</view>
 				<scroll-view class="padding-bottom" style="height: 500upx;" scroll-y="true">
-					<!-- <radio-group @change="radioChange" style="width: 100%;">
-					<view v-for="{sItem,index} in supportList" :key="index" class="flex align-center store-v store-item">
-						<image :src="sItem.logo" class="store-logo" mode="aspectFit"></image>
+					<radio-group @change="radioChange" style="width: 100%;">
+					<view v-for="(item,index) in storeList" :key="index" class="flex align-center store-v store-item">
+						<image :src="storeList[0].logo" class="store-logo" mode="aspectFit"></image>
 						<view class="margin-left-sm margin-right-lg" style="flex-grow: 1;">
-							<view class="card-title text-left">{{sItem.name}}</view>
+							<view class="card-title text-left">{{storeList[index].name}}</view>
 							<view class="flex justify-between align-center more-right">
-								<view class="text-left card-desc"><text class="cuIcon-location"></text>{{sItem.address}}</view>
+								<view class="text-left card-desc"><text class="cuIcon-location"></text>{{storeList[index].address}}</view>
 								<view><text class="cuIcon-right"></text></view>
-								<view>4.5km</view>
+								<view>{{storeList[index].distance}}km</view>
 							</view>
 						</view>
-						<label class="radio" :value="index" :checked="supportIndex==index">
-							<radio />
+						<label class="radio">
+							<radio :value="'+'+index+'+'" :checked="addressIndex.name==storeList[index].name" />
 						</label>
 					</view>
-					</radio-group> -->
+					</radio-group>
 				</scroll-view>
 			</view>
 		</view>
@@ -140,12 +140,10 @@
 				phone:'',
 				orderAt:'',
 				storeList:[
-					{"address":"","id":"5e4630f2a8817182eab66ddc","latitude":"","logo":"",
-					"longitude":"","name":"壹加壹口腔","phone":""},
-					{"address":"人民大道二段1号","id":"5e4b3fb99586a3cb5f20677f","latitude":23.5,
-					"logo":"","longitude":18.9,"name":"壹加壹口腔2","phone":""},
+					{"address":"人民广场","id":"5e4630f2a8817182eab66ddc","latitude":"","logo":"",
+					"longitude":"","name":"壹加壹口腔","phone":"",distance:3.5},
 					],
-				addressIndex:0,
+				addressIndex:{},
 				year:0,
 				month:0,
 				day:0,
@@ -153,7 +151,7 @@
 				weekday:0,
 				week:0,
 				visible:true,
-				dates:{}
+				dates:{},
 			}
 		},
 		onLoad:function(option){
@@ -193,6 +191,8 @@
 				indicatorStyle: `height: 400px;`,
 				value: [0, this.month - 1, this.day - 1,this.hour - 1],
 			}
+			
+			this.addressIndex = this.storeList[0];
 		},
 		methods: {
 			...mapMutations(['TO','S','P']),
@@ -201,6 +201,29 @@
 			},
 			onName(e){
 				this.name = e.target.value;
+			},
+			getLocation(){
+				let t=this;
+				uni.getLocation({
+				    type: 'wgs84',//gcj02:国测局坐标,wgs84:gps
+				    success: function (res) {
+				        console.log('当前位置的经度：' + res.longitude);
+				        console.log('当前位置的纬度：' + res.latitude);
+						t.location = res;
+						t.calcDistance();
+				    }
+				});
+			},
+			calcDistance(){
+				// this.storeList = [];
+				for(let i=0;i<this.pInfo.support.length;i++){
+					let hosp = this.pInfo.support[i];
+					let dis = this.$utils.geoDistance(this.location.latitude,this.location.longitude,
+					hosp.latitude,hosp.longitude);
+					hosp.distance = dis;
+					this.storeList.push(hosp);
+				}
+				this.addressIndex = this.storeList[0];
 			},
 			bindChange: function (e) {
 				const val = e.detail.value
@@ -227,8 +250,9 @@
 			},
 			radioChange(e){
 				console.log(e.target.value);
-				console.log(this.supportList);
-				this.supportIndex = e.target.value;
+				let index = parseInt(e.target.value);
+				this.addressIndex = this.storeList[index];
+				this.hideModal()
 			},
 			goPages(){
 				let t = this;
@@ -245,12 +269,7 @@
 							console.log(JSON.stringify(res))
 							if(res.data.status==1){
 								t.pInfo = res.data.data
-								// t.supportList = [];
-								// // 
-								// for (var i = 0; i < res.data.data.support.length; i++) {
-								// 	t.supportList.push(res.data.data.support[i]);
-								// }
-								// console.log('supportList',t.supportList)
+								t.getLocation();
 							}else{
 								console.log(JSON.stringify(res));
 							}
@@ -305,7 +324,7 @@
 					t.$utils.msg("请输入正确的手机号码");
 					return;
 				}
-				let hospital = t.storeList[t.addressIndex].id;
+				let hospital = t.addressIndex.id;
 				let orderAt = t.year+'-'+t.month+'-'+t.day+' '+t.hour+':00:00';
 				uni.showLoading({
 					title:"提交中...",
@@ -322,7 +341,9 @@
 										// t.id = res.data.data.id;
 										t.$utils.msg('预约成功');
 										setTimeout(()=>{
-											t.goPages()
+											uni.switchTab({
+												url:'/pages/my/order/orderList'
+											})
 										},100)
 									}else{
 										t.$utils.msg(res.data.message);

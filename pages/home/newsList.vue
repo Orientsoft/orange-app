@@ -81,7 +81,13 @@
 				});
 			},
 			onTag2(index){
+				if(this.tag2 == index){
+					return;
+				}
 				this.tag2 = index;
+				this.loadMoreStatus=0;
+				this.now_page=1;
+				this.loadData(this.tagList2[index].name)
 			},
 			goPagesById(url,url2,id){
 				let params = 'url='+url2+'&';

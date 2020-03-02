@@ -8,7 +8,7 @@
 		<view class="harf-top">
 			<view class="space-m"></view>
 			<view class="card flex align-end">
-				<view class="card-desc">
+				<view class="card-desc flex-sub">
 					<view class="card-title">{{info.name}}</view>
 					<view>{{info.desc_1}}</view>
 					<view>{{info.desc_2}}</view>
@@ -21,18 +21,18 @@
 			<!-- 门店 -->
 			<view class="store-v">
 				<view class="flex justify-between">
-					<view class="card-title">适用门店（91）</view>
-					<view class="store-more">其他门店 ></view>
+					<view class="card-title">适用门店（{{supportList.length}}）</view>
+					<view @click="showModal" class="store-more">其他门店 ></view>
 				</view>
 				<view class="flex align-center">
 					<image :src="info.logo" class="store-logo" mode="aspectFit"></image>
 					<view class="margin-left-sm" style="flex-grow: 1;">
 						<view class="flex justify-between">
-							<view class="card-title">成都格林阳关诊所</view>
-							<view class="card-desc">4.5km</view>
+							<view class="card-title flex-treble">{{supportList[0].name}}</view>
+							<view class="card-desc">{{supportList[0].distance}}km</view>
 						</view>
-						<view class="flex justify-between card-desc">
-							<view><text class="cuIcon-location"></text>太升南路25号</view>
+						<view @click="openMap(supportList[0])" class="flex justify-between card-desc">
+							<view><text class="cuIcon-location"></text>{{supportList[0].address}}</view>
 							<view><text class="cuIcon-right"></text></view>
 						</view>
 					</view>
@@ -58,6 +58,31 @@
 			<view class="active-price">¥<text class="card-active-price">{{info.price}}</text></view>
 			<view @click="goPages()" class="order-btn text-center text-white">提交订单</view>
 		</view>
+		
+		<!-- 选择地址 -->
+		<view class="cu-modal bottom-modal" :class="modalName=='Modal'?'show':''">
+			<view class="cu-dialog">
+				<view class="cu-bar bg-white justify-end">
+					<view class="content">请选择地址</view>
+					<view class="action" @tap="hideModal">
+						<text class="cuIcon-close text-red"></text>
+					</view>
+				</view>
+				<scroll-view class="padding-bottom" style="height: 500upx;" scroll-y="true">
+					<view v-for="(item,index) in supportList" :key="index" class="flex align-center store-v store-item">
+						<image :src="supportList[index].logo" class="store-logo" mode="aspectFit"></image>
+						<view class="margin-left-sm margin-right-lg" style="flex-grow: 1;">
+							<view class="card-title text-left">{{supportList[index].name}}</view>
+							<view class="flex justify-between align-center more-right">
+								<view class="text-left card-desc flex-sub"><text class="cuIcon-location"></text>{{supportList[index].address}}</view>
+								<view><text class="cuIcon-right"></text></view>
+								<view>{{supportList[index].distance}}km</view>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -71,7 +96,18 @@
 			return {
 				id:'',
 				info:{},
-				tabIndex:0
+				tabIndex:0,
+				location:{
+					longitude:0,
+					latitude:0
+				},
+				supportList:[{
+					name:'',
+					logo:'',
+					distance:'',
+					address:''
+				}],
+				modalName:''
 			}
 		},
 		onLoad:function(option){
@@ -80,6 +116,44 @@
 		},
 		methods: {
 			...mapMutations(['TO','S']),
+			showModal(){
+				this.modalName='Modal';
+			},
+			hideModal(){
+				this.modalName='';
+			},
+			getLocation(){
+				let t=this;
+				uni.getLocation({
+				    type: 'wgs84',//gcj02:国测局坐标,wgs84:gps
+				    success: function (res) {
+				        console.log('当前位置的经度：' + res.longitude);
+				        console.log('当前位置的纬度：' + res.latitude);
+						t.location = res;
+						t.calcDistance();
+				    }
+				});
+			},
+			calcDistance(){
+				this.supportList = [];
+				for(let i=0;i<this.info.support.length;i++){
+					let hosp = this.info.support[i];
+					let dis = this.$utils.geoDistance(this.location.latitude,this.location.longitude,
+					hosp.latitude,hosp.longitude);
+					hosp.distance = dis;
+					this.supportList.push(hosp);
+				}
+				console.log("距离"+this.supportList[0].distance);
+			},
+			openMap(hosp){
+				uni.openLocation({
+					latitude: hosp.latitude,
+					longitude: hosp.longitude,
+					success: function () {
+						console.log('success');
+					}
+				})
+			},
 			onSelTab(index){
 				this.tabIndex = index;
 			},
@@ -98,6 +172,7 @@
 							console.log(JSON.stringify(res))
 							if(res.errMsg=='request:ok'){
 								t.info = res.data.data
+								t.getLocation();
 							}else{
 								console.log(JSON.stringify(res));
 							}

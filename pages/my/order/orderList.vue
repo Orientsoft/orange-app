@@ -11,6 +11,7 @@
 			</view>
 		</view>
 		<view class="space-s"></view>
+		<scroll-view scroll-y="true" @scrolltolower="loadMore" :style="[{height:windowHeight+'px'}]">
 		<!--医院-->
 		<view class="hospital-card-list">
 			<view v-for="(item,index) in orderList" :key="index" class="padding-tb-sm card-list">
@@ -33,6 +34,8 @@
 				</view>
 			</view>
 		</view>
+		<mixLoadMore :status="loadMoreStatus"></mixLoadMore>
+		</scroll-view>
 		
 	</view>
 </template>
@@ -91,18 +94,38 @@
 					},
 				],
 				tag2:0,
+				loadMoreStatus:0,
+				now_page:1,
+				windowHeight:0,
+				limit:10
 			}
 		},
 		onLoad() {
+			this.calcHeight();
+			this.loadData();
 		},
 		onShow() {
-			this.loadData();
-			this.userInfo = this.app.User.Info;
+			this.userInfo = this.app.User;
 		},
 		methods: {
 			...mapMutations(['TO','S']),
+			calcHeight(){
+				let t = this;
+				uni.getSystemInfo({
+					success:function(res){
+						console.log(JSON.stringify(res));
+						t.windowHeight=res.windowHeight;
+					}
+				});
+			},
 			onTag2(index){
+				if(this.tag2 == index){
+					return;
+				}
 				this.tag2 = index;
+				this.loadMoreStatus=0;
+				this.now_page=1;
+				this.loadData()
 			},
 			getInfo(id){
 				let t = this;
@@ -115,14 +138,26 @@
 					url:'/pages/home/mall/productInfo?id='+id
 				})
 			},
+			loadMore(){
+				console.log('loadMore',this.loadMoreStatus);
+				if(this.loadMoreStatus<2)
+					this.loadData();
+			},
 			loadData(){
 				let t= this;
+				t.loadMoreStatus = 1;
 				t.S({
 					url:"order/me",
+					data:{page:t.now_page,limit:t.limit,status:t.tagList2[t.tag2].value},
 					callback:function(res){
 						if(res.statusCode===200){
 							console.log(JSON.stringify(res))
 							if(res.data.status==1){
+								if(parseInt(res.data.total)> t.now_page*t.limit){
+									t.now_page ++;
+								}else{
+									t.loadMoreStatus = 2;
+								}
 								t.orderList = res.data.data;
 							}else{
 								console.log(JSON.stringify(res));

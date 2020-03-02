@@ -8,7 +8,7 @@
 		<!--医院-->
 		<view v-for="(item,index) in list" :key="index" class="margin-lr-item margin-top card-list">
 			<view class="flex justify-between card-item-desc">
-				<view>{{$utils.dateFormat('YYYY-mm-dd HH:MM',new Date())}}</view>
+				<view>{{$utils.dateUtils.format(item.createAt)}}</view>
 				<view></view>
 			</view>
 			<view class="space-s"></view>
@@ -19,7 +19,7 @@
 				</view>
 				<view class="flex margin-bottom-sm">
 					<view class="card-desc margin-right-lg">医院:</view>
-					<view class="name-connect flex-treble">{{item.hospitalAddr}}</view>
+					<view class="name-connect flex-treble">{{item.hospital}}</view>
 				</view>
 				<view class="flex">
 					<view class="card-desc margin-right-lg">内容:</view>
@@ -48,10 +48,10 @@
 				userInfo: {},
 				list:[
 					{
-						createAt:'2020-02-23 12:30:20',
+						createAt:1582852683,
 						name:'张三',
 						content:'拔牙，洗牙，抛光牙',
-						hospitalAddr:'东区大医院'
+						hospital:'东区大医院'
 					}
 				],
 			}

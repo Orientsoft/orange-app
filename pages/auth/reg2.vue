@@ -16,6 +16,30 @@
 			</view>
 			<view class="space-m"></view>
 			<view class="input-v">
+				<input class="input-in" placeholder="请您的姓名" placeholder-style="color:#bbb;font-size:12px" :value="name" @input="onName"/>
+				<view class="input-line"></view>
+			</view>
+			<view class="space-m"></view>
+			<view class="input-v">
+				<radio-group @change="radioChange">
+					<view class="flex">
+						<label class="flex align-center margin-right-lg">
+							<view>
+								<radio value="1" :checked="male === 1" />
+							</view>
+							<view class="text-lg margin-left-sm">男</view>
+						</label>
+						<label class="flex align-center">
+							<view>
+								<radio value="2" :checked="male === 2" />
+							</view>
+							<view class="text-lg margin-left-sm">女</view>
+						</label>
+					</view>
+				</radio-group>
+			</view>
+			<view class="space-m"></view>
+			<view class="input-v">
 				<view class="input-in flex align-end">
 					<input class="flex-sub" type="password" placeholder="输入8-16位数字与字母" placeholder-style="color:#bbb;font-size:12px" :value="password" @input="onPasswd"/>
 				</view>
@@ -37,7 +61,9 @@
 			return {
 				account:'',
 				code:'',
+				name:'',
 				password:'',
+				male:1
 			}
 		},
 		beforeMount(){
@@ -52,8 +78,14 @@
 			onAccount(e){
 				this.account = e.target.value;
 			},
+			onName(e){
+				this.name = e.target.value;
+			},
 			onPasswd(e){
 				this.password = e.target.value;
+			},
+			radioChange(e){
+				this.male = e.target.value;
 			},
 			goPages(url){
 				this.TO({
@@ -62,17 +94,22 @@
 			},
 			setPasswd(){
 				let t=this;
+				if(!t.name){
+					t.$utils.msg("请输入您的姓名");
+					return;
+				}
 				if(!t.$utils.checkStr(t.password,'pay_pwd')){
 					t.$utils.msg("请输入8-16位包含字母、数字的密码");
 					return;
 				}
+				
 				uni.showLoading({
 					title:"注册中。。。",
 					mask: true,
 					success:function(){
 						t.P({
 								url:'register',
-								data:{phone:t.account,code:t.code,password:t.password},
+								data:{phone:t.account,code:t.code,password:t.password,name:t.name,male:t.male},
 								callback:function(res){
 									uni.hideLoading();
 									console.log(JSON.stringify(res.data));

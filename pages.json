@@ -1,7 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 	{
-		"path": "pages/health/index",
+		"path": "pages/home/index",
 		"style": {
 			"navigationBarTitleText" : "测试",
 			"app-plus": {
@@ -207,7 +207,16 @@
 		"navigationBarBackgroundColor": "#fffef6",
 		"backgroundColor": "#fffef6",
 		//隐藏滚动条
-		"scrollIndicator": "none"
+		"scrollIndicator": "none",
+		"distribute": {  
+			"ios": {  
+				"urlschemewhitelist": [  
+					"baidumap",  
+					"iosamap",  
+					"qqmap"  
+				]  
+			}
+		}
 	},
 	"tabBar" : {
 	    "color" : "#C0C4CC",

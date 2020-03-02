@@ -47,7 +47,6 @@ page {
 	font-size: 24upx;
 	margin-top: 5upx;
 	margin-bottom: 5upx;
-	flex: 1;
 }
 /* 金额 */
 .active-price{
@@ -72,13 +71,15 @@ page {
 }
 .store-more{
 	color: #888;
-	font-size: 12upx;
+	font-size: 20upx;
 	border: 1upx solid #888;
 	border-radius: 30upx;
 	padding-left: 10upx;
 	padding-right: 10upx;
 	padding-top: 4upx;
 	padding-bottom: 4upx;
+	align-items: center;
+	justify-content: center;
 }
 
 .picInfo{

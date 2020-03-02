@@ -18,8 +18,6 @@
 				</view>
 				<view class="text-xl"><text class="cuIcon-right more"></text></view>
 			</view>
-			
-			
 	</view>
 </template>
 
