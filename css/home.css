@@ -131,17 +131,14 @@ page{
 	position: relative;
 }
 .card-item-title{
-<<<<<<< Updated upstream
-	color: #000000;
 	font-size: 32upx;
 	font-weight: 400;
 	height: 50upx;
 	overflow: hidden;
-=======
 	color: #131313;
 	font-size: 36upx;
 	font-weight: 700;
->>>>>>> Stashed changes
+
 }
 .card-item-sign{
 	background: #02cfa9;
