@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<cu-custom :isBack="true" bgColor="container title-orange">
-			<block slot="backText"><text class="title-black">病历详情</text></block>
+			<block slot="backText"><text class="title-black">我的病历</text></block>
 		</cu-custom>
 		<view class="gray-shadow"></view>
 		<view class="space-s"></view>
@@ -46,7 +46,6 @@
 		data() {
 			return {
 				userInfo: {},
-				id:'',
 				list:[
 					{
 						createAt:1582852683,
@@ -57,11 +56,7 @@
 				],
 			}
 		},
-		onLoad(e) {
-			console.log(option.id);
-			if(option.id){
-				this.id = option.id;
-			}
+		onLoad() {
 		},
 		onShow() {
 			this.loadData();
@@ -70,43 +65,14 @@
 		methods: {
 			...mapMutations(['TO','S']),
 			loadData(){
-				let t=this;
-				uni.showLoading({
-					title:'加载中。。。',
-					success() {
-						t.S({
-							url:"order/case/"+t.id,
-							callback:function(res){
-								// console.log(res);
-								uni.hideLoading();
-								if(res.statusCode===200){
-									console.log(JSON.stringify(res.data))
-									let data = res.data;
-									if(data.status==1){
-										t.list = data.data;
-									}else{
-										t.$utils.msg(data.msg);
-									}
-								}else{
-									if(res.statusCode==401){
-										t.TO({
-											url:'/pages/charge/login'
-										})
-									}else{
-										t.$utils.msg(res.errMsg);
-									}
-								}
-							}
-						})
-					}
-				})
+				this.list = this.app.User.record;
 			}
 		}
 	}
 </script>
 
 <style>
-	@import url("../../css/home.css");
+	@import url("../../../css/home.css");
 	.gray-shadow{
 		height: 1upx;
 		box-shadow:inset 0upx 0upx  10upx #F0F0F0;

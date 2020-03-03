@@ -128,6 +128,8 @@ page{
 	color: #000000;
 	font-size: 32upx;
 	font-weight: 400;
+	height: 50upx;
+	overflow: hidden;
 }
 .card-item-sign{
 	background: #02cfa9;
@@ -151,6 +153,7 @@ page{
 	font-size: 24upx;
 	margin-top: 5upx;
 	margin-bottom: 5upx;
+	overflow: hidden;
 }
 .card-item-desc-phone{
 	height: 24upx;

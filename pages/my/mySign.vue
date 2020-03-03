@@ -9,17 +9,17 @@
 		<view class="harf-top">
 			<!-- 用户信息 -->
 			<view class="padding-tb-sm align-center bg-orange-lg padding-lr-lg">
-				<view v-if="!status" class="top-status"><text class="cuIcon-info margin-right-sm"></text>{{userInfo.status}}</view>
+				<view v-if="!status" class="top-status"><text class="cuIcon-info margin-right-sm"></text>{{userInfo.status}} <text v-if="userInfo.status=='认证失败'">{{userInfo.reason}}</text></view>
 			</view>
 			<view class="card">
 				<view>
 					<view class="flex input-v">
 						<view class="name-connect">医院名称:</view>
-						<input onInput="onName" :value="name" style="flex: 1;" placeholder="医院全称" placeholder-style="font-size:12px;color:#bbb"/>
+						<input @input="onName" :value="name" style="flex: 1;" placeholder="医院全称" placeholder-style="font-size:12px;color:#bbb"/>
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect flex-sub">营业执照编号:</view>
-						<input class="flex-twice" :value="idcard" onInput="onRemark" placeholder="2009092DBGC988" placeholder-style="font-size:12px;color:#bbb"/>
+						<input class="flex-twice" :value="idcard" @input="onIdCard" placeholder="2009092DBGC988" placeholder-style="font-size:12px;color:#bbb"/>
 					</view>
 					<view class="input-image">
 						<view class="name-connect">营业执照:</view>
@@ -38,7 +38,7 @@
 						</view>
 					</view>
 					<view class="space-m"></view>
-					<view v-if="status" @click="upload" class="long-bg">提交申请</view>
+					<view v-if="userInfo.status!='待审核'&& userInfo.status!='已认证'" @click="upload" class="long-bg">提交申请</view>
 				</view>
 			</view>
 			
@@ -85,14 +85,18 @@
 		},
 		methods: {
 			...mapMutations(['TO','S','PUT','P']),
-			onRemark(e){
+			onIdCard(e){
 				this.idcard = e.target.value;
 			},
 			onName(e){
 				this.name = e.target.value;
+				console.log('认证参数',this.name);
 			},
 			toCert(){
+				
 				let t = this;
+				
+				console.log('认证参数',t.name,t.idcard);
 				uni.showLoading({
 					title:"提交申请中...",
 					mask: true,
@@ -110,7 +114,9 @@
 								
 								if(res.statusCode===200){
 									if(res.data.status==1){
-										t.$utils.msg('提交申请成功')
+										t.$utils.msg('提交申请成功,等待审核')
+										t.userInfo.status = '待审核'
+										t.status = 0
 									}else{
 										console.log(JSON.stringify(res));
 									}
@@ -211,6 +217,14 @@
 				})
 			},
 			upload(){
+				if(!this.name){
+					this.$utils.msg("请输入医院名称");
+					return;
+				}
+				if(!this.idcard){
+					this.$utils.msg("请输入营业执照编号");
+					return;
+				}
 				if(this.selectImages.length<=0){
 					this.$utils.msg("请选择营业执照")
 					return;
@@ -219,8 +233,9 @@
 					this.$utils.msg("请选择授权委托书")
 					return;
 				}
-				console.log(this.selectImages[0].path)
-				let t = this;
+				
+				let t=this;
+				console.log(t.selectImages[0].path)
 				// File imgFile = new File(t.selectImages[0].path);
 				t.doupload(t.selectImages[0].path,()=>{
 					t.doupload(t.selectImages2[0].path,()=>{

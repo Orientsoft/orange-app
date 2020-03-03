@@ -8,7 +8,7 @@
 		<view class="harf-top">
 			<view class="space-m"></view>
 			<view class="card flex align-end">
-				<view class="card-desc flex-sub">
+				<view class="card-desc flex-sub self-stretch">
 					<view class="card-title">{{info.name}}</view>
 					<view>{{info.desc_1}}</view>
 					<view>{{info.desc_2}}</view>
@@ -50,6 +50,33 @@
 			<!-- picInfo -->
 			<view class="picInfo">
 				<image :src="info.pic" mode="aspectFit" style="width: 100%;"></image>
+			</view>
+			<!-- 评论 -->
+			<view>
+				<view class="space-m"></view>
+				<view class="card">
+					<view>
+						<view class="flex justify-between margin-bottom-sm">
+							<view class="flex align-center">
+								<image :src="commServer.commentLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
+								<view>{{commServer.commentName}}</view>
+							</view>
+							<view class="card-desc">{{$utils.dateUtils.format(commServer.commentAt)}}</view>
+						</view>
+						<view>{{commServer.comment}}</view>
+					</view>
+					<view v-if="commServer.answer">
+						<view class="flex justify-between margin-bottom-sm">
+							<view class="flex align-center">
+								<image :src="commServer.answerLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
+								<view>{{commServer.answerName}}</view>
+							</view>
+							<view class="card-desc">{{$utils.dateUtils.format(commServer.answerAt)}}</view>
+						</view>
+						<view>{{commServer.answer}}</view>
+					</view>
+				</view>
+				<view class="space-m"></view>
 			</view>
 		</view>
 		
@@ -107,12 +134,14 @@
 					distance:'',
 					address:''
 				}],
-				modalName:''
+				modalName:'',
+				commServer:[]
 			}
 		},
 		onLoad:function(option){
 			this.id = option.id;
 			this.getInfo();
+			this.getComment();
 		},
 		methods: {
 			...mapMutations(['TO','S']),
@@ -172,7 +201,37 @@
 							console.log(JSON.stringify(res))
 							if(res.errMsg=='request:ok'){
 								t.info = res.data.data
+								t.supportList = [];
+								for(let i=0;i<t.info.support.length;i++){
+									let hosp = t.info.support[i];
+									hosp.distance = 0;
+									t.supportList.push(hosp);
+								}
 								t.getLocation();
+							}else{
+								console.log(JSON.stringify(res));
+							}
+						}else{
+							if(res.statusCode==401){
+								t.TO({
+									url:'/pages/auth/login'
+								})
+							}else{
+								t.$utils.msg(res.errMsg);
+							}
+						}
+					}
+				})
+			},
+			getComment(){
+				let t=this;
+				t.S({
+					url:"product/comment/"+t.id,
+					callback:function(res){
+						if(res.statusCode===200){
+							console.log(JSON.stringify(res))
+							if(res.errMsg=='request:ok'){
+								t.commServer = res.data.data
 							}else{
 								console.log(JSON.stringify(res));
 							}

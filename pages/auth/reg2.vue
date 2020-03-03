@@ -117,7 +117,7 @@
 										if(res.data.status==1){
 											t.$utils.msg("注册成功");
 											setTimeout(()=>{
-												this.goPages("/pages/auth/login")
+												t.goPages("/pages/auth/login")
 											},1000)
 										}else{
 											t.$utils.msg(res.data.message);

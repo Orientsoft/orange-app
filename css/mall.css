@@ -82,6 +82,11 @@ page {
 	justify-content: center;
 }
 
+.comment-logo{
+	height: 48upx;
+	width: 48upx;
+	border-radius: 10upx;
+}
 .picInfo{
 	background: #FFFFFF;
 }

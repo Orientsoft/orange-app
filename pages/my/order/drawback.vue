@@ -12,11 +12,10 @@
 				<view class="cro_left_bottom"></view>
 				<view class="cro_right_bottom"></view>
 				<view class="flex align-end">
-					<view class="card-desc">
+					<view class="card-desc flex-sub self-stretch">
 						<view class="card-title">{{info.product.name}}</view>
 						<view>{{info.desc_1}}</view>
 						<view>{{info.desc_2}}</view>
-						<view class="space-l"></view>
 					</view>
 					<image :src="info.product.logo" class="card-logo" mode="aspectFit"></image>
 				</view>	
@@ -40,7 +39,7 @@
 					</view>
 					<view class="input-image">
 						<view class="name-connect">退款说明:</view>
-						<textarea :value="remark" onInput="onRemark" style="height: 80px;" placeholder="使用者姓名" placeholder-style="font-size:12px;color:#bbb"/>
+						<textarea :value="remark" @input="onRemark" style="height: 80px;" placeholder="退款说明" placeholder-style="font-size:12px;color:#bbb"/>
 					</view>
 					<view class="input-image">
 						<view class="name-connect">上传凭证:</view>
@@ -107,7 +106,8 @@
 					'其他原因',
 				],
 				reasonIndex:'买错了',
-				remark:''
+				remark:'',
+				isChoose:false,
 			}
 		},
 		onLoad:function(option){
@@ -217,6 +217,7 @@
 								tmpdata = tmpdata.substr(0,tmpdata.length-1);
 								// console.log(tmpdata);
 								console.log(tmpdata.length);
+								t.isChoose = true;
 								t.selectImages.push({
 									data:tmpdata,
 									path:item
@@ -228,7 +229,9 @@
 			},
 			///upload
 			upload(){
-				if(this.selectImages.length<=0){
+				if(!this.isChoose){
+					this.isChoose = false;
+					this.drawback('');
 					return;
 				}
 				console.log(this.selectImages[0].path)

@@ -3,7 +3,7 @@
 		<swiper class="screen-swiper square-dot home-swiper" :indicator-dots="true" :circular="true"
 		 :autoplay="true" interval="5000" duration="500" indicator-color="#fcabab" indicator-active-color="#fcabab">
 			<swiper-item v-for="(item,index) in swiperList" :key="index" @tap="TO({url:item.link_url})">
-				<image :src="item.pic" mode="aspectFill" class="radius"></image>
+				<image :src="item.pic" mode="scaleToFill" class="radius"></image>
 			</swiper-item>
 		</swiper>
 		
@@ -65,10 +65,9 @@
 				<view class="margin-left-sm" style="flex-grow: 1;">
 					<view class="flex">
 						<text class="card-item-title">{{item.name}}</text>
-						<text class="card-item-sign">三甲</text>
-						<text class="card-item-sign">可咨询</text>
+						<text v-for="(tag,index) in item.tag" :key="index+'tag'" class="card-item-sign">{{tag}}</text>
 					</view>
-					<view class="card-item-desc">科室：麻醉科 病理科|神经外科</view>
+					<view class="card-item-desc">科室：<text v-for="(dept,index) in item.department" :key="index+'dept'" class="margin-right-sm">{{dept}}</text></view>
 					<view class="card-item-desc flex align-end">
 						<text class="cuIcon-phone"></text> {{item.phone}}</view>
 					<view class="card-item-desc flex align-end">
@@ -90,12 +89,12 @@
 					<view class="margin-left-sm">
 						<view class="card-item-title">{{item[0].name}}</view>
 						<view class="flex">
-							<view class="name-class">刘一刀</view>
-							<view>一级专家</view>
+							<view class="name-class">{{item[0].doctor}}</view>
+							<view>{{item[0].tag[0]}}</view>
 						</view>
 						<view class="card-item-desc flex">擅长：
 							<view class="flex justify-around">
-								<view v-for="(item,index) in tagClass" :key="index" class="tag-class">
+								<view v-for="(item,index) in item[0].skilled" :key="index" class="tag-class">
 									{{item}}
 								</view>
 							</view>
@@ -109,12 +108,12 @@
 					<view v-if="item[1]" class="margin-left-sm" style="flex-grow: 1;">
 						<view class="card-item-title">{{item[1].name}}</view>
 						<view class="flex">
-							<view class="name-class">刘一刀</view>
-							<view>一级专家</view>
+							<view class="name-class">{{item[1].doctor}}</view>
+							<view>{{item[1].tag[0]}}</view>
 						</view>
 						<view class="card-item-desc flex">擅长：
 							<view class="flex justify-around">
-								<view v-for="(item,index) in tagClass" :key="index" class="tag-class">
+								<view v-for="(item,index) in item[1].skilled" :key="index" class="tag-class">
 									{{item}}
 								</view>
 							</view>
@@ -137,8 +136,8 @@
 			</view>
 			<view @click="goPagesById('/pages/home/newInfo','news',item.id)" v-for="(item,index) in newsList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
-					<view class="text-bold">{{item.name}}</view>
-					<view>{{item.desc}}</view>
+					<view class="text-bold" style="overflow: hidden;">{{item.name}}</view>
+					<view style="height: 80upx;overflow: hidden;">{{item.desc}}</view>
 				</view>
 				<view class="image align-center justify-center">
 					<image :src="item.pic" class="image" mode="aspectFill"></image>
@@ -204,9 +203,9 @@
 		},
 		onLoad() {
 			this.startAnimate();
+			this.loadData();
 		},
 		onShow() {
-			this.loadData();
 			this.userInfo = this.app.User.Info;
 		},
 		methods: {
@@ -381,7 +380,7 @@
 				})
 				
 				t.S({
-					url:"tag?type=新闻热点",
+					url:"tag?type=新闻",
 					callback:function(res){
 						if(res.statusCode===200){
 							console.log(JSON.stringify(res))

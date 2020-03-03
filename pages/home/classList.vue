@@ -57,8 +57,8 @@
 				hospitalList:[],
 				current: 0,
 				tagList2:[
-					{"name":"综合排序"},
-					{"name":"人气最高"},
+					{"name":"综合排序",value:'time'},
+					{"name":"人气最高",value:'hot'},
 				],
 				tag2:0,
 				tagClass:['高血压','冠心病'],
@@ -93,7 +93,7 @@
 				this.tag2 = index;
 				this.loadMoreStatus=0;
 				this.now_page=1;
-				this.loadData(this.tagList2[index].name)
+				this.loadData(this.tagList2[index].value)
 			},
 			getInfo(id){
 				let t = this;
@@ -104,13 +104,13 @@
 			loadMore(){
 				console.log('loadMore',this.loadMoreStatus);
 				if(this.loadMoreStatus<2)
-					this.loadData();
+					this.loadData(this.tagList2[index].value);
 			},
-			loadData(){
+			loadData(value){
 				let t= this;
 				t.S({
 					url:"class",
-					data:{page:t.now_page,limit:t.limit},
+					data:{page:t.now_page,limit:t.limit,sort:value},
 					callback:function(res){
 						if(res.statusCode===200){
 							console.log(JSON.stringify(res))

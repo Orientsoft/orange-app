@@ -5,22 +5,21 @@
 		</cu-custom>
 		<view class="gray-shadow"></view>
 		<view class="space-s"></view>
-		<view class="hospital-card-list">
-			<view @tap="goPagesById(item.id)" v-for="(item,index) in list" :key="index" class="flex padding-tb-sm card-item">
+		<view class="card-list margin-lr-lg">
+			<view @click="goPagesById('/pages/home/hospitalInfo','',item.id)" v-for="(item,index) in list" :key="index" class="flex padding-tb-sm card-item">
 				<view class="image align-center justify-center">
 					<image :src="item.logo" class="image-round" mode="aspectFill"></image>
 				</view>
 				<view class="margin-left-sm" style="flex-grow: 1;">
 					<view class="flex">
 						<text class="card-item-title">{{item.name}}</text>
-						<!-- <text class="card-item-sign">三甲</text> -->
-						<text class="card-item-sign">可咨询</text>
+						<text v-for="(tag,index) in item.tag" :key="index+'tag'" class="card-item-sign">{{tag}}</text>
 					</view>
-					<view class="card-item-desc">科室：麻醉科 病理科|神经外科</view>
+					<view class="card-item-desc">科室：<text v-for="(dept,index) in item.department" :key="index+'dept'" class="margin-right-sm">{{dept}}</text></view>
 					<view class="card-item-desc flex align-end">
-						<text class="cuIcon-phone"></text> 66886768</view>
+						<text class="cuIcon-phone"></text> {{item.phone}}</view>
 					<view class="card-item-desc flex align-end">
-						<text class="cuIcon-location"></text> 五环之外</view>
+						<text class="cuIcon-location"></text> {{item.address}}</view>
 				</view>
 			</view>
 		</view>
@@ -84,6 +83,14 @@
 		},
 		methods: {
 			...mapMutations(['TO','S']),
+			goPagesById(url,url2,id){
+				let params = 'url='+url2+'&';
+				params = params+'id='+id;
+				
+				uni.navigateTo({
+					url:url+'?'+params
+				})
+			},
 			loadData(){
 				let t= this;
 				t.S({

@@ -12,7 +12,7 @@
 				<view class="cro_left_bottom"></view>
 				<view class="cro_right_bottom"></view>
 				<view class="flex align-end">
-					<view class="card-desc">
+					<view class="card-desc flex-sub">
 						<view class="card-title">{{pInfo.name}}</view>
 						<view>{{pInfo.desc_1}}</view>
 						<view>{{pInfo.desc_2}}</view>
@@ -139,11 +139,10 @@
 				name:'',
 				phone:'',
 				orderAt:'',
-				storeList:[
-					{"address":"人民广场","id":"5e4630f2a8817182eab66ddc","latitude":"","logo":"",
-					"longitude":"","name":"壹加壹口腔","phone":"",distance:3.5},
-					],
-				addressIndex:{},
+				storeList:[],
+				addressIndex:{
+					name:''
+				},
 				year:0,
 				month:0,
 				day:0,
@@ -191,8 +190,8 @@
 				indicatorStyle: `height: 400px;`,
 				value: [0, this.month - 1, this.day - 1,this.hour - 1],
 			}
-			
-			this.addressIndex = this.storeList[0];
+			if(this.storeList.length>0)
+				this.addressIndex = this.storeList[0];
 		},
 		methods: {
 			...mapMutations(['TO','S','P']),
@@ -215,7 +214,7 @@
 				});
 			},
 			calcDistance(){
-				// this.storeList = [];
+				this.storeList = [];
 				for(let i=0;i<this.pInfo.support.length;i++){
 					let hosp = this.pInfo.support[i];
 					let dis = this.$utils.geoDistance(this.location.latitude,this.location.longitude,
@@ -223,7 +222,8 @@
 					hosp.distance = dis;
 					this.storeList.push(hosp);
 				}
-				this.addressIndex = this.storeList[0];
+				if(this.storeList.length>0)
+					this.addressIndex = this.storeList[0];
 			},
 			bindChange: function (e) {
 				const val = e.detail.value
@@ -267,8 +267,14 @@
 					callback:function(res){
 						if(res.statusCode===200){
 							console.log(JSON.stringify(res))
+							t.storeList = [];
 							if(res.data.status==1){
 								t.pInfo = res.data.data
+								for(let i=0;i<t.pInfo.support.length;i++){
+									let hosp = t.pInfo.support[i];
+									hosp.distance = 0;
+									t.storeList.push(hosp);
+								}
 								t.getLocation();
 							}else{
 								console.log(JSON.stringify(res));
@@ -316,14 +322,25 @@
 			yuyue(){
 				
 				let t = this;
-				if(!t.name){
-					t.$utils.msg("请输入联系人");
-					return
-				}
-				if(t.$utils.checkStr(t.phone,'phone')){
-					t.$utils.msg("请输入正确的手机号码");
+				if(!t.addressIndex.name){
+					t.$utils.msg("请选择地点");
 					return;
 				}
+				if(!t.orderAt){
+					t.$utils.msg("请选择时间");
+					return;
+				}
+				
+				if(!t.$utils.checkStr(t.phone,'phone')){
+					t.$utils.msg("请输入正确的手机号码");
+					console.log(t.phone.length)
+					return;
+				}
+				if(!t.name){
+					t.$utils.msg("请输入联系人");
+					return;
+				}
+				
 				let hospital = t.addressIndex.id;
 				let orderAt = t.year+'-'+t.month+'-'+t.day+' '+t.hour+':00:00';
 				uni.showLoading({

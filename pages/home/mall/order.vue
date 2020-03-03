@@ -13,7 +13,7 @@
 				<view class="cro_left_bottom"></view>
 				<view class="cro_right_bottom"></view>
 				<view class="card2 flex align-end">
-					<view class="card-desc">
+					<view class="card-desc flex-sub self-stretch">
 						<view class="card-title">{{info.name}}</view>
 						<view>{{info.desc_1}}</view>
 						<view>{{info.desc_2}}</view>
@@ -164,7 +164,7 @@
 							data:{phone:t.phone,name:t.name,channel:t.channel,id:t.id},
 							callback:function(res){
 								uni.hideLoading();
-								console.log(JSON.stringify(res.data));
+								console.log(JSON.stringify(res));
 								if(res.statusCode===200){
 									if(res.data.status==1){
 										t.id = res.data.data.id;

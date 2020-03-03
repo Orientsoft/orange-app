@@ -31,14 +31,13 @@
 				<view class="margin-left-sm" style="flex-grow: 1;">
 					<view class="flex">
 						<text class="card-item-title">{{item.name}}</text>
-						<text class="card-item-sign">三甲</text>
-						<text class="card-item-sign">可咨询</text>
+						<text v-for="(tag,index) in item.tag" :key="index+'tag'" class="card-item-sign">{{tag}}</text>
 					</view>
-					<view class="card-item-desc">科室：麻醉科 病理科|神经外科</view>
+					<view class="card-item-desc">科室：<text v-for="(dept,index) in item.department" :key="index+'dept'" class="margin-right-sm">{{dept}}</text></view>
 					<view class="card-item-desc flex align-end">
-						<image class="card-item-desc-phone" src="../../static/charge-old/passwd.png"></image> 66886768</view>
+						<text class="cuIcon-phone"></text> {{item.phone}}</view>
 					<view class="card-item-desc flex align-end">
-						<image class="card-item-desc-phone" src="../../static/charge-old/passwd.png"></image> 五环之外</view>
+						<text class="cuIcon-location"></text> {{item.address}}</view>
 				</view>
 			</view>
 		</view>

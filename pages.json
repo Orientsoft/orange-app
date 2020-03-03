@@ -118,6 +118,9 @@
 		,{
 		    "path" : "pages/my/order/orderInfo",//订单信息
 		    "style" : {}
+		},{
+		    "path" : "pages/my/order/orderCase",//订单病历
+		    "style" : {}
 		}
 		,{
 		    "path" : "pages/my/order/appointment",//预约
