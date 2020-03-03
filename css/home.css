@@ -16,7 +16,7 @@ page{
 }
 .top-card-bg{
 	position: absolute;
-	top: 330upx;
+	top: 350upx;
 	width: 100%;
 	z-index: 20;
 	padding-left: 20upx;
@@ -28,26 +28,27 @@ page{
 	align-items: center;
 	background-color: #FFFFFF;
 	height: 120upx;
-	border-radius: 15upx;
+	border-radius: 10upx;
 	/* border: 1upx solid #F49100; */
-	box-shadow:inset 0upx 0upx  10upx #ccc;
+	/* box-shadow:inset 0upx 0upx  10upx #ccc; */
 	flex: 1;
 	/* background:radial-gradient(40upx at right bottom,transparent 50%,#1889F6 50%); */
 }
 
 .icon{
-	height: 80upx;
-	width: 80upx;
+	height: 60upx;
+	width: 60upx;
 	margin-right: 20upx;
 }
 .title{
 	font-size: 36upx;
-	color: #882411;
+	color: #131313;
+	font-weight: 700;
 	/* margin-top: 30upx; */
 }
 .sub-title{
-	font-size: 18upx;
-	color: #F49100;
+	font-size: 22upx;
+	color: #989898;
 	text-align: left;
 	margin-left: 10upx;
 }
@@ -101,8 +102,12 @@ page{
 }
 
 .home-swiper{
-	height: 240upx;
+	background-image: linear-gradient(#ff4900, #ff7e00);
 	z-index: -1;
+	overflow: hidden;
+	padding-left: 20upx;
+	padding-right: 20upx;
+	padding-top: 20upx;
 }
 .screen-swiper image,
 .screen-swiper video,
@@ -110,26 +115,33 @@ page{
 .swiper-item video {
 	width: 100%;
 	display: block;
-	height: 100%;
+	height: 320upx;
 	margin: 0;
+	border-radius: 10upx;
 	pointer-events: none;
 }
 
 .card-list{
 	background: #FFFFFF;
 	padding: 30upx;
-	border-radius: 30upx;
-	/* border: 1upx solid #F49100; */
-	box-shadow:inset 0upx 0upx  10upx #F0F0F0;
-	margin-bottom: 40upx;
+	border-radius: 10upx;
+	border: 1upx solid #f3f1f3;
+	/* box-shadow:inset 0upx 0upx  10upx #F0F0F0; */
+	margin-bottom: 20upx;
 	position: relative;
 }
 .card-item-title{
+<<<<<<< Updated upstream
 	color: #000000;
 	font-size: 32upx;
 	font-weight: 400;
 	height: 50upx;
 	overflow: hidden;
+=======
+	color: #131313;
+	font-size: 36upx;
+	font-weight: 700;
+>>>>>>> Stashed changes
 }
 .card-item-sign{
 	background: #02cfa9;
@@ -175,7 +187,7 @@ page{
 
 .more{
 	font-size: 24upx;
-	color: #F49100;
+	color: #ff7e00;
 }
 /* 产品tag */
 .tag{

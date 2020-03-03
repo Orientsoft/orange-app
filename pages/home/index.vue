@@ -1,22 +1,26 @@
 <template>
 	<view class="container">
 		<swiper class="screen-swiper square-dot home-swiper" :indicator-dots="true" :circular="true"
-		 :autoplay="true" interval="5000" duration="500" indicator-color="#fcabab" indicator-active-color="#fcabab">
+		 :autoplay="true" interval="5000" duration="500" indicator-color="#fcabab">
 			<swiper-item v-for="(item,index) in swiperList" :key="index" @tap="TO({url:item.link_url})">
+<<<<<<< Updated upstream
 				<image :src="item.pic" mode="scaleToFill" class="radius"></image>
+=======
+				<image :src="item.pic" mode="aspectFill"></image>
+>>>>>>> Stashed changes
 			</swiper-item>
 		</swiper>
 		
 		<view class="flex top-card-bg">
 			<view class="flex margin-right-lg top-card">
-				<image class="icon" src="../../static/charge-old/gas.png"></image>
+				<image class="icon" src="../../static/charge-old/zxwz.png"></image>
 				<view>
 					<view class="title">在线问诊</view>
 					<view class="sub-title">咨询项目详情</view>
 				</view>
 			</view>
 			<view @click="goPages('/pages/home/doApointment')" class="top-card flex">
-				<image class="icon" src="../../static/charge-old/gas.png"></image>
+				<image class="icon" src="../../static/charge-old/jzyy.png"></image>
 				<view class="title">精准预约</view>
 			</view>
 		</view>
@@ -26,8 +30,9 @@
 		<!--商城-->
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
-				<text class="card-item-title">健康商城&nbsp;&nbsp;{{productList.length}}条</text>
-				<text @click="goPages('/pages/home/mall/productList')" class="more">更多>></text>
+				<!-- <text class="card-item-title">健康商城&nbsp;&nbsp;{{productList.length}}条</text> -->
+				<text class="card-item-title">健康商城</text>
+				<text @click="goPages('/pages/home/mall/productList')" class="more">更多</text>
 			</view>
 			<view class="space-s"></view>
 			<view class="flex justify-around magin-tb-lg">
