@@ -87,11 +87,6 @@
 			radioChange(e){
 				this.male = e.target.value;
 			},
-			goPages(url){
-				this.TO({
-					url:url
-				})
-			},
 			setPasswd(){
 				let t=this;
 				if(!t.name){
@@ -112,13 +107,13 @@
 								data:{phone:t.account,code:t.code,password:t.password,name:t.name,male:t.male},
 								callback:function(res){
 									uni.hideLoading();
-									console.log(JSON.stringify(res.data));
+									console.log(JSON.stringify(res));
 									if(res.statusCode===200){
 										if(res.data.status==1){
 											t.$utils.msg("注册成功");
-											setTimeout(()=>{
-												t.goPages("/pages/auth/login")
-											},1000)
+											t.this.TO({
+												url:"/pages/auth/login"
+											})
 										}else{
 											t.$utils.msg(res.data.message);
 										}

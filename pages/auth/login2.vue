@@ -71,11 +71,6 @@
 					url:url
 				})
 			},
-			login(){
-				uni.switchTab({
-					url:'/pages/home/index'
-				})
-			},
 			sendSms2(){
 				this.$utils.msg("短信验证码已发送，请稍后重试");
 			},
@@ -125,6 +120,41 @@
 					}
 				},1000);
 			},
+			getUserInfo(){
+				let t = this;
+				t.S({
+						url:'user/me',
+						callback:function(res){
+							console.log(JSON.stringify(res));
+							if(res.statusCode===200){
+								if(res.data.status==1){
+									t.SET({
+										key:'User',
+										value:res.data.data
+									})
+									setTimeout(()=>{
+										uni.switchTab({
+											url:'/pages/home/index'
+										})
+									},1000)
+								}else{
+									t.$utils.msg(res.data.message);
+								}
+							}else{
+								if(res.statusCode==401){
+									t.$utils.msg('登陆超时');
+									setTimeout(()=>{
+										t.TO({
+											url:'/pages/auth/login'
+										})
+									},1000)
+								}else{
+									t.$utils.msg(res.errMsg);
+								}
+							}
+						}
+					})
+			},
 			login(){
 				
 				let t=this;
@@ -153,11 +183,7 @@
 												key:'token',
 												value:res.data.data
 											})
-											setTimeout(()=>{
-												uni.switchTab({
-													url:'/pages/home/index'
-												})
-											},1000)
+											t.getUserInfo();
 										}else{
 											t.$utils.msg(res.data.message);
 										}

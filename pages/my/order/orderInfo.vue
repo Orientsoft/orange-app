@@ -19,9 +19,7 @@
 				<view class="flex align-end">
 					<view class="card-desc flex-sub self-stretch">
 						<view class="card-title">{{info.product.name}}</view>
-						<view>{{info.product.desc_1}}</view>
-						<view>{{info.product.desc_2}}</view>
-						<view class="active-price">¥<text class="card-active-price">&ensp;{{info.product.price}}</text></view>
+						<view class="active-price">¥<text class="card-active-price">&ensp;{{info.price}}</text></view>
 					</view>
 					<image :src="info.product.logo" class="card-logo" mode="aspectFit"></image>
 				</view>	

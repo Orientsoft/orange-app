@@ -41,11 +41,12 @@
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect">预约人:</view>
-						<input placeholder="使用者姓名" placeholder-style="font-size:12px;color:#bbb" @input="onName"/>
+						<input :value="name" disabled style="flex:1" placeholder="使用者姓名" placeholder-style="font-size:12px;color:#bbb" @input="onName"/>
+						<view @click="showModal3" class="more-right"><text class="cuIcon-right"></text></view>
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect">联系电话:</view>
-						<input type="number" placeholder="联系电话" placeholder-style="font-size:12px;color:#bbb" @input="onPhone"/>
+						<input :value="phone" disabled style="flex:1" placeholder="联系电话" placeholder-style="font-size:12px;color:#bbb" @input="onPhone"/>
 					</view>
 					<view class="space-m"></view>
 					<view @click="yuyue" class="long-bg">提交预约</view>
@@ -119,6 +120,29 @@
 				</scroll-view>
 			</view>
 		</view>
+		
+		<!-- 选择预约人 -->
+		<view class="cu-modal bottom-modal" :class="modalName3=='Modal'?'show':''">
+			<view class="cu-dialog">
+				<view class="cu-bar bg-white justify-end">
+					<view class="content">请选择预约人</view>
+					<view class="action" @tap="hideModal3">
+						<text class="cuIcon-close text-red"></text>
+					</view>
+				</view>
+				<scroll-view class="padding-bottom" style="height: 500upx;" scroll-y="true">
+					<radio-group @change="radioChange3" style="width: 100%;">
+					<view v-for="(item,index) in memberList" :key="index" class="flex align-center store-v store-item">
+						<view class="card-title text-left flex-sub padding-tb-sm">{{memberList[index].name}}</view>
+						<view class="card-title text-left flex-sub">{{memberList[index].phone}}</view>
+						<label class="radio">
+							<radio :value="'+'+index+'+'" :checked="selectItem.name==memberList[index].name" />
+						</label>
+					</view>
+					</radio-group>
+				</scroll-view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -128,16 +152,22 @@
 		mapMutations
 	} from 'vuex';
 	export default {
+		computed: {...mapState(['app','inter'])},
 		data() {
-			
 			return {
+				userInfo:{},
 				id:'',
 				info:{},
 				pInfo:{},
 				modalName:'',
 				modalName2:'',
+				modalName3:'',
 				name:'',
 				phone:'',
+				selectItem:{
+					name:'',
+					phone:''
+				},
 				orderAt:'',
 				storeList:[],
 				addressIndex:{
@@ -151,6 +181,7 @@
 				week:0,
 				visible:true,
 				dates:{},
+				memberList:[]
 			}
 		},
 		onLoad:function(option){
@@ -192,6 +223,9 @@
 			}
 			if(this.storeList.length>0)
 				this.addressIndex = this.storeList[0];
+			
+			this.userInfo = this.app;
+			this.memberList = this.userInfo.User.members;
 		},
 		methods: {
 			...mapMutations(['TO','S','P']),
@@ -244,6 +278,12 @@
 			hideModal2(){
 				this.modalName2='';
 			},
+			showModal3(){
+				this.modalName3='Modal';
+			},
+			hideModal3(){
+				this.modalName3='';
+			},
 			orderTime(){
 				this.orderAt = this.year+'-'+this.month+'-'+this.day+' '+this.hour+'时';
 				this.hideModal2()
@@ -253,6 +293,15 @@
 				let index = parseInt(e.target.value);
 				this.addressIndex = this.storeList[index];
 				this.hideModal()
+			},
+			radioChange3(e){
+				console.log(e.target.value);
+				let index = parseInt(e.target.value);
+				this.selectItem = this.memberList[index];
+				this.name = this.selectItem.name;
+				this.phone = this.selectItem.phone;
+				console.log(this.selectItem)
+				this.hideModal3()
 			},
 			goPages(){
 				let t = this;

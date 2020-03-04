@@ -190,7 +190,7 @@
             "style" : {}
         }
         ,{
-            "path" : "pages/my/mySign",//公司认证
+            "path" : "pages/my/set/mySign",//公司认证
             "style" : {}
         }
         ,{

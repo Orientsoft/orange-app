@@ -19,7 +19,7 @@
         },
         "modules" : {
             "Share" : {},
-            "Payment" : {}
+            "Maps" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -62,13 +62,14 @@
             },
             /* ios打包配置 */
             "sdkConfigs" : {
-                "payment" : {
-                    "alipay" : {},
-                    "weixin" : {
-                        "appid" : "wx60133eed74fa67f5"
+                "payment" : {},
+                "share" : {},
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "51b5f10517d5d3ec5f03e67b724ef5d8",
+                        "appkey_android" : "5ddde25ae9fac79a32476b54a98e896d"
                     }
-                },
-                "share" : {}
+                }
             },
             "icons" : {
                 "ios" : {

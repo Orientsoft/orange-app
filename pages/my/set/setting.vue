@@ -43,6 +43,7 @@
 				},
 				itemList:[
 					{name:'1367837849',url:'../../../static/my/my_account.png'},
+					{name:'身份认证',url:'../../static/my/my_notice.png',nav_url:'/pages/my/set/mySign'},
 					{name:'修改密码',url:'../../../static/my/my_info.png',nav_url:'/pages/auth/reset'},
 					{name:'退出登陆',url:'../../../static/my/my_logout.png'},
 				],
@@ -154,12 +155,6 @@
 			},
 			logout(){
 				let t = this;
-				t.userInfo['password']='';
-				t.SET({
-					key:'User',
-					value:{Token:'',Info:t.userInfo}
-				})
-				
 				
 				uni.showLoading({
 					title:"提交中。。。",
@@ -176,6 +171,15 @@
 										// t.app.User.Token = res.data.userinfo.token;
 										if(res.data.status==1){
 											t.$utils.msg("退出成功");
+											t.userInfo['password']='';
+											t.SET({
+												key:'User',
+												value:t.userInfo
+											})
+											t.SET({
+												key:'token',
+												value:''
+											})
 											uni.reLaunch({
 												url:'/pages/auth/login'
 											})
@@ -204,7 +208,7 @@
 
 <style>
 	page{
-		background-color: #FFFEF5;
+		background-color: #F3F1F3;
 	}
 	.nav-title {
 		font-size: 36upx;

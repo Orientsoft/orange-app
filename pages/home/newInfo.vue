@@ -83,7 +83,7 @@
 <style>
 	@import url("../../css/home.css");
 	page{
-		background-color: #FFFEF5;
+		background-color: #F3F1F3;
 	}
 	.title{
 		font-size: 36upx;

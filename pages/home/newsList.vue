@@ -100,14 +100,14 @@
 			loadMore(){
 				console.log('loadMore',this.loadMoreStatus);
 				if(this.loadMoreStatus<2)
-					this.loadData();
+					this.loadData(this.tagList2[index].name);
 			},
-			loadData(){
+			loadData(tag){
 				let t= this;
 				t.loadMoreStatus = 1;
 				t.S({
 					url:"news",
-					data:{page:t.now_page,limit:t.limit},
+					data:{page:t.now_page,limit:t.limit,tag:tag},
 					callback:function(res){
 						if(res.statusCode===200){
 							// console.log(JSON.stringify(res))

@@ -25,7 +25,7 @@
 					</view>
 					<view @click="getInfo(item.id)" class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
 						<view class="card-item-title">产品:{{item.product.name}}</view>
-						<view class="card-item-desc">总价:{{item.product.price}}</view>
+						<view class="card-item-desc">总价:{{item.price}}</view>
 					</view>
 					<view>
 						<view @click="getInfo(item.id)" v-if="item.status==0" class="pay-class">去支付</view>
@@ -102,10 +102,16 @@
 		},
 		onLoad() {
 			this.calcHeight();
-			this.loadData();
 		},
 		onShow() {
-			this.userInfo = this.app.User;
+			this.userInfo = this.app;
+			if(!this.userInfo.token){
+				uni.navigateTo({
+					url:"/pages/auth/login"
+				})
+			}else{
+				this.loadData()
+			}
 		},
 		methods: {
 			...mapMutations(['TO','S']),

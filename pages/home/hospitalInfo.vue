@@ -68,6 +68,9 @@
 			onFork(value){
 				if(!this.userInfo.token){
 					this.$utils.msg('请先登陆');
+					this.TO({
+						url:'/pages/auth/login'
+					})
 					return;
 				}
 				let t = this;
@@ -88,7 +91,13 @@
 											t.$utils.msg(res.data.message);
 										}
 									}else{
-										t.$utils.msg(res.errMsg);
+										if(res.statusCode==401){
+											t.TO({
+												url:'/pages/auth/login'
+											})
+										}else{
+											t.$utils.msg(res.errMsg);
+										}
 									}
 								}
 							})
@@ -115,13 +124,6 @@
 								console.log(JSON.stringify(res));
 							}
 						}else{
-							if(res.statusCode==401){
-								t.TO({
-									url:'/pages/auth/login'
-								})
-							}else{
-								t.$utils.msg(res.errMsg);
-							}
 						}
 					}
 				})
@@ -136,7 +138,9 @@
 							console.log(JSON.stringify(res))
 							if(res.data.status==1){
 								t.hospitalInfo = res.data.data;
-								t.loadFollow();
+								if(t.userInfo.token){
+									t.loadFollow();
+								}
 							}else{
 								console.log(JSON.stringify(res));
 							}

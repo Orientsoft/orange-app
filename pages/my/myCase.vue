@@ -46,26 +46,16 @@
 		data() {
 			return {
 				userInfo: {},
-				id:'',
 				list:[
-					{
-						createAt:1582852683,
-						name:'张三',
-						content:'拔牙，洗牙，抛光牙',
-						hospital:'东区大医院'
-					}
 				],
 			}
 		},
-		onLoad(e) {
-			console.log(option.id);
-			if(option.id){
-				this.id = option.id;
-			}
+		onLoad() {
 		},
 		onShow() {
-			this.loadData();
-			this.userInfo = this.app.User.Info;
+			// this.loadData();
+			this.userInfo = this.app.User;
+			this.list = this.userInfo.record;
 		},
 		methods: {
 			...mapMutations(['TO','S']),

@@ -21,7 +21,7 @@
 		<!--医院-->
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
-				<text class="card-item-title">精选机构&nbsp;&nbsp;{{hospitalList.length}}条</text>
+				<text class="card-item-title">精选机构</text>
 				<text @click="goPages('/pages/home/hospitalList')" class="more">更多>></text>
 			</view>
 			<view @click="goPagesById('/pages/home/hospitalInfo','',item.id)" v-for="(item,index) in hospitalList" :key="index" class="flex padding-tb-sm card-item">
@@ -45,7 +45,7 @@
 		<!--健康自诊-->
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
-				<text class="card-item-title">健康自诊&nbsp;&nbsp;{{diagnosisList.length}}条</text>
+				<text class="card-item-title">健康自诊</text>
 				<text @click="goPages('/pages/health/healthList')" class="more">更多>></text>
 			</view>
 			<view class="space-s"></view>
@@ -68,7 +68,7 @@
 		<!--常见疾病-->
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
-				<text class="card-item-title">常见疾病&nbsp;&nbsp;{{diseaseList.length}}条</text>
+				<text class="card-item-title">常见疾病</text>
 				<text @click="goPages('/pages/health/diseaseList')" class="more">更多>></text>
 			</view>
 			<view @click="goPagesById('/pages/home/newInfo','disease',item.id)" v-for="(item,index) in diseaseList" :key="index" class="flex padding-tb-sm card-item">
@@ -85,7 +85,7 @@
 		<!--营养餐-->
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
-				<text class="card-item-title">营养餐&nbsp;&nbsp;{{mealList.length}}条</text>
+				<text class="card-item-title">营养餐</text>
 				<text @click="goPages('/pages/health/mealList')" class="more">更多>></text>
 			</view>
 			<view @click="goPagesById('/pages/home/newInfo','meal',item.id)" v-for="(item,index) in mealList" :key="index" class="flex padding-tb-sm card-item">

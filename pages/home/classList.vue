@@ -2,7 +2,7 @@
 	<view>
 		<view>
 			<cu-custom :isBack="true" class="title-orange" bgColor="bg-white">
-				<block slot="backText"><text class="title-black">名师讲堂</text></block>
+				<block slot="backText"><text class="title-black">专家讲堂</text></block>
 			</cu-custom>
 		</view>
 		<view class="gray-shadow"></view>
@@ -16,7 +16,7 @@
 		<scroll-view scroll-y="true" @scrolltolower="loadMore" :style="[{height:windowHeight+'px'}]">
 		<!--医院-->
 		<view class="hospital-card-list">
-			<view v-for="(item,index) in hospitalList" :key="index" class="flex padding-tb-sm card-item">
+			<view @click="goPagesById('/pages/home/newInfo','class',item.id)" v-for="(item,index) in hospitalList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="image align-center justify-center">
 					<image :src="item.logo" class="image-round" mode="aspectFill"></image>
 				</view>
@@ -95,10 +95,12 @@
 				this.now_page=1;
 				this.loadData(this.tagList2[index].value)
 			},
-			getInfo(id){
-				let t = this;
+			goPagesById(url,url2,id){
+				let params = 'url='+url2+'&';
+				params = params+'id='+id;
+				
 				uni.navigateTo({
-					url:'/pages/home/classInfo?id='+id
+					url:url+'?'+params
 				})
 			},
 			loadMore(){

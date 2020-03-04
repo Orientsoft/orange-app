@@ -16,13 +16,13 @@
 		<scroll-view scroll-y="true" @scrolltolower="loadMore" :style="[{height:windowHeight+'px'}]">
 		<!--医院-->
 		<view class="hospital-card-list">
-			<view @click="goPagesById('/pages/home/newInfo',item.id)" v-for="(item,index) in newsList" :key="index" class="flex padding-tb-sm card-item">
+			<view @click="goPagesById('/pages/home/newInfo','meal',item.id)" v-for="(item,index) in newsList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
 					<view class="text-bold">{{item.name}}</view>
 					<view>{{item.desc}}</view>
 				</view>
 				<view class="image align-center justify-center">
-					<image :src="item.pic" class="image" mode="aspectFill"></image>
+					<image :src="item.logo" class="image" mode="aspectFill"></image>
 				</view>
 			</view>
 		</view>
@@ -87,10 +87,12 @@
 				this.now_page=1;
 				this.loadHealth(this.tagList2[index].name)
 			},
-			goPagesById(url,id){
-				let t = this;
+			goPagesById(url,url2,id){
+				let params = 'url='+url2+'&';
+				params = params+'id='+id;
+				
 				uni.navigateTo({
-					url:url+'?id='+id
+					url:url+'?'+params
 				})
 			},
 			loadMore(){

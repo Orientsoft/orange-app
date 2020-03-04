@@ -7,83 +7,16 @@
 		<cu-custom v-if="tabIndex!=0" :isBack="true" bgColor="title-orange bg-white">
 			<block slot="backText"><text class="title-black">套餐详情</text></block>
 		</cu-custom>
-		<view v-if="tabIndex==2" class="harf-top">
-			<!-- tab -->
-			<view class="flex tab-all">
-				<view @click="onSelTab(0)" class="tab">
-					<text :class="tabIndex==0?'tab-sub-active':'tab-sub'">套餐详情</text>
-				</view>
-				<view @click="onSelTab(1)" class="tab">
-					<text :class="tabIndex==1?'tab-sub-active':'tab-sub'">购买须知</text>
-				</view>
-				<view @click="onSelTab(2)" class="tab">
-					<text :class="tabIndex==2?'tab-sub-active':'tab-sub'">评论</text>
-				</view>
-			</view>
-			<!-- 评论 -->
-			<view v-if="tabIndex==2">
-				<view class="card">
-					<view class="card-title justify-between flex">
-						<view>评论</view>
-					</view>
-					<view class="space-s"></view>
-					<scroll-view scroll-y="true" @scrolltolower="loadMore" :style="[{height:windowHeight+'px'}]">
-					<view v-for="(commServer,index) in commServers" :key="index">
-					<view>
-						<view class="flex justify-between margin-bottom-sm">
-							<view class="flex align-center">
-								<image :src="commServer.commentLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
-								<view>{{commServer.commentName}}</view>
-							</view>
-						</view>
-						<view>{{commServer.comment}}</view>
-						<view class="card-desc">{{$utils.dateUtils.format(commServer.commentAt)}}</view>
-					</view>
-					<view v-if="commServer.answer">
-						<view class="flex justify-between margin-bottom-sm">
-							<view class="card-desc"></view>
-							<view class="flex align-center">
-								<image :src="commServer.answerLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
-								<view>{{commServer.answerName}}</view>
-							</view>
-						</view>
-						<view class="text-right">{{commServer.answer}}</view>
-						<view class="card-desc text-right">{{$utils.dateUtils.format(commServer.answerAt)}}</view>
-					</view>
-					<view class="space-s"></view>
-				</view>
-				<mixLoadMore :status="loadMoreStatus"></mixLoadMore>
-				</scroll-view>
-				</view>
-			</view>
-		</view>
-		<view v-if="tabIndex==1" class="harf-top">
-			<!-- tab -->
-			<view class="flex tab-all">
-				<view @click="onSelTab(0)" class="tab">
-					<text :class="tabIndex==0?'tab-sub-active':'tab-sub'">套餐详情</text>
-				</view>
-				<view @click="onSelTab(1)" class="tab">
-					<text :class="tabIndex==1?'tab-sub-active':'tab-sub'">购买须知</text>
-				</view>
-				<view @click="onSelTab(2)" class="tab">
-					<text :class="tabIndex==2?'tab-sub-active':'tab-sub'">评论</text>
-				</view>
-			</view>
-			<view class="card">
-				<view class="card-title">暂无</view>
-				<view class="space-s"></view>
-			</view>
-		</view>
+		
 		<!-- 信息 -->
-		<view v-if="tabIndex==0" class="harf-top">
+		<view class="harf-top">
 			<view class="space-m"></view>
 			<view class="card flex align-end">
 				<view class="card-desc flex-sub self-stretch">
 					<view class="card-title">{{info.name}}</view>
 					<view>{{info.desc_1}}</view>
 					<view>{{info.desc_2}}</view>
-					<view class="active-price">¥<text class="card-active-price">&ensp;{{info.price}}</text><text class="card-desc">¥{{info.sale}}</text></view>
+					<view class="active-price">¥<text class="card-active-price">&ensp;{{info.sale}}</text><text class="card-desc" style="text-decoration:line-through">¥{{info.price}}</text></view>
 					<view>已售{{info.volume}}</view>
 				</view>
 				<image :src="info.logo" class="card-logo" mode="aspectFit"></image>
@@ -125,13 +58,54 @@
 			<view v-if="tabIndex==0" class="picInfo">
 				<image :src="info.pic" mode="aspectFit" style="width: 100%;"></image>
 			</view>
+			<!-- 购买须知 -->
+			<view v-if="tabIndex==1" class="card">
+				<view class="card-title">暂无</view>
+				<view class="space-s"></view>
+			</view>
+			<!-- 评论 -->
+			<view v-if="tabIndex==2">
+				<view class="card">
+					<view class="card-title justify-between flex">
+						<view>评论</view>
+					</view>
+					<view class="space-s"></view>
+					<scroll-view scroll-y="true" @scrolltolower="loadMore" :style="[{height:windowHeight+'px'}]">
+					<view v-for="(commServer,index) in commServers" :key="index">
+					<view>
+						<view class="flex justify-between margin-bottom-sm">
+							<view class="flex align-center">
+								<image :src="commServer.commentLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
+								<view>{{commServer.commentName}}</view>
+							</view>
+						</view>
+						<view>{{commServer.comment}}</view>
+						<view class="card-desc">{{$utils.dateUtils.format(commServer.commentAt)}}</view>
+					</view>
+					<view v-if="commServer.answer">
+						<view class="flex justify-between margin-bottom-sm">
+							<view class="card-desc"></view>
+							<view class="flex align-center">
+								<image :src="commServer.answerLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
+								<view>{{commServer.answerName}}</view>
+							</view>
+						</view>
+						<view class="text-right">{{commServer.answer}}</view>
+						<view class="card-desc text-right">{{$utils.dateUtils.format(commServer.answerAt)}}</view>
+					</view>
+					<view class="space-s"></view>
+				</view>
+				<mixLoadMore :status="loadMoreStatus"></mixLoadMore>
+				</scroll-view>
+				</view>
+			</view>
 		</view>
 		<view class="space-l"></view>
 		<view class="space-l"></view>
 		
 		<!-- 底部 -->
 		<view class="flex padding-tb-sm padding-lr-lg" style="background: #fcfcfc;position: fixed;bottom: 0;justify-content: space-between;width: 100%;animation: show 2s  ;z-index: 1000;">
-			<view class="active-price">¥<text class="card-active-price">{{info.price}}</text></view>
+			<view class="active-price">¥<text class="card-active-price">{{info.sale}}</text></view>
 			<view @click="goPages()" class="order-btn text-center text-white">提交订单</view>
 		</view>
 		

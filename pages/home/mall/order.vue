@@ -17,7 +17,7 @@
 						<view class="card-title">{{info.name}}</view>
 						<view>{{info.desc_1}}</view>
 						<view>{{info.desc_2}}</view>
-						<view class="active-price">¥<text class="card-active-price">&ensp;{{info.price}}</text><text class="card-desc">¥{{info.sale}}</text></view>
+						<view class="active-price">¥<text class="card-active-price">&ensp;{{info.sale}}</text><text class="card-desc" style="text-decoration:line-through">¥{{info.price}}</text></view>
 						<view>已售{{info.volume}}</view>
 					</view>
 					<image :src="info.logo" class="card-logo" mode="aspectFit"></image>
@@ -87,6 +87,7 @@
 		mapMutations
 	} from 'vuex';
 	export default {
+		computed: {...mapState(['app','inter'])},
 		data() {
 			return {
 				id:'',
@@ -101,6 +102,8 @@
 		onLoad:function(option){
 			this.id = option.id;
 			this.getInfo();
+			this.userInfo = this.app;
+			console.log(this.userInfo)
 		},
 		methods: {
 			...mapMutations(['TO','S','P']),
@@ -146,6 +149,12 @@
 				})
 			},
 			doBuy(){
+				if(!this.userInfo.token){
+					uni.navigateTo({
+						url:"/pages/auth/login"
+					})
+					return;
+				}
 				let t = this;
 				// if(!t.name){
 				// 	t.$utils.msg("请输入联系人");
@@ -175,7 +184,16 @@
 										t.$utils.msg(res.data.message);
 									}
 								}else{
-									t.$utils.msg(res.errMsg);
+									if(res.statusCode==401){
+										t.$utils.msg('登陆超时');
+										setTimeout(()=>{
+											t.TO({
+												url:'/pages/auth/login'
+											})
+										},1000)
+									}else{
+										t.$utils.msg(res.errMsg);
+									}
 								}
 							}
 						})

@@ -7,7 +7,7 @@
 							<image :src="userInfo.logo" class="image"></image>
 						</view>
 						<view class="justify-center align-center margin-left-sm">
-							<navigator url="set/setting">
+							<navigator url="/pages/my/set/setting">
 								<view class="text-black text-lg flex justify-start">
 									<text style="font-size: 28upx;color: #fff;font-weight: 500;">信息完善<text class="cuIcon-right"></text></text>
 								</view>
@@ -86,7 +86,6 @@
 					{	groupId:2,
 						itemList:[
 							{name:'家庭成员',url:'../../static/my/my_apply.png',nav_url:'./myFamily'},
-							{name:'身份认证',url:'../../static/my/my_notice.png',nav_url:'./mySign'},
 							{name:'专属客服',url:'../../static/my/my_notice.png',nav_url:'exclusiveService/exclusiveService'},
 						]
 					},
@@ -110,9 +109,15 @@
 			this.userInfo = this.app.User;
 		},
 		onShow() {
-			this.loadData();
-			this.userInfo = this.app.User;
-			
+			this.userInfo = this.app;
+			console.log(this.userInfo)
+			if(!this.userInfo.token){
+				uni.navigateTo({
+					url:"/pages/auth/login"
+				})
+			}else{
+				this.loadData()
+			}
 		},
 		methods: {
 			...mapMutations(['TO','S','SET','P']),
@@ -217,7 +222,7 @@
 				t.S({
 						url:'user/me',
 						callback:function(res){
-							console.log(JSON.stringify(res.data));
+							console.log(JSON.stringify(res));
 							if(res.statusCode===200){
 								if(res.data.status==1){
 									t.userInfo = res.data.data;
@@ -232,7 +237,16 @@
 									t.$utils.msg(res.data.message);
 								}
 							}else{
-								t.$utils.msg(res.errMsg);
+								if(res.statusCode==401){
+									t.$utils.msg('登陆超时');
+									setTimeout(()=>{
+										t.TO({
+											url:'/pages/auth/login'
+										})
+									},1000)
+								}else{
+									t.$utils.msg(res.errMsg);
+								}
 							}
 						}
 					})

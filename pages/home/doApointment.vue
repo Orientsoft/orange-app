@@ -25,7 +25,8 @@
 				</view>
 				<view class="flex input-v">
 					<view class="name-connect">预约人:</view>
-					<input :value="name" @input="onName" placeholder="请选择" placeholder-style="font-size:12px;color:#bbb"/>
+					<input disabled :value="name" class="flex-sub" @input="onName" placeholder="请选择" placeholder-style="font-size:12px;color:#bbb"/>
+					<view @click="showModal" class="more-right margin-right-sm"><text class="cuIcon-right"></text></view>
 				</view>
 				<view class="space-s"></view>
 				
@@ -33,7 +34,27 @@
 			<view class="space-m"></view>
 			<view @click="onSave" class="long-bg margin-lr-lg">提交预约</view>
 		
-			
+			<view class="cu-modal bottom-modal" :class="modalName=='Modal'?'show':''">
+				<view class="cu-dialog">
+					<view class="cu-bar bg-white justify-end">
+						<view class="content">请选择预约人</view>
+						<view class="action" @tap="hideModal">
+							<text class="cuIcon-close text-red"></text>
+						</view>
+					</view>
+					<scroll-view class="padding-bottom" style="height: 500upx;" scroll-y="true">
+						<radio-group @change="radioChange" style="width: 100%;">
+						<view v-for="(item,index) in memberList" :key="index" class="flex align-center store-v store-item">
+							<view class="card-title text-left flex-sub padding-tb-sm">{{memberList[index].name}}</view>
+							<view class="card-title text-left flex-sub">{{memberList[index].phone}}</view>
+							<label class="radio">
+								<radio :value="'+'+index+'+'" :checked="selectItem.name==memberList[index].name" />
+							</label>
+						</view>
+						</radio-group>
+					</scroll-view>
+				</view>
+			</view>
 	</view>
 </template>
 
@@ -50,14 +71,29 @@
 				phone:'',
 				name:'',
 				remark:'',
-				content:''
+				content:'',
+				selectItem:{
+					name:'',
+					phone:''
+				},
+				memberList:[],
+				modalName:''
 			}
 		},
 		onLoad() {
 		},
 		onShow() {
-			// this.loadData();
-			// this.userInfo = this.app.User.Info;
+			this.userInfo = this.app;
+			this.memberList = this.userInfo.User.members;
+			console.log(this.userInfo)
+			// console.log(this.list)
+			// this.list.push({
+			// 	name:'张三',
+			// 	phone:'16789076654'
+			// })
+			if(!this.userInfo.token){
+				this.$utils.msg("您没有登陆，请先登陆");
+			}
 		},
 		methods: {
 			...mapMutations(['TO','S','P']),
@@ -72,6 +108,20 @@
 			},
 			onContent(e){
 				this.content = e.target.value;
+			},
+			showModal(){
+				this.modalName='Modal';
+			},
+			hideModal(){
+				this.modalName='';
+			},
+			radioChange(e){
+				console.log(e.target.value);
+				let index = parseInt(e.target.value);
+				this.selectItem = this.memberList[index];
+				this.name = this.selectItem.name;
+				this.phone = this.selectItem.phone;
+				this.hideModal()
 			},
 			onSave(){
 				let t = this;
@@ -106,7 +156,13 @@
 										t.$utils.msg(res.data.message);
 									}
 								}else{
-									t.$utils.msg(res.errMsg);
+									if(res.statusCode==401){
+										t.TO({
+											url:'/pages/auth/login'
+										})
+									}else{
+										t.$utils.msg(res.errMsg);
+									}
 								}
 							}
 						})

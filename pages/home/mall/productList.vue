@@ -30,10 +30,10 @@
 					<view class="card-item-title">{{item.name}}</view>
 					<view class="card-item-desc">{{item.desc_1}}{{item.desc_2}}</view>
 					<view class="flex card-item-desc" style="justify-content: space-between;">
-						<view class="active-price">¥<text class="active-price-big">{{item.price}}</text><text>¥{{item.sale}}</text></view>
+						<view class="active-price">¥<text class="active-price-big">{{item.sale}}</text><text class="card-item-desc" style="text-decoration:line-through">¥{{item.price}}</text></view>
 						<view class="card-item-desc">已售{{item.volume}}</view>
 					</view>
-					<view class="card-item-desc">可用门店:66家</view>
+					<view class="card-item-desc">可用门店:{{item.support.length}}家</view>
 				</view>
 			</view>
 		</view>
