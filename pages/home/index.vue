@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<swiper class="screen-swiper square-dot home-swiper" :indicator-dots="true" :circular="true"
-		 :autoplay="true" interval="5000" duration="500" indicator-color="#fcabab" indicator-active-color="#fcabab">
+		 :autoplay="true" interval="5000" duration="500" indicator-color="#fcabab">
 			<swiper-item v-for="(item,index) in swiperList" :key="index" @tap="TO({url:item.link_url})">
 				<image :src="item.pic" mode="scaleToFill" class="radius"></image>
 			</swiper-item>
@@ -9,14 +9,14 @@
 		
 		<view class="flex top-card-bg">
 			<view class="flex margin-right-lg top-card">
-				<image class="icon" src="../../static/charge-old/gas.png"></image>
+				<image class="icon" src="../../static/charge-old/zxwz.png"></image>
 				<view>
 					<view class="title">在线问诊</view>
 					<view class="sub-title">咨询项目详情</view>
 				</view>
 			</view>
 			<view @click="goPages('/pages/home/doApointment')" class="top-card flex">
-				<image class="icon" src="../../static/charge-old/gas.png"></image>
+				<image class="icon" src="../../static/charge-old/jzyy.png"></image>
 				<view class="title">精准预约</view>
 			</view>
 		</view>
@@ -26,8 +26,9 @@
 		<!--商城-->
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
-				<text class="card-item-title">健康商城&nbsp;&nbsp;{{productList.length}}条</text>
-				<text @click="goPages('/pages/home/mall/productList')" class="more">更多>></text>
+				<!-- <text class="card-item-title">健康商城&nbsp;&nbsp;{{productList.length}}条</text> -->
+				<text class="card-item-title">健康商城</text>
+				<text @click="goPages('/pages/home/mall/productList')" class="more">更多</text>
 			</view>
 			<view class="space-s"></view>
 			<view class="flex justify-around magin-tb-lg">
@@ -108,12 +109,12 @@
 					<view v-if="item[1]" class="margin-left-sm" style="flex-grow: 1;">
 						<view class="card-item-title">{{item[1].name}}</view>
 						<view class="flex">
-							<view class="name-class">{{item[1].doctor}}</view>
-							<view>{{item[1].tag[0]}}</view>
+							<view class="name-class">刘一刀</view>
+							<view>一级专家</view>
 						</view>
 						<view class="card-item-desc flex">擅长：
 							<view class="flex justify-around">
-								<view v-for="(item,index) in item[1].skilled" :key="index" class="tag-class">
+								<view v-for="(item,index) in tagClass" :key="index" class="tag-class">
 									{{item}}
 								</view>
 							</view>
@@ -136,8 +137,8 @@
 			</view>
 			<view @click="goPagesById('/pages/home/newInfo','news',item.id)" v-for="(item,index) in newsList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
-					<view class="text-bold" style="overflow: hidden;">{{item.name}}</view>
-					<view style="height: 80upx;overflow: hidden;">{{item.desc}}</view>
+					<view class="text-bold">{{item.name}}</view>
+					<view>{{item.desc}}</view>
 				</view>
 				<view class="image align-center justify-center">
 					<image :src="item.pic" class="image" mode="aspectFill"></image>
@@ -203,9 +204,9 @@
 		},
 		onLoad() {
 			this.startAnimate();
-			this.loadData();
 		},
 		onShow() {
+			this.loadData();
 			this.userInfo = this.app.User.Info;
 		},
 		methods: {
@@ -380,7 +381,7 @@
 				})
 				
 				t.S({
-					url:"tag?type=新闻",
+					url:"tag?type=新闻热点",
 					callback:function(res){
 						if(res.statusCode===200){
 							console.log(JSON.stringify(res))
