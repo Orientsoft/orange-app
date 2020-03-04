@@ -51,7 +51,7 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
-	import { pathToBase64, base64ToPath } from '../../js_sdk/image-tools/index.js'
+	import { pathToBase64, base64ToPath } from '../../../js_sdk/image-tools/index.js'
 	export default {
 		computed: {...mapState(['app','inter'])},
 		data() {
@@ -249,7 +249,7 @@
 </script>
 
 <style>
-	@import url("../../css/mall.css");
+	@import url("../../../css/mall.css");
 	
 	.store-item{
 		border-bottom: 1upx solid #f0f0f0;
