@@ -92,7 +92,25 @@
 			<view v-if="info.status == 3" class="card">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
-				<view>订单的二维码</view>
+				<view class="align-center justify-center flex">
+					<tki-qrcode
+					    ref="qrcode"
+					    :cid="cid"
+						:val="val"
+						:size="size"
+						:unit="unit"
+						:background="background"
+						:foreground="foreground"
+						:pdground="pdground"
+						:icon="icon"
+						:iconSize="iconsize"
+						:lv="lv" 
+						:onval="onval"
+						:loadMake="loadMake"
+						:showLoading="showLoading"
+						:loadingText="loadingText"
+					    @result="qrR" />
+				</view>
 			</view>
 			<!-- 待评价，已完成 -->
 			<view v-if="info.status == 4 || info.status == 5" class="card">
@@ -207,7 +225,9 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
+	import tkiQrcode from "@/components/tki-qrcode/tki-qrcode.vue"
 	export default {
+		components: {tkiQrcode},
 		data() {
 			return {
 				id:'',
@@ -259,7 +279,22 @@
 				},
 				payIndex:1,
 				comment:"",
-				commServer:""
+				commServer:"",
+				cid:'qrcode',
+				val: '二维码', // 要生成的二维码值
+				size: 200, // 二维码大小
+				unit: 'upx', // 单位
+				background: '#ffffff', // 背景色
+				foreground: '#000000', // 前景色
+				pdground: '#000000', // 角标色
+				icon: '', // 二维码图标
+				iconsize: 40, // 二维码图标大小
+				lv: 3, // 二维码容错级别 ， 一般不用设置，默认就行
+				onval: false, // val值变化时自动重新生成二维码
+				showLoading:true,
+				loadingText:'生成中...',
+				loadMake: true, // 组件加载完成后自动生成二维码
+				src: '' // 二维码生成后的图片地址或base64
 			}
 		},
 		onLoad:function(option){
@@ -311,6 +346,9 @@
 						}
 					}
 				})
+			},
+			qrR(res) {
+				this.src = res
 			},
 			goPay(){
 				
@@ -416,6 +454,7 @@
 							console.log(JSON.stringify(res))
 							if(res.errMsg=='request:ok'){
 								t.info = res.data.data
+								t.val = t.info.id
 								if(t.info.status == 5){
 									t.getComment();
 								}

@@ -41,6 +41,13 @@
 						<image src="../../static/my/right.png" class="right-btn" mode="aspectFit"></image>
 					</view>
 					
+					<view v-if="isCasher" class="list" @tap="doScan()">
+						<image src="../../static/my/alipay_s.png" class="item-image margin-lr" mode="scaleToFill"></image>
+						<view class="flex-sub">
+							<text class="item-title">核销二维码</text>
+						</view>
+					</view>
+					
 					<view class="space-m"></view>
 					<view v-if="!((item.name=='修改密码'||item.name=='重置支付密码')&&userInfo.username=='游客')" v-for="(item,index) in list[2].itemList" :key="item.name" class="list" @tap="goPages(item)">
 						<image :src="item.url" class="item-image margin-lr" mode="aspectFill"></image>
@@ -90,7 +97,8 @@
 						]
 					},
 					],
-					data:{'notice':false,'message':false}
+					data:{'notice':false,'message':false},
+					isCasher:false
 			}
 		},
 		onLoad() {
@@ -104,10 +112,44 @@
 		onShow() {
 			this.loadData();
 			this.userInfo = this.app.User;
+			
 		},
 		methods: {
-			...mapMutations(['TO','S','SET']),
-			
+			...mapMutations(['TO','S','SET','P']),
+			doScan(){
+				let t=this;
+				uni.scanCode({
+				    onlyFromCamera: true,
+				    success: function (res) {
+				        console.log('条码类型：' + res.scanType);
+				        console.log('条码内容：' + res.result);
+						
+						uni.showLoading({
+							title:"提交中...",
+							mask: true,
+							success:function(){
+								t.P({
+									url:'order/scan',
+									data:{id:res.result},
+									callback:function(res){
+										uni.hideLoading();
+										console.log(JSON.stringify(res));
+										if(res.statusCode===200){
+											if(res.data.status==1){
+												t.$utils.msg(res.data.message);
+											}else{
+												t.$utils.msg(res.data.message);
+											}
+										}else{
+											t.$utils.msg(res.errMsg);
+										}
+									}
+								})
+							}
+						})
+				    }
+				});
+			},
 			goPages(item){
 				var t=this
 				if(item.nav_url==''){
@@ -178,6 +220,10 @@
 							console.log(JSON.stringify(res.data));
 							if(res.statusCode===200){
 								if(res.data.status==1){
+									t.userInfo = res.data.data;
+									if(t.userInfo.role.indexOf(3)>-1){
+										t.isCasher = true;
+									}
 									t.SET({
 										key:'User',
 										value:res.data.data
@@ -197,7 +243,7 @@
 
 <style>
 	page{
-		background-color: #FFFEF5;
+		background-color: ##f3f1f3;
 	}
 	.nav-title {
 		font-size: 36upx;
