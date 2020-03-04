@@ -165,19 +165,21 @@
 								<image :src="commServer.commentLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
 								<view>{{commServer.commentName}}</view>
 							</view>
-							<view class="card-desc">{{$utils.dateUtils.format(commServer.commentAt)}}</view>
 						</view>
 						<view>{{commServer.comment}}</view>
+						<view class="card-desc">{{$utils.dateUtils.format(commServer.commentAt)}}</view>
 					</view>
+					<view class="space-s"></view>
 					<view v-if="commServer.answer">
 						<view class="flex justify-between margin-bottom-sm">
+							<view class="card-desc"></view>
 							<view class="flex align-center">
 								<image :src="commServer.answerLogo" mode="scaleToFill" class="comment-logo margin-right-sm"></image>
 								<view>{{commServer.answerName}}</view>
 							</view>
-							<view class="card-desc">{{$utils.dateUtils.format(commServer.answerAt)}}</view>
 						</view>
-						<view>{{commServer.answer}}</view>
+						<view class="justify-end text-right">{{commServer.answer}}</view>
+						<view class="card-desc text-right">{{$utils.dateUtils.format(commServer.answerAt)}}</view>
 					</view>
 				</view>
 				<view class="space-m"></view>

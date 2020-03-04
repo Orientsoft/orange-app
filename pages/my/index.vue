@@ -4,7 +4,7 @@
 				<view class="padding-top-lg bg-orange-lg">
 					<view class="flex padding-tb-sm" style="align-items: center;width: 100%;margin-left:80upx;justify-content: flex-start;text-align: center;">
 						<view>
-							<image @tap="modifyHead" :src="'../../static/home/home_head_bg.png'" class="image"></image>
+							<image :src="userInfo.logo" class="image"></image>
 						</view>
 						<view class="justify-center align-center margin-left-sm">
 							<navigator url="set/setting">
@@ -13,7 +13,7 @@
 								</view>
 							</navigator>
 							<view class="text-gray text-lg flex justify-start margin-bottom-s">
-								<text style="font-size: 22upx;color: #eee;">{{userInfo.mobile}}</text>
+								<text style="font-size: 22upx;color: #eee;">{{userInfo.phone}}</text>
 							</view>
 						</view>
 					</view>
@@ -99,10 +99,11 @@
 			// plus.runtime.getProperty(plus.runtime.appid,(wgtinfo)=>{
 			// 	this.list[3].itemList[0].version=wgtinfo.version
 			// })
+			this.userInfo = this.app.User;
 		},
 		onShow() {
 			this.loadData();
-			// this.userInfo = this.app.User.Info;
+			this.userInfo = this.app.User;
 		},
 		methods: {
 			...mapMutations(['TO','S','SET']),

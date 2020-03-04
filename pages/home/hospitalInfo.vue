@@ -60,12 +60,16 @@
 			this.loadData();
 		},
 		onShow() {
-			this.userInfo = this.app.User;
+			this.userInfo = this.app;
 			console.log(this.userInfo)
 		},
 		methods: {
 			...mapMutations(['TO','S','P']),
 			onFork(value){
+				if(!this.userInfo.token){
+					this.$utils.msg('请先登陆');
+					return;
+				}
 				let t = this;
 				uni.showLoading({
 					title:"提交中。。。",
@@ -91,8 +95,8 @@
 					}
 				})
 			},
-			loadData(){
-				let t= this;
+			loadFollow(){
+				let t=this;
 				t.S({
 					url:"hospital/me",
 					callback:function(res){
@@ -100,6 +104,13 @@
 							console.log(JSON.stringify(res))
 							if(res.data.status==1){
 								t.list = res.data.data;
+								console.log(t.hospitalInfo.id)
+								for (var i = 0; i < t.list.length; i++) {
+									if(t.list[i].id == t.hospitalInfo.id){
+										t.operator = 1;
+										break;
+									}
+								}
 							}else{
 								console.log(JSON.stringify(res));
 							}
@@ -114,6 +125,9 @@
 						}
 					}
 				})
+			},
+			loadData(){
+				let t= this;
 				
 				t.S({
 					url:"hospital/"+t.id,
@@ -122,6 +136,7 @@
 							console.log(JSON.stringify(res))
 							if(res.data.status==1){
 								t.hospitalInfo = res.data.data;
+								t.loadFollow();
 							}else{
 								console.log(JSON.stringify(res));
 							}

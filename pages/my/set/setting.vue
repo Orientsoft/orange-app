@@ -6,7 +6,7 @@
 				</cu-custom>
 				<view class="flex padding-tb-sm" style="align-items: center;width: 100%;justify-content: center;text-align: center;">
 					<view>
-						<image @tap="modifyHead" :src="'../../static/home/home_head_bg.png'" class="image"></image>
+						<image @tap="modifyHead" :src="userInfo.logo" class="image"></image>
 					</view>
 				</view>
 			</view>
@@ -38,8 +38,8 @@
 		data() {
 			return {
 				userInfo: {
-					username:'李四',
-					mobile:'1367837849'
+					name:'李四',
+					phone:'1367837849'
 				},
 				itemList:[
 					{name:'1367837849',url:'../../../static/my/my_account.png'},
@@ -55,13 +55,15 @@
 			// plus.runtime.getProperty(plus.runtime.appid,(wgtinfo)=>{
 			// 	this.list[3].itemList[0].version=wgtinfo.version
 			// })
+			this.userInfo = this.app.User;
 		},
 		onShow() {
 			// this.loadData();
-			// this.userInfo = this.app.User.Info;
+			this.userInfo = this.app.User;
+			this.itemList[0].name = this.userInfo.phone
 		},
 		methods: {
-			...mapMutations(['TO','S','SET']),
+			...mapMutations(['TO','S','SET','PUT']),
 			modifyHead(){
 				let t = this;
 				uni.chooseImage({
@@ -73,47 +75,25 @@
 						
 						t.selectImages = [];
 						res.tempFilePaths.forEach((item,index)=>{
-							var path= plus.io.convertLocalFileSystemURL(item);
-							pathToBase64(path)
-							.then(data=>{
-								// console.log(data.length);
-								let tmpdata = data.substr(1);
-								tmpdata = tmpdata.substr(0,tmpdata.length-1);
-								// console.log(tmpdata);
-								console.log(tmpdata.length);
 								uni.showLoading({
 									title:'上传中...',
 									success:function(){
-										t.S({
-											url:t.inter.upload,
-											data:{
-												image: tmpdata,
-											},
-											callback:function(res){
-												console.log(res);
+										uni.uploadFile({
+											url: 'http://testland.orientsoft.cn:7777/api/v1/upload', //仅为示例，非真实的接口地址
+											filePath: item,
+											name: 'file',
+											header:{
+												"AccessToken": t.app.token.access_token,
+												"Content-Type": "multipart/form-data",
+												},
+											success: (res) => {
 												uni.hideLoading();
-												if(res.statusCode===200){
-													console.log(JSON.stringify(res.data))
-													let data = res.data;
-													if(data.code==1){
-														t.$utils.msg("上传成功"+(index+1)+"张图片");
-														t.setUserHead(data.data.url);
-													}else{
-														t.$utils.msg(data.msg);
-													}
-												}else{
-													if(res.statusCode==401){
-														t.TO({
-															url:'/pages/charge/login'
-														})
-													}else{
-														t.$utils.msg(res.errMsg);
-													}
-												}
+												console.log(res.data);
+												let json = JSON.parse(res.data);
+												t.setUserHead(json.data[0]);
 											}
-										})
+										});
 									}
-								})
 							})
 						})
 					}
@@ -125,10 +105,10 @@
 				uni.showLoading({
 					title:'提交中...',
 					success:function(){
-						t.S({
-							url:'api/user/profile',
+						t.PUT({
+							url:'user/profile',
 							data:{
-								avatar: filePath,
+								logo: filePath,
 							},
 							callback:function(res){
 								console.log(res);
@@ -138,11 +118,7 @@
 									let data = res.data;
 									if(data.code==1){
 										t.$utils.msg("设置成功");
-										t.userInfo['avatar']=t.inter.server.url+filePath;
-										t.SET({
-											key:'User',
-											value:{Token:t.userInfo.token,Info:t.userInfo}
-										})
+										t.userInfo.logo= filePath;
 									}else{
 										t.$utils.msg(data.msg);
 									}
