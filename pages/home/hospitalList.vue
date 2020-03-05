@@ -26,11 +26,11 @@
 						<!-- <text class="card-item-sign">三甲</text> -->
 						<text class="card-item-sign">可咨询</text>
 					</view>
-					<view class="card-item-desc">科室：麻醉科 病理科|神经外科</view>
-					<view class="card-item-desc flex align-end">
-						<text class="cuIcon-phone"></text> 66886768</view>
-					<view class="card-item-desc flex align-end">
-						<text class="cuIcon-location"></text> 五环之外</view>
+					<view class="card-item-desc color_666">科室：麻醉科 病理科 | 神经外科</view>
+					<view class="card-item-desc flex align-end color_grey">
+						电话： 66886768</view>
+					<view class="card-item-desc flex align-end color_grey">
+						地址： 五环之外</view>
 				</view>
 			</view>
 		</view>

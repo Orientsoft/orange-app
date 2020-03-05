@@ -17,13 +17,15 @@
 	font-weight: bold;
 }
 .title-orange{
-	color: #F49100;
+	background-color: #fff;
+	color: #ff7e00;
 }
 .title-white{
 	color: #FFFFFF;
 }
 .title-black{
-	color: #1D1C1C;
+	color: #131313;
+	 font-size: 36upx;
 }
 
 .bg-red{
@@ -41,6 +43,8 @@
 .bg-orange-lg{
 	background-image: linear-gradient(to right,#ff6e00,#f79200);
 }
+.color_grey{ color: #989898;} 
+.color_666{ color: #626262;} 
 .container{
 	background-color: #f3f1f3;
 }

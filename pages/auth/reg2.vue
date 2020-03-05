@@ -1,22 +1,29 @@
 <template>
-	<view class="container">
+	<view class="page">
 		<!-- logo -->
 		<view class="flex reg-v">
 			<view class="input-v">
 				<view class="reg-title"><text>设置密码</text></view>
-				<view class="reg"><text>亲，欢迎注册橙子账号</text></view>
+				<view class="reg"><text class="color_666">亲，欢迎注册橙子账号</text></view>
 			</view>
 		</view>
 		
 		<!-- 登陆 -->
 		<view class="center-v">
 			<view class="input-v">
-				<input class="input-in" disabled type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:12px" :value="account" @input="onAccount"/>
+				<input class="input-in" disabled type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:15px" :value="account" @input="onAccount"/>
 				<view class="input-line"></view>
 			</view>
 			<view class="space-m"></view>
 			<view class="input-v">
-				<input class="input-in" placeholder="请您的姓名" placeholder-style="color:#bbb;font-size:12px" :value="name" @input="onName"/>
+				<view class="input-in">
+					<input class="flex-sub" type="password" placeholder="输入8-16位数字与字母" placeholder-style="color:#bbb;font-size:15px" :value="password" @input="onPasswd"/>
+				</view>
+				<view class="input-line"></view>
+			</view>
+			<view class="space-m"></view>
+			<view class="input-v">
+				<input class="input-in" placeholder="请您的姓名" placeholder-style="color:#bbb;font-size:15px" :value="name" @input="onName"/>
 				<view class="input-line"></view>
 			</view>
 			<view class="space-m"></view>
@@ -39,12 +46,7 @@
 				</radio-group>
 			</view>
 			<view class="space-m"></view>
-			<view class="input-v">
-				<view class="input-in flex align-end">
-					<input class="flex-sub" type="password" placeholder="输入8-16位数字与字母" placeholder-style="color:#bbb;font-size:12px" :value="password" @input="onPasswd"/>
-				</view>
-				<view class="input-line"></view>
-			</view>
+			
 			
 			<view class="space-l"></view>
 			<view @tap="setPasswd" class="text-center login-bg input-v">
