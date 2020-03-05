@@ -85,7 +85,7 @@
 				this.password = e.target.value;
 			},
 			radioChange(e){
-				this.male = e.target.value;
+				this.male = parseInt(e.target.value);
 			},
 			setPasswd(){
 				let t=this;
@@ -93,7 +93,7 @@
 					t.$utils.msg("请输入您的姓名");
 					return;
 				}
-				if(!t.$utils.checkStr(t.password,'pay_pwd')){
+				if(!t.$utils.checkStr(t.password,'pwd')){
 					t.$utils.msg("请输入8-16位包含字母、数字的密码");
 					return;
 				}

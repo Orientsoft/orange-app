@@ -102,8 +102,9 @@ const model = {
 			},
 			dataType: "json",
 			success: (res) => {
-				if(res.statusCode == 401){
+				if(res.statusCode == 401 || res.statusCode == 422){
 					t.commit("SET", {key: "User",value: ''})
+					res.statusCode = 401;
 					d.callback(res);
 				}else if(res.statusCode == 200){
 					if(res.data.status == 3){
@@ -164,8 +165,9 @@ const model = {
 			},
 			dataType: "json",
 			success: (res) => {
-				if(res.statusCode == 401){
+				if(res.statusCode == 401 || res.statusCode == 422){
 					t.commit("SET", {key: "User",value: ''})
+					res.statusCode = 401;
 					d.callback(res);
 				}else if(res.statusCode == 200){
 					if(res.data.status == 3){
@@ -226,8 +228,9 @@ const model = {
 			},
 			dataType: "json",
 			success: (res) => {
-				if(res.statusCode == 401){
+				if(res.statusCode == 401 || res.statusCode == 422){
 					t.commit("SET", {key: "User",value: ''})
+					res.statusCode = 401;
 					d.callback(res);
 				}else if(res.statusCode == 200){
 					d.callback(res);
@@ -269,8 +272,69 @@ const model = {
 			}
 		});
 	},
+	request(s,d) {
+		console.log(JSON.stringify(d));
+		var t = this;
+		uni.request({
+			url: s.inter.server.url + d.url,
+			data: d.data,
+			method: d.method,
+			header: d.header,
+			dataType: d.dataType,
+			success: (res) => {
+				console.log(res.statusCode);
+				if(res.statusCode == 401 || res.statusCode == 422){
+					t.commit("SET", {key: "User",value: ''})
+					res.statusCode = 401;
+					d.callback(res);
+				}else if(res.statusCode == 200){
+					if(res.data.status == 3){
+						t.commit("SET", {key: "User",value: ''})
+						res.statusCode = 401;
+						d.callback(res);
+					}else{
+						d.callback(res);
+					}
+				}else if(res.statusCode >= 500){
+					d.callback({
+						statusCode:res.statusCode,
+						errMsg:'服务器错误'
+					})
+				}else if(!res.statusCode){
+					d.callback({
+						statusCode:-101,
+						errMsg:'未知错误'
+					})
+				}else{
+					d.callback({
+						statusCode:res.statusCode,
+						errMsg:'错误代码:'+res.statusCode
+					})
+				}
+			},
+			fail:(res)=>{
+				console.log(JSON.stringify(res))
+				if(res.errMsg == 'request:fail abort'){
+					d.callback({
+						statusCode:-1,
+						errMsg:'网络连接错误'
+					})
+				}else if(res.errMsg=='request:time out'){
+					d.callback({
+						statusCode:-2,
+						errMsg:'网络连接超时'
+					})
+				}else{
+					d.callback({
+						statusCode:-100,
+						errMsg:res.errMsg
+					})
+				}
+			}
+		});
+	},
 	//上传文件d
-	U(s,d) {
+	UF(s,d) {
 		uni.uploadFile({
 			url: s.server.url + d.url, //仅为示例，非真实的接口地址
 			filePath: d.file,

@@ -86,11 +86,14 @@
 			this.userInfo = this.app;
 			this.memberList = this.userInfo.User.members;
 			console.log(this.userInfo)
-			// console.log(this.list)
-			// this.list.push({
-			// 	name:'张三',
-			// 	phone:'16789076654'
-			// })
+			if(!this.memberList){
+				this.memberList = []
+				this.memberList.push({
+					name:'张三',
+					phone:'16789076654'
+				})
+			}
+			
 			if(!this.userInfo.token){
 				this.$utils.msg("您没有登陆，请先登陆");
 			}

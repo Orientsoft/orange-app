@@ -50,14 +50,7 @@
 		data() {
 			return {
 				userInfo: {},
-				orderList:[
-					{"appointment":null,"connect":{"name":"zhangsan","phone":"13666232613"},
-						"createdAt":"Wed, 19 Feb 2020 18:18:07 GMT","id":"5e4d0b5f5383df71a85a13af",
-						"pay":"ALIPAY","payAt":"Wed, 19 Feb 2020 18:18:07 GMT",
-						"price":68.8,"product":{"id":"5e3a769098db262eb6e1d4a5","name":"医用3L制氧机",
-						"price":300,"support":["5e4630f2a8817182eab66ddc","5e4b3fb99586a3cb5f20677f"]},
-						"status":1,"updatedAt":"Wed, 19 Feb 2020 18:18:07 GMT"}
-				],
+				orderList:[],
 				current: 0,
 				tagList2:[
 					{

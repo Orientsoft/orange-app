@@ -204,13 +204,18 @@
 		},
 		onLoad() {
 			this.startAnimate();
+			this.userInfo = this.app;
+			console.log(JSON.stringify(this.userInfo))
+			//刷新token
+			if(this.userInfo.token){
+				this.refreshToken();
+			}
 		},
 		onShow() {
 			this.loadData();
-			this.userInfo = this.app.User.Info;
 		},
 		methods: {
-			...mapMutations(['TO','S']),
+			...mapMutations(['TO','S','SET','request']),
 			startAnimate(){
 				// setInterval(this.showMarquee, 4000);
 				// setInterval(this.showMarquee2, 2000);
@@ -257,6 +262,37 @@
 				}
 				this.tag = index;
 				this.loadProduct(this.tagList[index].name);
+			},
+			refreshToken(){
+				let t = this;
+				t.request({
+					url:"refresh",
+					method:"GET",
+					dataType:'json',
+					header:{
+						AccessToken:t.userInfo.token.refresh_token
+					},
+					callback:function(res){
+						console.log(JSON.stringify(res))
+						if(res.statusCode===200){
+							if(res.data.status==1){
+								// t.newsList = res.data.data;
+								let token = t.userInfo.token;
+								console.log(JSON.stringify(token))
+								token.access_token = res.data.data.access_token;
+								console.log(JSON.stringify(token))
+								t.SET({
+									key:'token',
+									value:token
+								})
+							}else{
+								console.log(JSON.stringify(res));
+							}
+						}else{
+							// t.$utils.msg(res.errMsg);
+						}
+					}
+				})
 			},
 			getInfo(id){
 				let t = this;

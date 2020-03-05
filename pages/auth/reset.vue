@@ -1,5 +1,8 @@
 <template>
 	<view class="container">
+		<cu-custom :isBack="true" bgColor="title-orange">
+			<block slot="backText"></block>
+		</cu-custom>
 		<!-- top -->
 		<view class="flex reg-v">
 			<view class="input-v" style="width: 100%;">

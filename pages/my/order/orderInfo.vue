@@ -212,7 +212,6 @@
 			<view v-if="info.status==2" @click="cancelApt()" class="drawback-btn">取消预约</view>
 			<view v-if="info.status==2" @click="goPagesById('/pages/my/order/appointmentModify',id)" class="drawback-btn">修改预约</view>
 			<view v-if="info.status==0" @click="goPay()" class="order-btn text-center text-white">去支付</view>
-			<view v-if="info.status==3" @click="doScan()" class="order-btn text-center text-white">扫描核销</view>
 			<view v-if="info.status==1" @click="goPagesById('/pages/my/order/appointment',id)" class="order-btn text-center text-white">预约时间</view>
 		</view>
 	</view>

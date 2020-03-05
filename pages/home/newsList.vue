@@ -59,14 +59,13 @@
 		onLoad() {
 			console.log(this.app.User.Token);
 			this.calcHeight();
-			
+			this.loadTag();
 		},
 		onHide() {
 			this.itemList=[]
 			this.now_page=1
 		},
 		onShow() {
-			this.loadData();
 			this.userInfo = this.app.User.Info;
 		},
 		methods: {
@@ -101,6 +100,33 @@
 				console.log('loadMore',this.loadMoreStatus);
 				if(this.loadMoreStatus<2)
 					this.loadData(this.tagList2[index].name);
+			},
+			loadTag(){
+				let t = this;
+				t.S({
+					url:"tag?type=新闻",
+					callback:function(res){
+						if(res.statusCode===200){
+							console.log(JSON.stringify(res))
+							if(res.data.status==1){
+								t.tagList2 = res.data.data;
+								if(t.tagList2.length>0){
+									t.loadData(t.tagList2[0].name);
+								}
+							}else{
+								console.log(JSON.stringify(res));
+							}
+						}else{
+							if(res.statusCode==401){
+								t.TO({
+									url:'/pages/auth/login'
+								})
+							}else{
+								t.$utils.msg(res.errMsg);
+							}
+						}
+					}
+				})
 			},
 			loadData(tag){
 				let t= this;
