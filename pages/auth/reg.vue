@@ -1,25 +1,25 @@
 <template>
-	<view class="container">
+	<view class="page">
 		<!-- logo -->
 		<view class="flex reg-v">
 			<view class="input-v">
 				<view class="reg-title"><text>手机号注册</text></view>
-				<view class="reg"><text>亲，欢迎注册橙子账号</text></view>
+				<view class="reg"><text class="color_666"> 亲，欢迎注册橙子账号</text></view>
 			</view>
 		</view>
 		
 		<!-- 登陆 -->
 		<view class="center-v">
 			<view class="input-v">
-				<input class="input-in" type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:12px" :value="account" @input="onAccount"/>
+				<input class="input-in" type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:15px" :value="account" @input="onAccount"/>
 				<view class="input-line"></view>
 			</view>
 			<view class="space-m"></view>
 			<view class="input-v">
 				<view class="input-in flex align-end">
-					<input class="flex-sub" type="number" placeholder="输入验证码" placeholder-style="color:#bbb;font-size:12px" :value="code" @input="onCode"/>
+					<input class="flex-sub" type="number" placeholder="输入验证码" placeholder-style="color:#bbb;font-size:15px" :value="code" @input="onCode"/>
 					<text v-if="isSend" @tap="getCode" class="code-str">获取验证码</text>
-					<text v-if="!isSend" @tap="sendSms2" class="forget">验证码已发送{{timeClock}}s</text>
+					<text v-if="!isSend" @tap="sendSms2" class="color_grey">验证码已发送 {{timeClock}} S</text>
 				</view>
 				<view class="input-line"></view>
 			</view>

@@ -17,9 +17,9 @@
 		<!--医院-->
 		<view class="hospital-card-list">
 			<view @click="goPagesById('/pages/home/newInfo','news',item.id)" v-for="(item,index) in newsList" :key="index" class="flex padding-tb-sm card-item">
-				<view class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
-					<view class="text-bold">{{item.name}}</view>
-					<view>{{item.desc}}</view>
+				<view class="margin-left-sm " style="flex-grow: 1;align-self: stretch;">
+					<view class="text-bold hospital-card-title">{{item.name}}</view>
+					<view class="hospital-card-info color_grey">{{item.desc}}</view>
 				</view>
 				<view class="image align-center justify-center">
 					<image :src="item.pic" class="image" mode="aspectFill"></image>

@@ -1,16 +1,16 @@
 <template>
 	<view class="container">
-		<view style="height: 280upx;width: 100%;position: fixed;z-index: 100;">
-			<image style="width: 100%;height: 280upx;margin-bottom: -200upx;" src="../../static/home/head_jk.png" mode="scaleToFill"></image>
-			<view class="flex justify-around" style="height: 140upx;position: relative;">
+		<view class="heatopbg" style="">
+			<!-- <image style="width: 100%;height: 280upx;margin-bottom: -200upx;" src="../../static/home/head_jk.png" mode="scaleToFill"></image> -->
+			<view class="flex justify-around">
 				<view @click="onTagTop(index)" v-for="(item,index) in tagTopList" :key="index" :class="index==tagTop?'tagTop-active':'tagTop'">
 					{{item.name}}
 				</view>
 			</view>
 		</view>
-		<view style="height: 280upx;"></view>
+		<view style="height: 80upx;"></view>
 				
-		<swiper class="margin-lr-item screen-swiper square-dot home-swiper" :indicator-dots="true" :circular="true"
+		<swiper class=" screen-swiper square-dot home-swiper" :indicator-dots="true" :circular="true"
 		 :autoplay="true" interval="5000" duration="500" indicator-color="#fcabab" indicator-active-color="#fcabab">
 			<swiper-item v-for="(item,index) in swiperList" :key="index" @tap="TO({url:item.link_url})">
 				<image :src="item.pic" mode="aspectFill" class="radius"></image>

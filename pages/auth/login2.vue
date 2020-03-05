@@ -1,20 +1,20 @@
 <template>
-	<view class="container">
+	<view class="page">
 		<!-- logo -->
 		<view class="flex logo-v">
-			<image src="../../static/home/home_head.png" class="logo"></image>
+						<image src="../../static/home/logo.png" class="logo"></image>
 		</view>
 		
 		<!-- 登陆 -->
 		<view class="center-v">
 			<view class="input-v">
-				<input class="input-in" type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:12px" :value="account" @input="onAccount"/>
+				<input class="input-in" type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:15px" :value="account" @input="onAccount"/>
 				<view class="input-line"></view>
 			</view>
 			<view class="space-m"></view>
 			<view class="input-v">
 				<view class="input-in flex align-end">
-					<input class="flex-sub" type="number" placeholder="请输入验证码" placeholder-style="color:#bbb;font-size:12px" :value="password" @input="onPasswd"/>
+					<input class="flex-sub" type="number" placeholder="请输入验证码" placeholder-style="color:#bbb;font-size:15px" :value="password" @input="onPasswd"/>
 					<text v-if="isSend" @tap="getCode" class="forget">获取验证码</text>
 					<text v-if="!isSend" @tap="sendSms2" class="code-str">{{timeClock}}s</text>
 				</view>

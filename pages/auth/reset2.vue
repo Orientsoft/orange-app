@@ -9,15 +9,15 @@
 				<view class="reg-title"><text>设置密码</text></view>
 				<view class="flex justify-around margin-top-lg">
 					<view class="align-center reset-progress">
-						<view>1</view>
+						<view class="font-sx font_fb">1</view>
 						<view>请输入手机号码</view>
 					</view>
 					<view class="align-center reset-progress-active">
-						<view>2</view>
+						<view class="font_fb font-sx">2</view>
 						<view>请重置密码</view>
 					</view>
 					<view class="align-center reset-progress">
-						<view>3</view>
+						<view class="font-sx font_fb">3</view>
 						<view>完成</view>
 					</view>
 				</view>
@@ -27,13 +27,13 @@
 		<!-- 登陆 -->
 		<view class="center-v">
 			<view class="input-v">
-				<input class="input-in" type="password" placeholder="请输入密码" placeholder-style="color:#bbb;font-size:12px" :value="password" @input="onAccount"/>
+				<input class="input-in" type="password" placeholder="请输入密码" placeholder-style="color:#bbb;font-size:15px" :value="password" @input="onAccount"/>
 				<view class="input-line"></view>
 			</view>
 			<view class="space-m"></view>
 			<view class="input-v">
 				<view class="input-in flex align-end">
-					<input class="flex-sub" type="password" placeholder="请再次输入密码" placeholder-style="color:#bbb;font-size:12px" :value="password2" @input="onPasswd"/>
+					<input class="flex-sub" type="password" placeholder="请再次输入密码" placeholder-style="color:#bbb;font-size:15px" :value="password2" @input="onPasswd"/>
 				</view>
 				<view class="input-line"></view>
 			</view>

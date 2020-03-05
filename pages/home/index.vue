@@ -31,7 +31,7 @@
 				<text @click="goPages('/pages/home/mall/productList')" class="more">更多</text>
 			</view>
 			<view class="space-s"></view>
-			<view class="flex justify-around magin-tb-lg">
+			<view class="flex justify-start magin-tb-lg">
 				<view @click="onTag(index)" v-for="(item,index) in tagList" :key="index" :class="index==tag?'tag-active':'tag'">
 					{{item.name}}
 				</view>
@@ -40,11 +40,12 @@
 			<view @tap="goPagesById('/pages/home/mall/productInfo','',item.id)" v-for="(item,index) in productList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="image align-center justify-center">
 					<image :src="item.logo" class="image" mode="aspectFit"></image>
-					<image class="hot" src="../../static/home/star_active.png" mode="aspectFit"></image>
+					<image class="hot" src="../../static/home/hot.png" mode="aspectFit"></image>
 				</view>
 				<view class="margin-left-sm" style="flex-grow: 1;">
 					<view class="card-item-title">{{item.name}}</view>
-					<view class="card-item-desc">{{item.desc_1}}{{item.desc_2}}</view>
+					<view class="card-item-desc color_666">{{item.desc_1}}</view>
+					<text class="card-item-desc card-tag">{{item.desc_2}}</text>
 					<view class="flex card-item-desc" style="justify-content: space-between;">
 						<view class="active-price">¥<text class="active-price-big">{{item.sale}}</text><text  class="card-item-desc" style="text-decoration:line-through">¥{{item.price}}</text></view>
 						<view class="card-item-desc">已售{{item.volume}}</view>
@@ -87,9 +88,9 @@
 					<view class="image-class align-center justify-center">
 						<image :src="item[0].logo" class="image-class" mode="aspectFill"></image>
 					</view>
-					<view class="margin-left-sm">
+					<view class="margin-left-sm ">
 						<view class="card-item-title">{{item[0].name}}</view>
-						<view class="flex">
+						<view class="flex card-item-mt-10">
 							<view class="name-class">{{item[0].doctor}}</view>
 							<view>{{item[0].tag[0]}}</view>
 						</view>
@@ -108,7 +109,7 @@
 					</view>
 					<view v-if="item[1]" class="margin-left-sm" style="flex-grow: 1;">
 						<view class="card-item-title">{{item[1].name}}</view>
-						<view class="flex">
+						<view class="flex card-item-mt-10">
 							<view class="name-class">刘一刀</view>
 							<view>一级专家</view>
 						</view>
@@ -137,8 +138,8 @@
 			</view>
 			<view @click="goPagesById('/pages/home/newInfo','news',item.id)" v-for="(item,index) in newsList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
-					<view class="text-bold">{{item.name}}</view>
-					<view>{{item.desc}}</view>
+					<view class="text-bold ">{{item.name}}</view>
+					<view class="">{{item.desc}}</view>
 				</view>
 				<view class="image align-center justify-center">
 					<image :src="item.pic" class="image" mode="aspectFill"></image>

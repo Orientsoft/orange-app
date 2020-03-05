@@ -10,33 +10,32 @@
 				
 				<view class="flex justify-around margin-top-lg">
 					<view class="align-center reset-progress-active">
-						<view>1</view>
+						<view class="font_fb font-sx">1</view>
 						<view>请输入手机号码</view>
 					</view>
-					<view class="align-center reset-progress">
-						<view>2</view>
+					<view class="align-center reset-progress ">
+						<view class="font-sx font_fb">2</view>
 						<view>请重置密码</view>
 					</view>
-					<view class="align-center reset-progress">
-						<view>3</view>
+					<view class="align-center reset-progress ">
+						<view class="font-sx font_fb">3</view>
 						<view>完成</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		
 		<!-- 登陆 -->
 		<view class="center-v">
 			<view class="input-v">
-				<input class="input-in" type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:12px" :value="account" @input="onAccount"/>
+				<input class="input-in" type="number" placeholder="请输入手机号" placeholder-style="color:#bbb;font-size:15px" :value="account" @input="onAccount"/>
 				<view class="input-line"></view>
 			</view>
 			<view class="space-m"></view>
 			<view class="input-v">
 				<view class="input-in flex align-end">
-					<input class="flex-sub" type="number" placeholder="输入验证码" placeholder-style="color:#bbb;font-size:12px" :value="code" @input="onPasswd"/>
+					<input class="flex-sub" type="number" placeholder="输入验证码" placeholder-style="color:#bbb;font-size:15px" :value="code" @input="onPasswd"/>
 					<text v-if="isSend" @tap="getCode" class="code-str">获取验证码</text>
-					<text v-if="!isSend" @tap="sendSms2" class="forget">验证码已发送{{timeClock}}s</text>
+					<text v-if="!isSend" @tap="sendSms2" class="color_grey font_14">验证码已发送 {{timeClock}} s</text>
 				</view>
 				<view class="input-line"></view>
 			</view>

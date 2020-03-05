@@ -11,6 +11,8 @@
 	.logo{
 		height: 200upx;
 		width: 200upx;
+		height: 227upx;
+		width: 145upx;
 	}
 	
 	.center-v{
@@ -24,19 +26,26 @@
 	.input-in{
 		margin-left: 10upx;
 		margin-right: 10upx;
+		font-size: 32upx;
 	}
 	.input-line{
+		margin-top: 15upx;
 		height: 2upx;
 		background-image: linear-gradient(to right,#f79200,#ff6e00);
+		background-color: #ddd;
+		/* background-image: linear-gradient(to right,#f79200,#ff6e00); */
 	}
 	.forget{
 		color: #000;
 		font-size: 18upx;
+		color: #ff7e00;
+		font-size: 30upx;
 		margin-bottom: 5upx;
 	}
 	.code-str{
 		color: #ec5800;
 		font-size: 18upx;
+		font-size: 30upx;
 		margin-bottom: 5upx;
 	}
 	
@@ -44,20 +53,28 @@
 		background-image: linear-gradient(to right,#f79200,#ff6e00);
 		padding: 10upx;
 		border-radius: 60upx;
+		background-image: linear-gradient(to right,#ff7e00,#ff4900);
+		padding: 14upx;
+		border-radius: 10upx;
+		margin-bottom: 20upx;
 	}
 	
 	.login-text{
 		color: #fff;
 		font-size: 28upx;
+		font-size: 32upx;
 	}
 	
 	.reg{
 		color: #000;
 		font-size: 18upx;
+		color: #131313;
+		font-size: 28upx;
 	}
 	
 	.version{
 		color: #000;
+		color: #131313;
 		font-size: 28upx;
 		margin-top: 350upx;
 	}
@@ -71,20 +88,32 @@
 	.reg-title{
 		color: #000;
 		font-size: 44upx;
+		color: #131313;
+		font-size: 60upx;
+		font-weight: bold;
 		margin-bottom: 10upx;
 	}
 	
 	.reset-progress-active{
 		color: #000000;
 		font-size: 11upx;
+		color: #131313;
+		font-size: 24upx;
 		text-align: center;
 		flex: 1;
 		margin-top: 5upx;
+		margin-top: 15upx;
 	}
 	.reset-progress{
 		color: #bbb;
 		font-size: 11upx;
+		color: #989898;
+		font-size: 24upx;
 		text-align: center;
 		flex: 1;
 		margin-top: 5upx;
+		margin-top: 15upx;
 	}
+	.font-sx{ font-size: 32upx; margin-bottom: 10upx;}
+	.font_14{ font-size: 28upx;}
+	.font_fb{ font-weight: 700;}

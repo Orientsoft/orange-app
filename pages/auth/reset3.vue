@@ -1,20 +1,20 @@
 <template>
-	<view class="container">
+	<view class="page">
 		<!-- logo -->
 		<view class="flex reg-v">
 			<view class="input-v" style="width: 100%;">
 				<view class="reg-title"><text>完成</text></view>
 				<view class="flex justify-around margin-top-lg">
 					<view class="align-center reset-progress">
-						<view>1</view>
+						<view class="font-sx font_fb">1</view>
 						<view>请输入手机号码</view>
 					</view>
 					<view class="align-center reset-progress">
-						<view>2</view>
+						<view class="font-sx font_fb">2</view>
 						<view>请重置密码</view>
 					</view>
 					<view class="align-center reset-progress-active">
-						<view>3</view>
+						<view class="font-sx font_fb">3</view>
 						<view>完成</view>
 					</view>
 				</view>

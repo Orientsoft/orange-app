@@ -12,7 +12,7 @@
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText" : "橙子",
+				"navigationBarTitleText" : "首页",
 				"app-plus": {
 					"bounce": "none",
 					"scrollIndicator": "none"
@@ -222,16 +222,16 @@
 		}
 	},
 	"tabBar" : {
-	    "color" : "#C0C4CC",
-	    "selectedColor" : "#F49100",
-	    "borderStyle" : "black",
-	    "backgroundColor" : "#ffffff",
+	    "color" : "#626262",
+	    "selectedColor" : "#ff4900",
+	    "borderStyle" : "#eee",
+	    "backgroundColor" : "#fff",
 	    "list" : [
 	        {
 	            "pagePath" : "pages/home/index",
 	            "iconPath" : "static/home/home.png",
 	            "selectedIconPath" : "static/home/home_active.png",
-	            "text" : "橙子"
+	            "text" : "首页"
 	        },{
 	            "pagePath" : "pages/health/index",
 	            "iconPath" : "static/home/mall.png",
@@ -239,13 +239,13 @@
 	            "text" : "健康"
 	        },{
 	            "pagePath" : "pages/message/index",
-	            "iconPath" : "static/home/charge.png",
-	            "selectedIconPath" : "static/home/charge_active.png",
+	            "iconPath" : "static/home/message.png",
+	            "selectedIconPath" : "static/home/message_active.png",
 	            "text" : "消息"
 	        },{
 	            "pagePath" : "pages/my/order/orderList",
-	            "iconPath" : "static/home/charge.png",
-	            "selectedIconPath" : "static/home/charge_active.png",
+	            "iconPath" : "static/home/order.png",
+	            "selectedIconPath" : "static/home/order_active.png",
 	            "text" : "订单"
 	        },{
 	            "pagePath" : "pages/my/index",

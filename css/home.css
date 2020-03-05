@@ -29,10 +29,7 @@ page{
 	background-color: #FFFFFF;
 	height: 120upx;
 	border-radius: 10upx;
-	/* border: 1upx solid #F49100; */
-	/* box-shadow:inset 0upx 0upx  10upx #ccc; */
 	flex: 1;
-	/* background:radial-gradient(40upx at right bottom,transparent 50%,#1889F6 50%); */
 }
 
 .icon{
@@ -54,47 +51,59 @@ page{
 }
 
 .image{
-	height: 154upx;
-	width: 154upx;
+	height: 254upx;
+	width: 254upx;
 	border-radius: 8upx;
 	position: relative;
+	margin-right: 20upx;
 	/* background: #8DC63F; */
 }
 .hot{
-	height: 24upx;
-	width: 24upx;
+	height: 41upx;
+	width: 124upx;
 	position: absolute;
-	top:30upx;
-	left: 100upx;
+	top:0upx;
+	right: 0;
+	border-top-right-radius: 10upx;
 }
 .image-round{
-	height: 154upx;
-	width: 154upx;
-	border-radius: 77upx;
+	height: 254upx;
+	width: 254upx;
+	border-radius: 127upx;
+}
+.image-radius{
+	height: 254upx;
+	width: 254upx;
+	border-radius: 12upx;
 }
 /* 专家 */
 .image-class{
 	height: 300upx;
 	width: 100%;
-	border-radius: 30upx;
+	border-radius: 10upx;
+	margin-bottom: 15upx;
+	margin-top: 10upx;
 }
 
 .tag-class{
-	color: #999;
+	color: #626262;
 	font-size: 18upx;
-	/* background: #fef1d9; */
+	background: #f3f1f3;
 	border-radius: 20upx;
 	height: 40upx;
+	line-height: 36upx;
 	padding-left: 10upx;
 	padding-right: 10upx;
 	text-align: center;
-	border: 1upx solid #f0f0f0;
+	border: 1upx solid #f3f1f3;
+	margin: 0 6upx;
 }
 .name-class{
-	color: #F49100;
+	color: #ff7e00;
 	font-weight: bold;
 	font-size: 24upx;
-	border: 1upx solid #ed7100;
+	border: 1upx solid #ff7e00;
+	background-color: #fff8f6;
 	border-radius: 20upx;
 	padding-left: 20upx;
 	padding-right: 20upx;
@@ -138,30 +147,33 @@ page{
 	color: #131313;
 	font-size: 36upx;
 	font-weight: 700;
+	
 
 }
+.card-item-mt-10{ margin-top: 14upx;}
 .card-item-sign{
 	background: #02cfa9;
 	padding: 5upx 10upx 5upx 10upx;
 	margin-left: 20upx;
 	border-radius: 10upx;
 	color: #FFFFFF;
+	height: 32upx;
 	font-size: 20upx;
 }
 .active-price{
-	color: #aa1700;
+	margin: 10upx 0;
+	color: #ff4900;
 }
 .active-price-big{
-	color: #aa1700;
+	color: #ff4900;
 	font-weight: bold;
 	font-size: 36upx;
 	margin-right: 10upx;
 }
 .card-item-desc{
-	color: #888;
 	font-size: 24upx;
-	margin-top: 5upx;
-	margin-bottom: 5upx;
+	margin-top: 15upx;
+	margin-bottom: 15upx;
 	overflow: hidden;
 }
 .card-item-desc-phone{
@@ -169,6 +181,7 @@ page{
 	width: 24upx;
 	margin-right: 10upx;
 }
+.card-tag{ background-image: linear-gradient(to right, #3623b2, #c266da); padding: 5upx 20upx; color: #fff; border-radius: 30upx;}
 .card-item{
 	border-bottom:1upx #f0f0f0 solid;
 	align-items: center;
@@ -188,43 +201,58 @@ page{
 }
 /* 产品tag */
 .tag{
-	color: #919191;
+	color: #989898;
 	font-size: 24upx;
-	background: #F0F0F0;
+	background: #f3f1f3;
 	border-radius: 20upx;
 	height: 38upx;
 	width: 100upx;
+	margin: 0 20upx;
 	text-align: center;
+	border: 1upx solid #f3f1f3;
 }
 .tag-active{
-	color: #F49100;
+	color: #ff7e00;
 	font-size: 24upx;
-	background: #fef1d9;
+	background: #fff8f6;
 	border-radius: 20upx;
 	height: 38upx;
 	width: 100upx;
 	text-align: center;
-	border: 1upx solid #F49100;
+	margin:0 20upx;
+	border: 1upx solid #ff7e00;
 }
 /* 新闻tag */
 .tag2{
-	color: #888;
-	font-size: 24upx;
+	color: #626262;
+	font-size: 32upx;
+	height: 50upx;
+	line-height: 50upx;
 }
 .tag2-active{
-	color: #F49100;
+	color: #ff7e00;
 	font-weight: bold;
-	font-size: 24upx;
-	border-bottom: 3upx solid #ed7100;
+	font-size: 32upx;
+	height: 50upx;
+	line-height: 50upx;
+	border-bottom: 4upx solid #ff7e00;
 }
+.margin-left-sm{ margin-right: 20upx;}
+.hospital-card-title{ font-size: 32upx; color: #131313; height: 86upx; overflow: hidden; margin: 18upx 0;}
+.hospital-card-info{ height: 116upx; overflow: hidden; }
 /* 健康头部 */
 .tagTop{
-	color: #E0E0E0;
+	color: #FFFFFF;
 	font-size: 34upx;
+	height: 80upx;
+	line-height: 80upx;
 }
 .tagTop-active{
 	color: #FFFFFF;
 	font-weight: bold;
 	font-size: 34upx;
 	border-bottom: 6upx solid #FFFFFF;
+	height: 80upx;
+	line-height: 80upx;
 }
+.heatopbg{height:80upx;width: 100%; background:#ff4900; position: fixed; z-index: 100;}
