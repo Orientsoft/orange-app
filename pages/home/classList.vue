@@ -18,17 +18,17 @@
 		<view class="hospital-card-list">
 			<view v-for="(item,index) in hospitalList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="image align-center justify-center">
-					<image :src="item.logo" class="image-round" mode="aspectFill"></image>
+					<image :src="item.logo" class="image-radius" mode="aspectFill"></image>
 				</view>
 				<view class="margin-left-sm" style="flex-grow: 1;">
 					<view class="flex">
 						<text class="card-item-title">{{item.name}}</text>
 					</view>
-					<view class="flex">
+					<view class="flex mg-tb">
 						<view class="name-class">刘一刀</view>
 						<view>一级专家</view>
 					</view>
-					<view>麻醉科 病理科|神经外科</view>
+					<view >麻醉科 病理科|神经外科</view>
 					<view class="card-item-desc flex">擅长：
 						<view class="flex justify-around">
 							<view v-for="(item,index) in tagClass" :key="index" class="tag-class">
