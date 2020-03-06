@@ -47,10 +47,10 @@
 					<view class="card-item-desc color_666">{{item.desc_1}}</view>
 					<text class="card-item-desc card-tag">{{item.desc_2}}</text>
 					<view class="flex card-item-desc" style="justify-content: space-between;">
-						<view class="active-price">¥<text class="active-price-big">{{item.sale}}</text><text  class="card-item-desc" style="text-decoration:line-through">¥{{item.price}}</text></view>
-						<view class="card-item-desc">已售{{item.volume}}</view>
+						<view class="active-price">¥<text class="active-price-big">{{item.sale}}</text><text  class="card-item-desc color_grey" style="text-decoration:line-through">¥{{item.price}}</text></view>
+						<view class="card-item-desc color_grey">已售：{{item.volume}}</view>
 					</view>
-					<view class="card-item-desc">可用门店:{{item.support.length}}家</view>
+					<view class="card-item-desc color_grey">可用门店：<text class="color_666">{{item.support.length}}家</text></view>
 				</view>
 			</view>
 		</view>
@@ -58,7 +58,7 @@
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
 				<text class="card-item-title">热门医院</text>
-				<text @click="goPages('/pages/home/hospitalList')" class="more">更多>></text>
+				<text @click="goPages('/pages/home/hospitalList')" class="more">更多</text>
 			</view>
 			<view @click="goPagesById('/pages/home/hospitalInfo','',item.id)" v-for="(item,index) in hospitalList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="image align-center justify-center">
@@ -70,10 +70,10 @@
 						<text v-for="(tag,index) in item.tag" :key="index" class="card-item-sign">{{tag}}</text>
 					</view>
 					<view class="card-item-desc">科室：<text v-for="(dept,index) in item.department" :key="index" class="margin-right-sm">{{dept}}</text></view>
-					<view class="card-item-desc flex align-end">
-						<text class="cuIcon-phone"></text> {{item.phone}}</view>
-					<view class="card-item-desc flex align-end">
-						<text class="cuIcon-location"></text> {{item.address}}</view>
+					<view class="card-item-desc flex align-end color_grey">
+						电话： {{item.phone}}</view>
+					<view class="card-item-desc flex align-end color_grey">
+						地址： {{item.address}}</view>
 				</view>
 			</view>
 		</view>
@@ -81,7 +81,7 @@
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
 				<text class="text-bold text-black text-lg">专家讲堂</text>
-				<text @click="goPages('/pages/home/classList')" class="more">更多>></text>
+				<text @click="goPages('/pages/home/classList')" class="more">更多</text>
 			</view>
 			<view v-for="(item,index) in classList" :key="index" class="padding-tb-sm flex">
 				<view @click="goPagesById('/pages/home/newInfo','class',item[0].id)" class="card-item-row margin-right-lg">
@@ -128,7 +128,7 @@
 		<view class="margin-lr-item card-list">
 			<view class="flex" style="display: flex;align-items: center;justify-content: space-between;">
 				<text class="card-item-title">新闻热点</text>
-				<text @click="goPages('/pages/home/newsList')" class="more">更多>></text>
+				<text @click="goPages('/pages/home/newsList')" class="more">更多</text>
 			</view>
 			<view class="space-s"></view>
 			<view class="flex justify-around">
@@ -138,8 +138,8 @@
 			</view>
 			<view @click="goPagesById('/pages/home/newInfo','news',item.id)" v-for="(item,index) in newsList" :key="index" class="flex padding-tb-sm card-item">
 				<view class="margin-left-sm" style="flex-grow: 1;align-self: stretch;">
-					<view class="text-bold ">{{item.name}}</view>
-					<view class="">{{item.desc}}</view>
+					<view class="text-bold hospital-card-title">{{item.name}}</view>
+					<view class="hospital-card-info color_grey">{{item.desc}}</view>
 				</view>
 				<view class="image align-center justify-center">
 					<image :src="item.pic" class="image" mode="aspectFill"></image>

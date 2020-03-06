@@ -1,6 +1,6 @@
 <template>
-	<view class="container">
-		<view>
+	<view class="pagebg">
+		<view class="bg-orange-lg">
 			<cu-custom :isBack="true" bgColor="container title-orange">
 				<block slot="backText"><text class="title-black">订单详情</text></block>
 			</cu-custom>
@@ -34,7 +34,7 @@
 					<radio-group @change="radioChange" style="width: 100%;">
 						<view class="flex justify-between input-v">
 							<view class="flex align-center">
-								<image src="../../../static/charge-old/telephone_expense.png" class="icon-pay"></image>
+								<image src="../../../static/mall-old/wechat_click.png" class="icon-pay"></image>
 								<text class="name-connect">微信</text>
 							</view>
 							<label class="radio">
@@ -43,7 +43,7 @@
 						</view>
 						<view class="flex justify-between input-v">
 							<view class="flex align-center">
-								<image src="../../../static/charge-old/telephone_expense.png" class="icon-pay"></image>
+								<image src="../../../static/mall-old/alipay_clik.png" class="icon-pay"></image>
 								<text class="name-connect">支付宝</text>
 							</view>
 							<label class="radio">
@@ -74,8 +74,8 @@
 		
 		
 		<!-- 底部 -->
-		<view class="flex padding-tb-sm padding-lr-lg" style="background: #fcfcfc;position: fixed;bottom: 0;justify-content: space-between;width: 100%;animation: show 2s  ;z-index: 1000;">
-			<view class="active-price">¥<text class="card-active-price">{{info.price}}</text></view>
+		<view class="flex padding-tb-sm padding-lr-lg price-foot" >
+			<view class="active-price">¥<text class="card-active-price">{{info.sale}}</text></view>
 			<view @click="doBuy()" class="order-btn text-center text-white">提交订单</view>
 		</view>
 	</view>

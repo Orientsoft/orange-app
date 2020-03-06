@@ -41,8 +41,9 @@
 	background-color: #F49100;
 }
 .bg-orange-lg{
-	background-image: linear-gradient(to right,#ff6e00,#f79200);
+	background-image: linear-gradient(to right,#ff4900,#ff7e00);
 }
+.font-toptit{ font-size: 36upx;}
 .color_grey{ color: #989898;} 
 .color_666{ color: #626262;} 
 .container{
@@ -58,3 +59,5 @@
 	height: 80upx;
 }
 .mg-tb{ margin: 16upx 0;}
+.mt-10{ margin-top: 16upx;}
+.font_14{ font-size: 24upx;}

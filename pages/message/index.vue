@@ -1,7 +1,7 @@
 <template>
-	<view>
+	<view class="container">
 			<view>
-				<cu-custom :isBack="false" bgColor="container title-white bg-orange-lg">
+				<cu-custom :isBack="false" bgColor=" title-white bg-orange-lg">
 					<block slot="content">消息</block>
 				</cu-custom>
 			</view>

@@ -206,7 +206,7 @@
 		<view class="space-l"></view>
 		<view class="space-l"></view>
 		<!-- 底部 -->
-		<view v-if="info.status < 4" class="flex padding-tb-sm padding-lr-lg" style="background: #fcfcfc;position: fixed;bottom: 0;justify-content: flex-end;width: 100%;animation: show 2s  ;z-index: 1000;">
+		<view v-if="info.status < 4" class="flex padding-tb-sm padding-lr-lg price-foot" >
 			<view class="active-price"></view>
 			<view v-if="info.status==1||info.status==2" @click="drawBack()" class="drawback-btn">退款</view>
 			<view v-if="info.status==2" @click="cancelApt()" class="drawback-btn">取消预约</view>
