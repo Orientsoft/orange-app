@@ -141,14 +141,11 @@ page{
 }
 .card-item-title{
 	font-size: 32upx;
-	font-weight: 400;
+	font-weight: 700;
 	height: 50upx;
 	overflow: hidden;
 	color: #131313;
 	font-size: 36upx;
-	font-weight: 700;
-	
-
 }
 .card-item-mt-10{ margin-top: 14upx;}
 .card-item-sign{
@@ -238,21 +235,22 @@ page{
 	border-bottom: 4upx solid #ff7e00;
 }
 .margin-left-sm{ margin-right: 20upx;}
-.hospital-card-title{ font-size: 32upx; color: #131313; height: 86upx; overflow: hidden; margin: 18upx 0;}
+.hospital-card-title{ font-size: 32upx; color: #131313; max-height: 86upx; overflow: hidden; margin: 18upx 0;}
+
 .hospital-card-info{ height: 116upx; overflow: hidden; }
 /* 健康头部 */
 .tagTop{
 	color: #FFFFFF;
 	font-size: 34upx;
-	height: 80upx;
-	line-height: 80upx;
+	height: 100upx;
+	line-height: 100upx;
 }
 .tagTop-active{
 	color: #FFFFFF;
 	font-weight: bold;
 	font-size: 34upx;
-	border-bottom: 6upx solid #FFFFFF;
-	height: 80upx;
-	line-height: 80upx;
+	/* border-bottom: 6upx solid #FFFFFF; */
+	height: 100upx;
+	line-height: 100upx;
 }
-.heatopbg{height:80upx;width: 100%; background:#ff4900; position: fixed; z-index: 100;}
+.heatopbg{height:100upx;width: 100%; background:#ff4900; position: fixed; z-index: 100;}
