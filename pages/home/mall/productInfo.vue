@@ -1,13 +1,9 @@
 <template>
 	<view class="container">
-		<image v-if="tabIndex==0" style="width: 100%;position: absolute;height: 350upx;" src="../../../static/home/head_bg_order.png" mode="scaleToFill"></image>
-		<cu-custom v-if="tabIndex==0" :isBack="true" bgColor="title-white">
+		<image style="width: 100%;position: absolute;height: 350upx;" src="../../../static/home/head_bg_order.png" mode="scaleToFill"></image>
+		<cu-custom :isBack="true" bgColor="title-white">
 			<block slot="backText" class="title-white"><text class="title-white">套餐详情</text></block>
 		</cu-custom>
-		<cu-custom v-if="tabIndex!=0" :isBack="true" bgColor="title-orange bg-white">
-			<block slot="backText"><text class="title-black">套餐详情</text></block>
-		</cu-custom>
-		
 		<!-- 信息 -->
 		<view class="harf-top">
 			<view class="space-m"></view>
