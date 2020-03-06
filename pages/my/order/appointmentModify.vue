@@ -36,7 +36,7 @@
 					<view class="flex input-v">
 						<view class="name-connect">预约时间:</view>
 						<input :value="orderAt" style="flex:1" placeholder="到店时间" placeholder-style="font-size:12px;color:#bbb"/>
-						<view @click="showModal2" class="more-right"><text class="cuIcon-right"></text></view>
+						<view @click="showModal2" class="more-right text-lg padding"><text class="cuIcon-right"></text></view>
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect">预约人:</view>

@@ -40,7 +40,7 @@
 					</view>
 					<view class="flex text-v">
 						<view class="info">下单时间:</view>
-						<view class="info">{{$utils.dateUtils.format(info.updatedAt)}}</view>
+						<view class="info">{{info.updatedAt}}</view>
 					</view>
 					<view class="flex text-v">
 						<view class="info">联系电话:</view>
@@ -145,7 +145,7 @@
 					</view>
 					<view class="flex text-v">
 						<view class="info">下单时间:</view>
-						<view class="info">{{$utils.dateUtils.format(info.updatedAt)}}</view>
+						<view class="info">{{formatTime(info.createdAt)}}</view>
 					</view>
 					<view class="flex text-v">
 						<view class="info">联系电话:</view>
@@ -307,6 +307,11 @@
 				console.log(e);
 				// this.payIndex = index;
 			},
+			formatTime(time){
+				let str = this.$utils.dateUtils.format(time);
+				console.log('formatTime',str);
+				return str;
+			},
 			drawBack(){
 				let t = this;
 				uni.navigateTo({
@@ -450,7 +455,9 @@
 						if(res.statusCode===200){
 							console.log(JSON.stringify(res))
 							if(res.errMsg=='request:ok'){
-								t.info = res.data.data
+								let info = res.data.data
+								info.updatedAt =t.formatTime(info.updatedAt);
+								t.info = info;
 								t.val = t.info.id
 								if(t.info.status == 5){
 									t.getComment();

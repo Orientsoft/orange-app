@@ -32,17 +32,17 @@
 					<view class="flex input-v">
 						<view class="name-connect">预约门店:</view>
 						<input :value="addressIndex.name" disabled style="flex: 1;" placeholder="到店门店" placeholder-style="font-size:12px;color:#bbb"/>
-						<view @click="showModal" class="more-right"><text class="cuIcon-right"></text></view>
+						<view @click="showModal" class="more-right text-lg padding"><text class="cuIcon-right"></text></view>
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect">预约时间:</view>
 						<input :value="orderAt" disabled style="flex:1" placeholder="到店时间" placeholder-style="font-size:12px;color:#bbb"/>
-						<view @click="showModal2" class="more-right"><text class="cuIcon-right"></text></view>
+						<view @click="showModal2" class="more-right text-lg padding"><text class="cuIcon-right"></text></view>
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect">预约人:</view>
 						<input :value="name" disabled style="flex:1" placeholder="使用者姓名" placeholder-style="font-size:12px;color:#bbb" @input="onName"/>
-						<view @click="showModal3" class="more-right"><text class="cuIcon-right"></text></view>
+						<view @click="showModal3" class="more-right text-lg padding"><text class="cuIcon-right"></text></view>
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect">联系电话:</view>

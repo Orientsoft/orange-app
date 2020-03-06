@@ -17,7 +17,7 @@
 			<view v-for="(item,index) in orderList" :key="index" class="padding-tb-sm card-list">
 				<view class="flex justify-between card-item-desc">
 					<view>{{$utils.dateUtils.format(item.updatedAt)}}</view>
-					<view>{{tagList2[item.status].name}}</view>
+					<view>{{statusList[item.status].name}}</view>
 				</view>
 				<view class="flex">
 					<view class="image align-center justify-center">
@@ -53,6 +53,24 @@
 				orderList:[],
 				current: 0,
 				tagList2:[
+					{
+						value:0,
+						name:'全部'
+					},
+					{
+						value:1,
+						name:'待支付'
+					},
+					{
+						value:2,
+						name:'进行中'
+					},
+					{
+						value:3,
+						name:'完成/退款'
+					},
+				],
+				statusList:[
 					{
 						value:0,
 						name:'待支付'
@@ -145,9 +163,22 @@
 			loadData(){
 				let t= this;
 				t.loadMoreStatus = 1;
+				let statusArr = [];
+				if(t.tagList2[t.tag2].value == 0){
+					statusArr = []
+				}
+				if(t.tagList2[t.tag2].value == 1){
+					statusArr = [0]
+				}
+				if(t.tagList2[t.tag2].value == 2){
+					statusArr = [1,2,3,4]
+				}
+				if(t.tagList2[t.tag2].value == 3){
+					statusArr = [5,6,7]
+				}
 				t.S({
 					url:"order/me",
-					data:{page:t.now_page,limit:t.limit,status:t.tagList2[t.tag2].value},
+					data:{page:t.now_page,limit:t.limit,status:statusArr.join(',')},
 					callback:function(res){
 						if(res.statusCode===200){
 							console.log(JSON.stringify(res))
@@ -160,6 +191,7 @@
 								t.orderList = res.data.data;
 							}else{
 								console.log(JSON.stringify(res));
+								t.$utils.msg(res.data.message);
 							}
 						}else{
 							if(res.statusCode==401){

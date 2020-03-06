@@ -217,14 +217,14 @@
 					"baidumap",  
 					"iosamap",  
 					"qqmap"  
-				]  
+				]
 			}
 		}
 	},
 	"tabBar" : {
 	    "color" : "#626262",
 	    "selectedColor" : "#ff4900",
-	    "borderStyle" : "#eee",
+	    // "borderStyle" : "#eee",
 	    "backgroundColor" : "#fff",
 	    "list" : [
 	        {

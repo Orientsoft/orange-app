@@ -26,7 +26,7 @@
 				<view class="flex input-v">
 					<view class="name-connect">预约人:</view>
 					<input disabled :value="name" class="flex-sub" @input="onName" placeholder="请选择" placeholder-style="font-size:12px;color:#bbb"/>
-					<view @click="showModal" class="more-right margin-right-sm"><text class="cuIcon-right"></text></view>
+					<view @click="showModal" class="more-right margin-right-sm text-lg padding"><text class="cuIcon-right"></text></view>
 				</view>
 				<view class="space-s"></view>
 				

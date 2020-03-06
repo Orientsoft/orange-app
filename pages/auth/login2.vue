@@ -1,8 +1,11 @@
 <template>
 	<view class="page">
+		<cu-custom :isBack="true" bgColor="title-orange">
+			<block slot="backText"></block>
+		</cu-custom>
 		<!-- logo -->
 		<view class="flex logo-v">
-						<image src="../../static/home/logo.png" class="logo"></image>
+			<image src="../../static/home/logo.png" class="logo"></image>
 		</view>
 		
 		<!-- 登陆 -->

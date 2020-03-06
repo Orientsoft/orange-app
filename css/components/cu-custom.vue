@@ -52,7 +52,7 @@
 			bgImage: {
 				type: String,
 				default: ''
-			},
+			}
 		},
 		methods: {
 			BackPage() {

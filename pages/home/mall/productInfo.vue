@@ -35,9 +35,9 @@
 							<view class="card-title flex-treble">{{supportList[0].name}}</view>
 							<view class="card-desc">{{supportList[0].distance}}km</view>
 						</view>
-						<view @click="openMap(supportList[0])" class="flex justify-between card-desc">
+						<view @click="openMap(supportList[0])" class="flex justify-between card-desc padding-tb-sm">
 							<view><text class="cuIcon-location"></text>{{supportList[0].address}}</view>
-							<view><text class="cuIcon-right"></text></view>
+							<view class="text-lg"><text class="cuIcon-right"></text></view>
 						</view>
 					</view>
 				</view>
