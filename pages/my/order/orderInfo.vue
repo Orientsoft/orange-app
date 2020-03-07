@@ -1,5 +1,5 @@
 <template>
-	<view class="container bg-white">
+	<view>
 		<view>
 			<cu-custom :isBack="true" bgColor="container title-orange">
 				<block slot="backText"><text class="title-black">订单详情</text></block>
@@ -13,7 +13,7 @@
 				<view v-if="info.status==0" class="top-status-s">剩余23小时59分28秒关闭订单</view>
 			</view>
 			<!-- 信息 -->
-			<view class="card">
+			<view class="card card-none">
 				<view class="cro_left_bottom"></view>
 				<view class="cro_right_bottom"></view>
 				<view class="flex align-end">
@@ -28,7 +28,7 @@
 					
 			<view class="info-border-top"></view>
 			<!-- 用户信息 未付款，待预约-->
-			<view v-if="info.status == 0||info.status == 1||info.status == 6||info.status == 7" class="card">
+			<view v-if="info.status == 0||info.status == 1||info.status == 6||info.status == 7" class="card card-none">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
 				<view>
@@ -55,7 +55,7 @@
 				</view>
 			</view>
 			<!-- 待挂号 -->
-			<view v-if="info.status == 2" class="card">
+			<view v-if="info.status == 2" class="card card-none">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
 				<view>
@@ -87,7 +87,7 @@
 			</view>
 			
 			<!-- 二维码 待使用-->
-			<view v-if="info.status == 3" class="card">
+			<view v-if="info.status == 3" class="card card-none">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
 				<view class="align-center justify-center flex">
@@ -111,7 +111,7 @@
 				</view>
 			</view>
 			<!-- 待评价，已完成 -->
-			<view v-if="info.status == 4 || info.status == 5" class="card">
+			<view v-if="info.status == 4 || info.status == 5" class="card card-none">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
 				<view class="flex text-v">
@@ -135,7 +135,7 @@
 			</view>
 			<view class="space-m"></view>
 			<!-- 订单信息 -->
-			<view v-if="info.status >= 2 && info.status < 6" class="card">
+			<view v-if="info.status >= 2 && info.status < 6" class="card card-none">
 				<view>
 					<view class="name-connect">订单信息</view>
 					<view class="space-s"></view>

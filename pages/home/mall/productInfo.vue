@@ -1,5 +1,5 @@
 <template>
-	<view class="page">
+	<view class="container">
 		<image v-if="tabIndex==0" style="width: 100%;position: absolute;height: 350upx;" src="../../../static/home/head_bg_order.png" mode="scaleToFill"></image>
 		<view class="headerbg">
 		<cu-custom v-if="tabIndex==0" :isBack="true" bgColor="title-white ">
@@ -309,6 +309,7 @@
 
 <style>
 	@import url("../../../css/mall.css");
+	page{ background-color: #fff;}
 	.tab-all{
 		/* box-shadow:0 0 20upx #f3f4ec; */
 		padding-top: 20upx;
