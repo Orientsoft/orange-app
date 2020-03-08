@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view>
 		<view class="heatopbg" style="">
 			<!-- <image style="width: 100%;height: 280upx;margin-bottom: -200upx;" src="../../static/home/head_jk.png" mode="scaleToFill"></image> -->
 			<view class="flex justify-around">

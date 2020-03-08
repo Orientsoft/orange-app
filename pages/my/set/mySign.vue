@@ -1,5 +1,5 @@
 <template>
-	<view class="container bg-white">
+	<view>
 		<view>
 			<cu-custom :isBack="true" bgColor="container title-orange">
 				<block slot="backText"><text class="title-black">公司认证</text></block>
@@ -15,11 +15,11 @@
 				<view>
 					<view class="flex input-v">
 						<view class="name-connect">医院名称:</view>
-						<input @input="onName" :value="name" style="flex: 1;" placeholder="医院全称" placeholder-style="font-size:12px;color:#bbb"/>
+						<input @input="onName" :value="name" style="flex: 1;" placeholder="医院全称" placeholder-style="font-size:15px;color:#bbb"/>
 					</view>
 					<view class="flex input-v">
 						<view class="name-connect flex-sub">营业执照编号:</view>
-						<input class="flex-twice" :value="idcard" @input="onIdCard" placeholder="2009092DBGC988" placeholder-style="font-size:12px;color:#bbb"/>
+						<input class="flex-twice" :value="idcard" @input="onIdCard" placeholder="2009092DBGC988" placeholder-style="font-size:15px;color:#bbb"/>
 					</view>
 					<view class="input-image">
 						<view class="name-connect">营业执照:</view>
@@ -250,7 +250,9 @@
 
 <style>
 	@import url("../../../css/mall.css");
-	
+	page{
+		background-color: #FFFFFF;
+	}
 	.store-item{
 		border-bottom: 1upx solid #f0f0f0;
 		padding-top: 10upx;

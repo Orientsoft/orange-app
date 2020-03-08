@@ -1,5 +1,5 @@
 page{
-	background:#FFFEF5;
+	background:#f3f1f3;
 }
 .nav-bg{
 	background-color: #FFFFFF;
@@ -104,9 +104,10 @@ page{
 	font-size: 24upx;
 	border: 1upx solid #ff7e00;
 	background-color: #fff8f6;
-	border-radius: 20upx;
-	padding-left: 20upx;
-	padding-right: 20upx;
+	border-radius: 40upx;
+	padding:0 30upx 10upx;
+	line-height: 46upx;
+	height: 50upx;
 	margin-right: 10upx;
 }
 
@@ -180,7 +181,7 @@ page{
 }
 .card-tag{ background-image: linear-gradient(to right, #3623b2, #c266da); padding: 5upx 20upx; color: #fff; border-radius: 30upx;}
 .card-item{
-	border-bottom:1upx #f0f0f0 solid;
+	/* border-bottom:1upx #f0f0f0 solid; */
 	align-items: center;
 }
 .card-item:last-child{

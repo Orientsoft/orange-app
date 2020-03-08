@@ -2,7 +2,7 @@
 	<view>
 			<view class="bg-orange-lg">
 				<cu-custom :isBack="true" bgColor="title-white">
-					<block slot="backText"><text>个人信息</text></block>
+					<block slot="backText"><text  class="title-white font-toptit">个人信息</text></block>
 				</cu-custom>
 				<view class="flex padding-tb-sm" style="align-items: center;width: 100%;justify-content: center;text-align: center;">
 					<view>
