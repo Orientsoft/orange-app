@@ -7,16 +7,15 @@
 		</view>
 		<image style="width: 100%;margin-bottom: -300upx;height: 350upx" src="../../../static/home/head_bg_order.png" mode="scaleToFill"></image>
 		<view class="harf-top">
-			
 			<!-- 信息 -->
-			<view class="card">
+			<view class="card card-none">
 				<view class="cro_left_bottom"></view>
 				<view class="cro_right_bottom"></view>
 				<view class="card2 flex align-end">
 					<view class="card-desc flex-sub self-stretch">
 						<view class="card-title">{{info.name}}</view>
 						<view>{{info.desc_1}}</view>
-						<view>{{info.desc_2}}</view>
+						<!-- <view>{{info.desc_2}}</view> -->
 						<view class="active-price">¥<text class="card-active-price">&ensp;{{info.sale}}</text><text class="card-desc" style="text-decoration:line-through">¥{{info.price}}</text></view>
 						<view>已售{{info.volume}}</view>
 					</view>
@@ -27,7 +26,7 @@
 					
 			<view class="info-border-top"></view>
 			<!-- 用户信息 -->
-			<view class="card">
+			<view class="card card-none">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
 				<view class="name-connect">付款方式</view>

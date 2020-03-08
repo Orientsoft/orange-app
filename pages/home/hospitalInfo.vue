@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view >
 		<image style="width: 100%;position: absolute;" src="../../static/home/head_bg_order.png" mode="aspectFill"></image>
 		<cu-custom :isBack="true" bgColor="title-white">
 			<block slot="backText" class="title-white"><text class="title-white">医院详情</text></block>
@@ -16,16 +16,18 @@
 						<text class="card-item-title">{{hospitalInfo.name}}</text>
 						<text v-for="(tag,index) in hospitalInfo.tag" :key="index+'tag'" class="card-item-sign">{{tag}}</text>
 					</view>
-					<view class="card-item-desc">科室：<text v-for="(dept,index) in hospitalInfo.department" :key="index+'dept'" class="margin-right-sm">{{dept}}</text></view>
-					<view class="card-item-desc flex align-end">
-						<text class="cuIcon-phone"></text> {{hospitalInfo.phone}}</view>
+					<view class="card-item-desc color_grey">科室：<text v-for="(dept,index) in hospitalInfo.department" :key="index+'dept'" class="margin-right-sm">{{dept}}</text></view>
+					<view class="card-item-desc flex align-end color_grey">
+						电话： {{hospitalInfo.phone}}</view>
+					<view class="card-item-desc flex align-end">	
+						<view v-if="operator==0" @click="onFork(1)" class="name-class">关注</view>
+						<view v-if="operator==1" @click="onFork(0)" class="name-class">取消关注</view>
+					</view>
 				</view>
 			</view>
-			<view class="flex justify-between margin-top">
-				<view class="card-item-desc flex align-end">
-					<text class="cuIcon-location"></text> {{hospitalInfo.address}}</view>
-					<view v-if="operator==0" @click="onFork(1)" class="name-class">关注</view>
-					<view v-if="operator==1" @click="onFork(0)" class="name-class">取消关注</view>
+			<view class="flex justify-between">
+				<view class="card-item-desc flex align-end color_grey">
+					<!-- <text class="cuIcon-location"></text> --> 地点：{{hospitalInfo.address}}</view>
 			</view>
 		</view>
 		<view class="space-m"></view>
@@ -35,7 +37,7 @@
 				<rich-text :nodes="hospitalInfo.content"></rich-text>
 			</view>
 		</view>
-		
+		<view class="space-s"></view>
 	</view>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-	<view class="container bg-white">
+	<view class="container">
 		<view>
 			<cu-custom :isBack="true" bgColor="container title-orange">
 				<block slot="backText"><text class="title-black">退款</text></block>
@@ -8,9 +8,7 @@
 		
 		<view class="harf-top">
 			<!-- 信息 -->
-			<view class="card">
-				<view class="cro_left_bottom"></view>
-				<view class="cro_right_bottom"></view>
+			<view class="card card-none">
 				<view class="flex align-end">
 					<view class="card-desc flex-sub self-stretch">
 						<view class="card-title">{{info.product.name}}</view>
@@ -20,13 +18,9 @@
 					<image :src="info.product.logo" class="card-logo" mode="aspectFit"></image>
 				</view>	
 			</view>
-			
 					
-			<view class="info-border-top"></view>
 			<!-- 用户信息 -->
-			<view class="card">
-				<view class="cro_left_top"></view>
-				<view class="cro_right_top"></view>
+			<view class="card card-none">
 				<view>
 					<view class="flex input-v">
 						<view class="name-connect">退款原因:</view>

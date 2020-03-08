@@ -1,5 +1,5 @@
 <template>
-	<view class="container bg-white">
+	<view >
 		<view>
 			<cu-custom :isBack="true" bgColor="container title-orange">
 				<block slot="backText"><text class="title-black">预约</text></block>

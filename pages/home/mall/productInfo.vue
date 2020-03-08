@@ -304,6 +304,7 @@
 
 <style>
 	@import url("../../../css/mall.css");
+	page{ background-color: #fff;}
 	.tab-all{
 		box-shadow:0 0 20upx #f3f4ec;
 		padding-top: 20upx;

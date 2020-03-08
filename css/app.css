@@ -22,10 +22,14 @@
 }
 .title-white{
 	color: #FFFFFF;
+	 font-size: 36upx;
 }
 .title-black{
 	color: #131313;
 	 font-size: 36upx;
+}
+page{
+	background-color: #f3f1f3;
 }
 
 .bg-red{
@@ -47,7 +51,7 @@
 .color_grey{ color: #989898;} 
 .color_666{ color: #626262;} 
 .container{
-	background-color: #f3f1f3;
+	background-color: #fff;
 }
 .space-m{
 	height: 40upx;
