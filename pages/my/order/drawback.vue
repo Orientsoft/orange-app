@@ -37,7 +37,7 @@
 					</view>
 					<view class="input-image">
 						<view class="name-connect">上传凭证:</view>
-						<image @click="goChoose" :src="selectImages[0].data" class="image-select" mode="aspectFill"></image>
+						<image @click="goChoose" :src="selectImages" class="image-select" mode="aspectFill"></image>
 					</view>
 					<view class="space-m"></view>
 					<view @click="upload" class="long-bg">提交申请</view>
@@ -90,9 +90,7 @@
 				modalName:'',
 				modalName2:'',
 				count:1,
-				selectImages:[{
-					data:''
-				}],
+				selectImages:'',
 				reasons:[
 					'买错了',
 					'没时间',
@@ -200,24 +198,8 @@
 					sourceType: ['album'], //从相册选择
 					success: function (res) {
 						console.log(JSON.stringify(res.tempFilePaths));
-						
-						t.selectImages = [];
-						res.tempFilePaths.forEach((item,index)=>{
-							var path= plus.io.convertLocalFileSystemURL(item);
-							pathToBase64(path)
-							.then(data=>{
-								console.log(data.length);
-								let tmpdata = data.substr(1);
-								tmpdata = tmpdata.substr(0,tmpdata.length-1);
-								// console.log(tmpdata);
-								console.log(tmpdata.length);
-								t.isChoose = true;
-								t.selectImages.push({
-									data:tmpdata,
-									path:item
-								});
-							})
-						})
+						t.selectImages = res.tempFilePaths[0];
+						t.isChoose = true;
 					}
 				});
 			},
@@ -228,7 +210,7 @@
 					this.drawback('');
 					return;
 				}
-				console.log(this.selectImages[0].path)
+				console.log(this.selectImages)
 				let t = this;
 				// File imgFile = new File(t.selectImages[0].path);
 				uni.showLoading({
@@ -237,7 +219,7 @@
 					success:function(){
 						uni.uploadFile({
 							url: 'http://testland.orientsoft.cn:7777/api/v1/upload', //仅为示例，非真实的接口地址
-							filePath: t.selectImages[0].path,
+							filePath: t.selectImages,
 							name: 'file',
 							header:{
 								"AccessToken": t.app.token.access_token,
