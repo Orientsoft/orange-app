@@ -6,6 +6,7 @@
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
+		"runmode":"liberate",
         /* 5+App特有相关 */
         "usingComponents" : true,
         "splashscreen" : {
@@ -18,8 +19,8 @@
             "mode" : "adjustPan"
         },
         "modules" : {
-            "Share" : {},
-            "Maps" : {}
+            "Maps" : {},
+            "Share" : {}
         },
         /* 模块配置 */
         "distribute" : {

@@ -24,7 +24,7 @@
 					<view class="input-image">
 						<view class="name-connect">营业执照:</view>
 						<view class="flex justify-between">
-							<image @click="goChoose" :src="selectImages[0].data" class="image-select" mode="aspectFill"></image>
+							<image @click="goChoose" :src="selectImages" class="image-select" mode="aspectFill"></image>
 							<image v-if="status" src="../../static/mall-old/demo_product.png" class="image-select" mode="aspectFill"></image>
 							<image v-if="!status" :src="userInfo.doc[0]" class="image-select" mode="aspectFill"></image>
 						</view>
@@ -32,7 +32,7 @@
 					<view class="input-image">
 						<view class="name-connect">授权委托书:</view>
 						<view class="flex justify-between">
-							<image @click="goChoose2" :src="selectImages2[0].data" class="image-select" mode="aspectFill"></image>
+							<image @click="goChoose2" :src="selectImages2" class="image-select" mode="aspectFill"></image>
 							<image v-if="status" src="../../static/mall-old/demo_product.png" class="image-select" mode="aspectFill"></image>
 							<image v-if="!status" :src="userInfo.doc[1]" class="image-select" mode="aspectFill"></image>
 						</view>
@@ -51,7 +51,6 @@
 		mapState,
 		mapMutations
 	} from 'vuex';
-	import { pathToBase64, base64ToPath } from '../../../js_sdk/image-tools/index.js'
 	export default {
 		computed: {...mapState(['app','inter'])},
 		data() {
@@ -61,17 +60,13 @@
 				modalName:'',
 				modalName2:'',
 				count:1,
-				selectImages:[{
-					data:''
-				}],
-				selectImages2:[{
-					data:''
-				}],
+				selectImages:'',
+				selectImages2:'',
 				doc:[],
 				idcard:'',
 				name:'',
 				userInfo:{},
-				status:0
+				status:0,
 			}
 		},
 		onLoad:function(option){
@@ -143,23 +138,7 @@
 					sourceType: ['album'], //从相册选择
 					success: function (res) {
 						console.log(JSON.stringify(res.tempFilePaths));
-						
-						t.selectImages = [];
-						res.tempFilePaths.forEach((item,index)=>{
-							var path= plus.io.convertLocalFileSystemURL(item);
-							pathToBase64(path)
-							.then(data=>{
-								// console.log(data.length);
-								let tmpdata = data.substr(1);
-								tmpdata = tmpdata.substr(0,tmpdata.length-1);
-								// console.log(tmpdata);
-								console.log(tmpdata.length);
-								t.selectImages.push({
-									data:tmpdata,
-									path:item
-								});
-							})
-						})
+						t.selectImages = res.tempFilePaths[0];
 					}
 				});
 			},
@@ -171,23 +150,7 @@
 					sourceType: ['album'], //从相册选择
 					success: function (res) {
 						console.log(JSON.stringify(res.tempFilePaths));
-						
-						t.selectImages2 = [];
-						res.tempFilePaths.forEach((item,index)=>{
-							var path= plus.io.convertLocalFileSystemURL(item);
-							pathToBase64(path)
-							.then(data=>{
-								// console.log(data.length);
-								let tmpdata = data.substr(1);
-								tmpdata = tmpdata.substr(0,tmpdata.length-1);
-								// console.log(tmpdata);
-								console.log(tmpdata.length);
-								t.selectImages2.push({
-									data:tmpdata,
-									path:item
-								});
-							})
-						})
+						t.selectImages2 = res.tempFilePaths[0];
 					}
 				});
 			},
@@ -225,20 +188,20 @@
 					this.$utils.msg("请输入营业执照编号");
 					return;
 				}
-				if(this.selectImages.length<=0){
+				if(!this.selectImages){
 					this.$utils.msg("请选择营业执照")
 					return;
 				}
-				if(this.selectImages2.length<=0){
+				if(!this.selectImages2){
 					this.$utils.msg("请选择授权委托书")
 					return;
 				}
 				
 				let t=this;
-				console.log(t.selectImages[0].path)
+				console.log(t.selectImages)
 				// File imgFile = new File(t.selectImages[0].path);
-				t.doupload(t.selectImages[0].path,()=>{
-					t.doupload(t.selectImages2[0].path,()=>{
+				t.doupload(t.selectImages,()=>{
+					t.doupload(t.selectImages2,()=>{
 						t.toCert();
 					});
 				});

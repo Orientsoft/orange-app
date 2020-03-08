@@ -52,7 +52,9 @@
 			</view>
 			<!-- picInfo -->
 			<view v-if="tabIndex==0" class="picInfo">
-				<image :src="info.pic" mode="aspectFit" style="width: 100%;"></image>
+				<scroll-view>
+					<image :src="info.pic" mode="widthFix" style="width: 100%;"></image>
+				</scroll-view>
 			</view>
 			<!-- 购买须知 -->
 			<view v-if="tabIndex==1" class="card">
