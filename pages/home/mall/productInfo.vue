@@ -1,51 +1,44 @@
 <template>
 	<view class="container">
-		<image v-if="tabIndex==0" style="width: 100%;position: absolute;height: 350upx;" src="../../../static/home/head_bg_order.png" mode="scaleToFill"></image>
-		<view class="headerbg">
-		<cu-custom v-if="tabIndex==0" :isBack="true" bgColor="title-white ">
-			<block slot="backText" class="title-white"><text class="title-white font-toptit">套餐详情</text></block>
+		<image style="width: 100%;position: absolute;height: 350upx;" src="../../../static/home/head_bg_order.png" mode="scaleToFill"></image>
+		<cu-custom :isBack="true" bgColor="title-white">
+			<block slot="backText" class="title-white"><text class="title-white">套餐详情</text></block>
 		</cu-custom>
-		<cu-custom v-if="tabIndex!=0" :isBack="true" bgColor="title-orange bg-white ">
-			<block slot="backText"><text class="title-black">套餐详情</text></block>
-		</cu-custom>
-		</view>
 		<!-- 信息 -->
 		<view class="harf-top">
-			<!-- <view class="space-m"></view> -->
+			<view class="space-m"></view>
 			<view class="card flex align-end">
 				<view class="card-desc flex-sub self-stretch">
 					<view class="card-title">{{info.name}}</view>
-					<view class="mt-10 color_666 font_14">{{info.desc_1}}</view>
-					<!-- <text class="card-tag">{{info.desc_2}}</text> -->
-					<view class="active-price mt-10">¥<text class="card-active-price">&ensp;{{info.sale}}</text><text class="card-desc" style="text-decoration:line-through">¥{{info.price}}</text></view>
-					<view>已售：{{info.volume}}</view>
+					<view>{{info.desc_1}}</view>
+					<view>{{info.desc_2}}</view>
+					<view class="active-price">¥<text class="card-active-price">&ensp;{{info.sale}}</text><text class="card-desc" style="text-decoration:line-through">¥{{info.price}}</text></view>
+					<view>已售{{info.volume}}</view>
 				</view>
 				<image :src="info.logo" class="card-logo" mode="aspectFit"></image>
 			</view>
 			<view class="space-s"></view>
 			<!-- 门店 -->
-			<view class="store-v mt-10">
+			<view class="store-v">
 				<view class="flex justify-between">
-					<view class="card-subtitle">适用门店<text class="color_grey font_14">（{{supportList.length}}）</text></view>
-					<view @click="showModal" class="store-more">其他门店 <text class="cuIcon-right"></text></view>
+					<view class="card-title">适用门店（{{supportList.length}}）</view>
+					<view @click="showModal" class="store-more">其他门店 ></view>
 				</view>
-				
-				<view class="flex align-center mt-10">
+				<view class="flex align-center">
 					<image :src="info.logo" class="store-logo" mode="aspectFit"></image>
 					<view class="margin-left-sm" style="flex-grow: 1;">
 						<view class="flex justify-between">
 							<view class="card-title flex-treble">{{supportList[0].name}}</view>
 							<view class="card-desc">{{supportList[0].distance}}km</view>
 						</view>
-						<view @click="openMap(supportList[0])" class="flex justify-between card-desc">
-							<view>地址：{{supportList[0].address}}</view>
-							<view><text class="cuIcon-right"></text></view>
+						<view @click="openMap(supportList[0])" class="flex justify-between card-desc padding-tb-sm">
+							<view><text class="cuIcon-location"></text>{{supportList[0].address}}</view>
+							<view class="text-lg"><text class="cuIcon-right"></text></view>
 						</view>
 					</view>
 				</view>
 			</view>
 			<!-- tab -->
-			<view class="space-s bg-lwhite"></view>
 			<view class="flex tab-all">
 				<view @click="onSelTab(0)" class="tab">
 					<text :class="tabIndex==0?'tab-sub-active':'tab-sub'">套餐详情</text>
@@ -59,7 +52,9 @@
 			</view>
 			<!-- picInfo -->
 			<view v-if="tabIndex==0" class="picInfo">
-				<image :src="info.pic" mode="aspectFit" style="width: 100%;"></image>
+				<scroll-view>
+					<image :src="info.pic" mode="widthFix" style="width: 100%;"></image>
+				</scroll-view>
 			</view>
 			<!-- 购买须知 -->
 			<view v-if="tabIndex==1" class="card">
@@ -107,7 +102,7 @@
 		<view class="space-l"></view>
 		
 		<!-- 底部 -->
-		<view class="flex padding-tb-sm padding-lr-lg price-foot">
+		<view class="flex padding-tb-sm padding-lr-lg" style="background: #fcfcfc;position: fixed;bottom: 0;justify-content: space-between;width: 100%;animation: show 2s  ;z-index: 1000;">
 			<view class="active-price">¥<text class="card-active-price">{{info.sale}}</text></view>
 			<view @click="goPages()" class="order-btn text-center text-white">提交订单</view>
 		</view>
@@ -311,32 +306,30 @@
 	@import url("../../../css/mall.css");
 	page{ background-color: #fff;}
 	.tab-all{
-		/* box-shadow:0 0 20upx #f3f4ec; */
+		box-shadow:0 0 20upx #f3f4ec;
 		padding-top: 20upx;
 		padding-bottom: 20upx;
 		margin-top: 20upx;
 		margin-bottom: 20upx;
-		border-bottom: 1px #eee solid;
 	}
 	.tab{
 		flex:1;
 		align-items: center;
-		height: 44upx;
-		line-height: 36upx;
+		height: 40upx;
 		justify-content: center;
 		text-align: center;
 	}
 	.tab-sub{
-		font-size: 32upx;
+		font-size: 36upx;
 		font-weight: 500;
 		text-align: center;
-		color: #989898;
+		color: #666;
 	}
 	.tab-sub-active{
-		font-size: 32upx;
+		font-size: 36upx;
 		font-weight: 500;
 		text-align: center;
-		color: #ff7e00;
-		
+		color: #F49100;
+		border-bottom: 3upx solid #F49100;
 	}
 </style>

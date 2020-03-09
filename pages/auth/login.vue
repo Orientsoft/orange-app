@@ -1,5 +1,15 @@
 <template>
 	<view class="page">
+		<cu-custom :isBack="true" bgColor="title-orange" :onBackPage="BackPage">
+			<block slot="backText"></block>
+		</cu-custom>
+		<view class="cu-custom" :style="[{height:CustomBar + 'px'}]">
+			<view class="cu-bar fixed" :style="style">
+				<view class="action title-orange" @tap="BackPage(false)" >
+					<text class="cuIcon-back"></text>
+				</view>
+			</view>
+		</view>
 		<!-- logo -->
 		<view class="flex logo-v">
 			<image src="../../static/home/logo.png" class="logo"></image>
@@ -41,6 +51,14 @@
 <script>
 	import { mapState, mapMutations } from 'vuex';
 	export default {
+		computed: {
+			style() {
+				var StatusBar= this.StatusBar;
+				var CustomBar= this.CustomBar;
+				var style = `height:${CustomBar}px;padding-top:${StatusBar}px;`;
+				return style
+			}
+		},
 		data() {
 			return {
 				account:'',
@@ -50,6 +68,9 @@
 		},
 		onLoad() {
 		},
+		onBackPress(){
+			this.BackPage();
+		},
 		methods: {
 			...mapMutations(['TO','S','SET','P']),
 			onAccount(e){
@@ -57,6 +78,26 @@
 			},
 			onPasswd(e){
 				this.password = e.target.value;
+			},
+			BackPage(login) {
+				console.log(login)
+				if(login){
+					uni.navigateBack({
+						delta: 1
+					});
+					return;
+				}
+				let pages = getCurrentPages();
+				for (var i = 0; i < pages.length; i++) {
+					console.log('BackPage',pages[i].route);
+				}
+				if(pages[0].route == 'pages/my/order/orderList' || 
+					pages[0].route == 'pages/my/index'||
+					pages[0].route == 'pages/message/index'){
+					uni.switchTab({
+						url:'/pages/home/index'
+					})
+				}
 			},
 			goPages(url){
 				this.TO({
@@ -75,11 +116,7 @@
 										key:'User',
 										value:res.data.data
 									})
-									setTimeout(()=>{
-										uni.switchTab({
-											url:'/pages/home/index'
-										})
-									},1000)
+									t.BackPage(true);
 								}else{
 									t.$utils.msg(res.data.message);
 								}
@@ -121,6 +158,8 @@
 									console.log(JSON.stringify(res.data));
 									if(res.statusCode===200){
 										if(res.data.status==1){
+											let token = res.data.data;
+											token.updatedAt = new Date().getTime();
 											t.$utils.msg("登陆成功");
 											t.SET({
 												key:'token',
@@ -137,40 +176,6 @@
 							})
 					}
 				})
-				
-				//token
-				// uni.showLoading({
-				// 	title:"登陆中。。。",
-				// 	mask: true,
-				// 	success:function(){
-				// 		t.S({
-				// 				url:'login?token='+t.token,
-				// 				callback:function(res){
-				// 					uni.hideLoading();
-				// 					console.log(JSON.stringify(res.data));
-				// 					if(res.statusCode===200){
-				// 						if(res.data.status==1){
-				// 							t.$utils.msg("登陆成功");
-				// 							t.SET({
-				// 								key:'token',
-				// 								value:res.data.data
-				// 							})
-				// 							// setTimeout(()=>{
-				// 							// 	uni.switchTab({
-				// 							// 		url:'/pages/home/index'
-				// 							// 	})
-				// 							// },1000)
-				// 						}else{
-				// 							t.$utils.msg(res.data.message);
-				// 						}
-				// 					}else{
-				// 						t.$utils.msg(res.errMsg);
-				// 					}
-				// 				}
-				// 			})
-				// 	}
-				// })
-				
 			}
 		}
 	}

@@ -69,6 +69,9 @@
 
 <style>
 	@import url("../../css/home.css");
+	page{
+		background-color: #F3F1F3;
+	}
 	.image-adv{
 		height: 400upx;
 		border-radius: 8upx;

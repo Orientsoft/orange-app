@@ -15,7 +15,7 @@
 					<view class="sub-title">咨询项目详情</view>
 				</view>
 			</view>
-			<view @click="goPages('/pages/home/doApointment')" class="top-card flex">
+			<view @click="doApt" class="top-card flex">
 				<image class="icon" src="../../static/charge-old/jzyy.png"></image>
 				<view class="title">精准预约</view>
 			</view>
@@ -201,19 +201,30 @@
 						},
 				current: 0,
 				mode: 'long',
+				isOutitime: false
 			}
+		},
+		onNavigationBarButtonTap(e) {
+			console.log('onNavigationBarButtonTap',e)
 		},
 		onLoad() {
 			this.startAnimate();
 			this.userInfo = this.app;
-			console.log(JSON.stringify(this.userInfo))
-			//刷新token
-			if(this.userInfo.token){
-				this.refreshToken();
-			}
+			this.loadData();
 		},
 		onShow() {
-			this.loadData();
+			this.userInfo = this.app;
+			//刷新token
+			if(this.userInfo.token){
+				let token = this.userInfo.token;
+				let now = new Date().getTime();
+				if(now < (token.updatedAt + token.expir*1000)){
+					this.isOutitime = true;
+				}else{
+					this.isOutitime = false;
+					this.refreshToken();
+				}
+			}
 		},
 		methods: {
 			...mapMutations(['TO','S','SET','request']),
@@ -236,6 +247,13 @@
 				// 	this.marqueeList_order.shift();
 				// 	this.animate2 = false;
 				// }, 500);
+			},
+			doApt(){
+				if(this.isOutitime){
+					this.goPages('/pages/home/doApointment');
+				}else{
+					this.goPages('/pages/auth/login');
+				}
 			},
 			goPages:function(url){
 				uni.navigateTo({
@@ -281,12 +299,14 @@
 								let token = t.userInfo.token;
 								console.log(JSON.stringify(token))
 								token.access_token = res.data.data.access_token;
+								token.updatedAt = new Date().getTime();
 								console.log(JSON.stringify(token))
 								t.SET({
 									key:'token',
 									value:token
 								})
 							}else{
+								t.isOutitime = true;
 								console.log(JSON.stringify(res));
 							}
 						}else{
