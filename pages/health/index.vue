@@ -187,7 +187,7 @@
 			onTagTop(index){
 				this.tagTop = index;
 				uni.pageScrollTo({
-				    scrollTop: 300*(index-1)+400,
+				    scrollTop: 600*(index-1)+200,
 				    duration: 300
 				});
 			},

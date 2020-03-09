@@ -9,20 +9,22 @@
 						<view class="justify-center align-center margin-left-sm">
 							<navigator url="/pages/my/set/setting">
 								<view class="text-black text-lg flex justify-start">
-									<text style="font-size: 28upx;color: #fff;font-weight: 500;">信息完善<text class="cuIcon-right"></text></text>
+									<text class="tittop">信息完善<text class="cuIcon-right"></text></text>
 								</view>
 							</navigator>
 							<view class="text-gray text-lg flex justify-start margin-bottom-s">
-								<text style="font-size: 22upx;color: #eee;">{{userInfo.phone}}</text>
+								<text style="font-size: 22upx;color: #fff;">{{userInfo.phone}}</text>
 							</view>
 						</view>
 					</view>
+					<view class="space-m"></view>
 				</view>
+				
 			</view>
 			
-			<view class="space-l"></view>
+			<view class="space-m"></view>
 			<!-- 列表 -->
-			<view class="container">
+			<view >
 					<view v-for="(item,itemIndex) in list[0].itemList" :key="item.name" class="list" @tap="goPages(item)">
 						<image :src="item.url" class="item-image margin-lr" mode="aspectFill"></image>
 						<view class="flex-sub">
@@ -42,7 +44,7 @@
 					</view>
 					
 					<view v-if="isCasher" class="list" @tap="doScan()">
-						<image src="../../static/my/alipay_s.png" class="item-image margin-lr" mode="scaleToFill"></image>
+						<image src="../../static/my/erweima.png" class="item-image margin-lr" mode="scaleToFill"></image>
 						<view class="flex-sub">
 							<text class="item-title">核销二维码</text>
 						</view>
@@ -78,21 +80,21 @@
 				list:[
 					{	groupId:1,
 						itemList:[
-							{name:'我的订单',url:'../../static/my/my_order.png',nav_url:'/pages/my/order/orderList'},
-							{name:'精准预约',url:'../../static/my/my_group.png',nav_url:'./myApointment'},
-							{name:'我的病例',url:'../../static/my/my_member.png',nav_url:'./myCase'},
+							{name:'我的订单',url:'../../static/my/mydindan.png',nav_url:'/pages/my/order/orderList'},
+							{name:'精准预约',url:'../../static/my/jzyy.png',nav_url:'./myApointment'},
+							{name:'我的病例',url:'../../static/my/binli.png',nav_url:'./myCase'},
 						]
 					},
 					{	groupId:2,
 						itemList:[
-							{name:'家庭成员',url:'../../static/my/my_apply.png',nav_url:'./myFamily'},
-							{name:'专属客服',url:'../../static/my/my_notice.png',nav_url:'exclusiveService/exclusiveService'},
+							{name:'家庭成员',url:'../../static/my/jitcy.png',nav_url:'./myFamily'},
+							{name:'专属客服',url:'../../static/my/kefu.png',nav_url:'exclusiveService/exclusiveService'},
 						]
 					},
 					{
 						groupId:3,
 						itemList:[
-							{name:'我的关注',url:'../../static/my/my_account.png',nav_url:'./myFollow'},
+							{name:'我的关注',url:'../../static/my/guanzu.png',nav_url:'./myFollow'},
 						]
 					},
 					],
@@ -256,59 +258,9 @@
 </script>
 
 <style>
+    @import url("../../css/my.css");
 	page{
-		background-color: ##f3f1f3;
-	}
-	.nav-title {
-		font-size: 36upx;
-		color: #333;
-		font-weight: bold;
-	}
-	.user-card{
-		margin-top: 0upx;
-	}
-	.home-lg{
-		width: 200upx;
-		height: 200upx;
-		margin-left: 40upx;
-	}
-	.image{
-		height: 120upx;
-		width: 120upx;
-		background-color: #02CFA9;
-		border-radius: 120upx;
-	}
-	.account_change{
-		height: 96upx;
-		width: 96upx;
-		margin-right: 40upx;
+		background-color: #f3f1f3;
 	}
 	
-	.list{
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		padding-bottom: 30upx;
-		padding-top: 30upx;
-		border-bottom: #eee solid 1upx;
-		background-color: #fff;
-	}
-	.item-image{
-		height: 48upx;
-		width: 48upx;
-		margin-right: 20upx;
-	}
-	.item-title{
-		font-size: 32upx;
-		color: #333;
-	}
-	.item-subtitle{
-		font-size: 26upx;
-		color: #ccc;
-	}
-	.right-btn{
-		height: 25upx;
-		width: 35upx;
-		margin-right: 40upx;
-	}
 </style>

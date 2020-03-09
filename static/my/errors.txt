@@ -1,5 +1,5 @@
-[2020-3-9 12:20:44] layer "my.png 拷贝": Expected end of input but "\u62F7" found.
-[2020-3-9 12:20:44] layer "zskh.pn": Unsupported extension: pn
-[2020-3-9 12:20:44] layer "jzyy.png": Duplicate path: jzyy.png
-[2020-3-9 12:20:44] layer "mall.png 拷贝": Expected end of input but "\u62F7" found.
-[2020-3-9 12:20:44] layer "mall.png 拷贝 2": Expected end of input but "\u62F7" found.
+[2020-3-9 16:15:57] layer "my.png 拷贝": Expected end of input but "\u62F7" found.
+[2020-3-9 16:16:32] layer "zskh.pn": Unsupported extension: pn
+[2020-3-9 16:15:57] layer "jzyy.png": Duplicate path: jzyy.png
+[2020-3-9 16:15:57] layer "mall.png 拷贝": Expected end of input but "\u62F7" found.
+[2020-3-9 16:15:57] layer "mall.png 拷贝 2": Expected end of input but "\u62F7" found.

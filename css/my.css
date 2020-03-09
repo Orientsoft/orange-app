@@ -1,0 +1,53 @@
+.tittop{ font-size: 32upx; color: #fff; font-weight: bold;}
+.nav-title {
+		font-size: 36upx;
+		color: #333;
+		font-weight: bold;
+	}
+	.user-card{
+		margin-top: 0upx;
+	}
+	.home-lg{
+		width: 200upx;
+		height: 200upx;
+		margin-left: 40upx;
+	}
+	.image{
+		height: 120upx;
+		width: 120upx;
+		background-color: #f3f1f3;
+		border-radius: 120upx;
+	}
+	.account_change{
+		height: 96upx;
+		width: 96upx;
+		margin-right: 40upx;
+	}
+	
+	.list{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding-bottom: 30upx;
+		padding-top: 30upx;
+		border-bottom: #eee solid 1upx;
+		background-color: #fff;
+	}
+	.item-image{
+		height: 48upx;
+		width: 48upx;
+		margin-right: 20upx;
+	}
+	.item-title{
+		font-size: 32upx;
+		color: #333;
+	}
+	.item-subtitle{
+		font-size: 26upx;
+		color: #ccc;
+	}
+	.right-btn{
+		height: 25upx;
+		width: 35upx;
+		margin-right: 40upx;
+	}
