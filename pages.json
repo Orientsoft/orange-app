@@ -1,7 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 	{
-		"path": "pages/home/index",
+		"path": "pages/home/ad",
 		"style": {
 			"navigationBarTitleText" : "测试",
 			"app-plus": {
@@ -9,6 +9,26 @@
 			}
 		}
 	},
+		{
+			"path": "pages/home/ad",
+			"style": {
+				"navigationBarTitleText" : "广告",
+				"app-plus": {
+					"bounce": "none",
+					"scrollIndicator": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/common/webview",
+			"style": {
+				"navigationBarTitleText" : "网页",
+				"app-plus": {
+					"bounce": "none",
+					"scrollIndicator": "none"
+				}
+			}
+		},
 		{
 			"path": "pages/home/index",
 			"style": {
