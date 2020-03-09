@@ -44,7 +44,7 @@
 					</view>
 					
 					<view v-if="isCasher" class="list" @tap="doScan()">
-						<image src="../../static/my/alipay_s.png" class="item-image margin-lr" mode="scaleToFill"></image>
+						<image src="../../static/my/erweima.png" class="item-image margin-lr" mode="scaleToFill"></image>
 						<view class="flex-sub">
 							<text class="item-title">核销二维码</text>
 						</view>
@@ -80,21 +80,21 @@
 				list:[
 					{	groupId:1,
 						itemList:[
-							{name:'我的订单',url:'../../static/my/my_order.png',nav_url:'/pages/my/order/orderList'},
-							{name:'精准预约',url:'../../static/my/my_group.png',nav_url:'./myApointment'},
-							{name:'我的病例',url:'../../static/my/my_member.png',nav_url:'./myCase'},
+							{name:'我的订单',url:'../../static/my/mydindan.png',nav_url:'/pages/my/order/orderList'},
+							{name:'精准预约',url:'../../static/my/jzyy.png',nav_url:'./myApointment'},
+							{name:'我的病例',url:'../../static/my/binli.png',nav_url:'./myCase'},
 						]
 					},
 					{	groupId:2,
 						itemList:[
-							{name:'家庭成员',url:'../../static/my/my_apply.png',nav_url:'./myFamily'},
-							{name:'专属客服',url:'../../static/my/my_notice.png',nav_url:'exclusiveService/exclusiveService'},
+							{name:'家庭成员',url:'../../static/my/jitcy.png',nav_url:'./myFamily'},
+							{name:'专属客服',url:'../../static/my/kefu.png',nav_url:'exclusiveService/exclusiveService'},
 						]
 					},
 					{
 						groupId:3,
 						itemList:[
-							{name:'我的关注',url:'../../static/my/my_account.png',nav_url:'./myFollow'},
+							{name:'我的关注',url:'../../static/my/guanzu.png',nav_url:'./myFollow'},
 						]
 					},
 					],

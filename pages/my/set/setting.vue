@@ -42,10 +42,10 @@
 					phone:'1367837849'
 				},
 				itemList:[
-					{name:'1367837849',url:'../../../static/my/my_account.png'},
-					{name:'身份认证',url:'../../static/my/my_notice.png',nav_url:'/pages/my/set/mySign'},
-					{name:'修改密码',url:'../../../static/my/my_info.png',nav_url:'/pages/auth/reset'},
-					{name:'退出登陆',url:'../../../static/my/my_logout.png'},
+					{name:'1367837849',url:'../../../static/my/my.png'},
+					{name:'身份认证',url:'../../../static/my/shrz.png',nav_url:'/pages/my/set/mySign'},
+					{name:'修改密码',url:'../../../static/my/password.png',nav_url:'/pages/auth/reset'},
+					{name:'退出登陆',url:'../../../static/my/tuichu.png'},
 				],
 				data:{'notice':false,'message':false}
 			}
