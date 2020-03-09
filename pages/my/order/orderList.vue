@@ -3,14 +3,17 @@
 		<cu-custom :isBack="false" bgColor="bg-orange-lg title-white">
 			<block slot="content">我的订单</block>
 		</cu-custom>
+		<view class="bg-white">
 		<view class="gray-shadow"></view>
 		<view class="space-s"></view>
 		<view class="flex justify-around">
 			<view @click="onTag2(index)" v-for="(item,index) in tagList2" :key="index" :class="index==tag2?'tag2-active':'tag2'">
 				{{item.name}}
 			</view>
+		
 		</view>
 		<view class="space-s"></view>
+		</view>
 		<scroll-view scroll-y="true" @scrolltolower="loadMore" :style="[{height:windowHeight+'px'}]">
 		<!--医院-->
 		<view class="hospital-card-list">
@@ -211,18 +214,15 @@
 
 <style>
 	@import url("../../../css/home.css");
-	page{
+/* 	page{
 		background-color: #FFFFFF;
-	}
+	} */
 	.gray-shadow{
 		height: 1upx;
 		box-shadow:inset 0upx 0upx  10upx #F0F0F0;
 	}
 	.hospital-card-list{
-		background: #FFFFFF;
 		padding: 30upx;
-		/* border-radius: 30upx; */
-		/* border: 1upx solid #F49100; */
 		box-shadow:inset 0upx 0upx  10upx #F0F0F0;
 		margin-bottom: 40upx;
 	}

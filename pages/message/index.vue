@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view >
 			<view>
 				<cu-custom :isBack="false" bgColor=" title-white bg-orange-lg">
 					<block slot="content">消息</block>
@@ -99,8 +99,8 @@
 	
 	.card-list-adv{
 		background: #FFFFFF;
-		border-radius: 30upx;
-		/* border: 1upx solid #F49100; */
+		border-radius: 10upx;
+		overflow: hidden;
 		box-shadow:inset 0upx 0upx  10upx #F0F0F0;
 		margin-bottom: 40upx;
 		position: relative;

@@ -9,20 +9,22 @@
 						<view class="justify-center align-center margin-left-sm">
 							<navigator url="/pages/my/set/setting">
 								<view class="text-black text-lg flex justify-start">
-									<text style="font-size: 28upx;color: #fff;font-weight: 500;">信息完善<text class="cuIcon-right"></text></text>
+									<text class="tittop">信息完善<text class="cuIcon-right"></text></text>
 								</view>
 							</navigator>
 							<view class="text-gray text-lg flex justify-start margin-bottom-s">
-								<text style="font-size: 22upx;color: #eee;">{{userInfo.phone}}</text>
+								<text style="font-size: 22upx;color: #fff;">{{userInfo.phone}}</text>
 							</view>
 						</view>
 					</view>
+					<view class="space-m"></view>
 				</view>
+				
 			</view>
 			
-			<view class="space-l"></view>
+			<view class="space-m"></view>
 			<!-- 列表 -->
-			<view class="container">
+			<view >
 					<view v-for="(item,itemIndex) in list[0].itemList" :key="item.name" class="list" @tap="goPages(item)">
 						<image :src="item.url" class="item-image margin-lr" mode="aspectFill"></image>
 						<view class="flex-sub">
@@ -256,59 +258,9 @@
 </script>
 
 <style>
+    @import url("../../css/my.css");
 	page{
-		background-color: ##f3f1f3;
-	}
-	.nav-title {
-		font-size: 36upx;
-		color: #333;
-		font-weight: bold;
-	}
-	.user-card{
-		margin-top: 0upx;
-	}
-	.home-lg{
-		width: 200upx;
-		height: 200upx;
-		margin-left: 40upx;
-	}
-	.image{
-		height: 120upx;
-		width: 120upx;
-		background-color: #02CFA9;
-		border-radius: 120upx;
-	}
-	.account_change{
-		height: 96upx;
-		width: 96upx;
-		margin-right: 40upx;
+		background-color: #f3f1f3;
 	}
 	
-	.list{
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		padding-bottom: 30upx;
-		padding-top: 30upx;
-		border-bottom: #eee solid 1upx;
-		background-color: #fff;
-	}
-	.item-image{
-		height: 48upx;
-		width: 48upx;
-		margin-right: 20upx;
-	}
-	.item-title{
-		font-size: 32upx;
-		color: #333;
-	}
-	.item-subtitle{
-		font-size: 26upx;
-		color: #ccc;
-	}
-	.right-btn{
-		height: 25upx;
-		width: 35upx;
-		margin-right: 40upx;
-	}
 </style>
