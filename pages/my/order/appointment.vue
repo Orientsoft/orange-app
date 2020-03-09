@@ -25,7 +25,7 @@
 					
 			<view class="info-border-top"></view>
 			<!-- 用户信息 -->
-			<view class="card">
+			<view class="card c">
 				<view class="cro_left_top"></view>
 				<view class="cro_right_top"></view>
 				<view>
