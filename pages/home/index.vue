@@ -211,6 +211,7 @@
 			this.startAnimate();
 			this.userInfo = this.app;
 			this.loadData();
+			console.log("*********************StatusBar",this.StatusBar)
 		},
 		onShow() {
 			this.userInfo = this.app;

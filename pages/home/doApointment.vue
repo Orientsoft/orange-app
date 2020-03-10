@@ -126,6 +126,12 @@
 				this.phone = this.selectItem.phone;
 				this.hideModal()
 			},
+			clear(){
+				this.name = '';
+				this.phone = '';
+				this.content = '';
+				this.remark = '';
+			},
 			onSave(){
 				let t = this;
 				if(!t.name){
@@ -153,8 +159,8 @@
 								if(res.statusCode == 200){
 									if(res.data.status==1){
 										// t.id = res.data.data.id;
-										t.$utils.msg("提交成功,会尽快为您预约");
-										
+										t.$utils.msg("已经帮你预约，请注意接听预约确认电话");
+										t.clear();
 									}else{
 										t.$utils.msg(res.data.message);
 									}

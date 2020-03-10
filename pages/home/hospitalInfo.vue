@@ -132,30 +132,36 @@
 			},
 			loadData(){
 				let t= this;
-				
-				t.S({
-					url:"hospital/"+t.id,
-					callback:function(res){
-						if(res.statusCode===200){
-							console.log(JSON.stringify(res))
-							if(res.data.status==1){
-								t.hospitalInfo = res.data.data;
-								if(t.userInfo.token){
-									t.loadFollow();
+				uni.showLoading({
+					title:"加载中。。。",
+					mask: true,
+					success:function(){
+						t.S({
+							url:"hospital/"+t.id,
+							callback:function(res){
+								uni.hideLoading();
+								if(res.statusCode===200){
+									console.log(JSON.stringify(res))
+									if(res.data.status==1){
+										t.hospitalInfo = res.data.data;
+										if(t.userInfo.token){
+											t.loadFollow();
+										}
+									}else{
+										console.log(JSON.stringify(res));
+									}
+								}else{
+									if(res.data.status==2){
+										t.TO({
+											url:'/pages/auth/login'
+										})
+									}else{
+										t.$utils.msg(res.data.message);
+									}
 								}
-							}else{
-								console.log(JSON.stringify(res));
 							}
-						}else{
-							if(res.data.status==2){
-								t.TO({
-									url:'/pages/auth/login'
-								})
-							}else{
-								t.$utils.msg(res.data.message);
-							}
-						}
-					}
+						})
+					},
 				})
 			}
 		}

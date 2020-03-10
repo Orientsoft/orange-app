@@ -2,7 +2,7 @@
 	<view>
 		<view>
 			<cu-custom :isBack="true" bgColor="container title-orange">
-				<block slot="backText"><text class="title-black">公司认证</text></block>
+				<block slot="backText"><text class="title-black">合作伙伴认证</text></block>
 			</cu-custom>
 		</view>
 		

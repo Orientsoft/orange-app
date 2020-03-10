@@ -2,6 +2,7 @@
 	<view>
 			<view class="user-card">
 				<view class="padding-top-lg bg-orange-lg">
+					<view style="height:20px;padding-top: ${StatusBar}px;"></view>
 					<view class="flex padding-tb-sm" style="align-items: center;width: 100%;margin-left:80upx;justify-content: flex-start;text-align: center;">
 						<view>
 							<image :src="userInfo.logo" class="image"></image>
@@ -9,7 +10,7 @@
 						<view class="justify-center align-center margin-left-sm">
 							<navigator url="/pages/my/set/setting">
 								<view class="text-black text-lg flex justify-start">
-									<text class="tittop">信息完善<text class="cuIcon-right"></text></text>
+									<text class="tittop">{{userInfo.name}}<text class="cuIcon-right"></text></text>
 								</view>
 							</navigator>
 							<view class="text-gray text-lg flex justify-start margin-bottom-s">
@@ -82,7 +83,7 @@
 						itemList:[
 							{name:'我的订单',url:'../../static/my/mydindan.png',nav_url:'/pages/my/order/orderList'},
 							{name:'精准预约',url:'../../static/my/jzyy.png',nav_url:'./myApointment'},
-							{name:'我的病例',url:'../../static/my/binli.png',nav_url:'./myCase'},
+							{name:'我的病历',url:'../../static/my/binli.png',nav_url:'./myCase'},
 						]
 					},
 					{	groupId:2,

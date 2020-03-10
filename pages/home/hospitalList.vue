@@ -23,14 +23,13 @@
 				<view class="margin-left-sm" style="flex-grow: 1;">
 					<view class="flex">
 						<text class="card-item-title">{{item.name}}</text>
-						<!-- <text class="card-item-sign">三甲</text> -->
-						<text class="card-item-sign">可咨询</text>
+						<text v-for="(tag,index) in item.tag" :key="index" class="card-item-sign">{{tag}}</text>
 					</view>
-					<view class="card-item-desc color_666">科室：麻醉科 病理科 | 神经外科</view>
+					<view class="card-item-desc">科室：<text v-for="(dept,index) in item.department" :key="index" class="margin-right-sm">{{dept}}</text></view>
 					<view class="card-item-desc flex align-end color_grey">
-						电话： 66886768</view>
+						电话： {{item.phone}}</view>
 					<view class="card-item-desc flex align-end color_grey">
-						地址： 五环之外</view>
+						地址： {{item.address}}</view>
 				</view>
 			</view>
 		</view>

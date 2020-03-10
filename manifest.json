@@ -6,7 +6,7 @@
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
-		"runmode":"liberate",
+        "runmode" : "liberate",
         /* 5+App特有相关 */
         "usingComponents" : true,
         "splashscreen" : {
@@ -76,34 +76,34 @@
                 "ios" : {
                     "appstore" : "/static/icon.png",
                     "ipad" : {
-                        "app" : "unpackage/res/icons/76x76.png",
-                        "app@2x" : "unpackage/res/icons/152x152.png",
-                        "notification" : "unpackage/res/icons/20x20.png",
-                        "notification@2x" : "unpackage/res/icons/40x40.png",
-                        "proapp@2x" : "unpackage/res/icons/167x167.png",
-                        "settings" : "unpackage/res/icons/29x29.png",
-                        "settings@2x" : "unpackage/res/icons/58x58.png",
-                        "spotlight" : "unpackage/res/icons/40x40.png",
-                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                        "app" : "unpackage/res/ios/AppIcon.appiconset/icon-76.png",
+                        "app@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-76@2x.png",
+                        "notification" : "unpackage/res/ios/AppIcon.appiconset/icon-20-ipad.png",
+                        "notification@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-20@2x.png",
+                        "proapp@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-83.5@2x.png",
+                        "settings" : "unpackage/res/ios/AppIcon.appiconset/icon-29.png",
+                        "settings@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-29@2x.png",
+                        "spotlight" : "unpackage/res/ios/AppIcon.appiconset/icon-20@2x.png",
+                        "spotlight@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-40@2x.png"
                     },
                     "iphone" : {
-                        "app@2x" : "unpackage/res/icons/120x120.png",
-                        "app@3x" : "unpackage/res/icons/180x180.png",
-                        "notification@2x" : "unpackage/res/icons/40x40.png",
-                        "notification@3x" : "unpackage/res/icons/60x60.png",
-                        "settings@2x" : "unpackage/res/icons/58x58.png",
-                        "settings@3x" : "unpackage/res/icons/87x87.png",
-                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
-                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                        "app@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-60@2x.png",
+                        "app@3x" : "unpackage/res/ios/AppIcon.appiconset/icon-60@3x.png",
+                        "notification@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-20@2x.png",
+                        "notification@3x" : "unpackage/res/ios/AppIcon.appiconset/icon-20@3x.png",
+                        "settings@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-29@2x.png",
+                        "settings@3x" : "unpackage/res/ios/AppIcon.appiconset/icon-83.5@2x.png",
+                        "spotlight@2x" : "unpackage/res/ios/AppIcon.appiconset/icon-40@2x.png",
+                        "spotlight@3x" : "unpackage/res/ios/AppIcon.appiconset/icon-60@2x.png"
                     }
                 },
                 "android" : {
-                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "hdpi" : "unpackage/res/android/mipmap-hdpi/ic_launcher.png",
                     "ldpi" : "unpackage/res/icons/48x48.png",
                     "mdpi" : "unpackage/res/icons/48x48.png",
-                    "xhdpi" : "unpackage/res/icons/96x96.png",
-                    "xxhdpi" : "unpackage/res/icons/144x144.png",
-                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                    "xhdpi" : "unpackage/res/android/mipmap-hdpi/ic_launcher.png",
+                    "xxhdpi" : "unpackage/res/android/mipmap-xxhdpi/ic_launcher.png",
+                    "xxxhdpi" : "unpackage/res/android/mipmap-xxxhdpi/ic_launcher.png"
                 }
             }
         }

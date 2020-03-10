@@ -111,7 +111,7 @@
 		<view class="cu-modal bottom-modal" :class="modalName=='Modal'?'show':''">
 			<view class="cu-dialog">
 				<view class="cu-bar bg-white justify-end">
-					<view class="content">请选择地址</view>
+					<view class="content">该套餐适用以下门店</view>
 					<view class="action" @tap="hideModal">
 						<text class="cuIcon-close text-red"></text>
 					</view>

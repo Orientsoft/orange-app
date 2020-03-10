@@ -3,7 +3,7 @@
 		<cu-custom :isBack="true" bgColor="title-orange" :onBackPage="BackPage">
 			<block slot="backText"></block>
 		</cu-custom>
-		<view class="cu-custom" :style="[{height:CustomBar + 'px'}]">
+		<view v-if="false" class="cu-custom" :style="[{height:CustomBar + 'px'}]">
 			<view class="cu-bar fixed" :style="style">
 				<view class="action title-orange" @tap="BackPage(false)" >
 					<text class="cuIcon-back"></text>

@@ -135,11 +135,9 @@
 										key:'User',
 										value:res.data.data
 									})
-									setTimeout(()=>{
-										uni.switchTab({
-											url:'/pages/home/index'
-										})
-									},1000)
+									uni.navigateBack({
+										delta: 2
+									});
 								}else{
 									t.$utils.msg(res.data.message);
 								}
@@ -159,7 +157,7 @@
 					})
 			},
 			login(){
-				
+				return
 				let t=this;
 				if(!t.$utils.checkStr(t.account,'phone')){
 					t.$utils.msg("请输入正确的手机号码");

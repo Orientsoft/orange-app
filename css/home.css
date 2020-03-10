@@ -117,7 +117,7 @@ page{
 	overflow: hidden;
 	padding-left: 20upx;
 	padding-right: 20upx;
-	padding-top: 20upx;
+	padding-top: 60upx;
 }
 .screen-swiper image,
 .screen-swiper video,
@@ -181,7 +181,7 @@ page{
 }
 .card-tag{ background-image: linear-gradient(to right, #3623b2, #c266da); padding: 5upx 20upx; color: #fff; border-radius: 30upx;}
 .card-item{
-	/* border-bottom:1upx #f0f0f0 solid; */
+	border-bottom:1upx #EEEEEE solid;
 	align-items: center;
 }
 .card-item:last-child{
@@ -254,4 +254,4 @@ page{
 	height: 100upx;
 	line-height: 100upx;
 }
-.heatopbg{height:100upx;width: 100%; background:#ff4900; position: fixed; z-index: 100;}
+.heatopbg{height:140upx;width: 100%; background:#ff4900; position: fixed; z-index: 100;}

@@ -1,6 +1,7 @@
 <template>
 	<view>
 		<view class="heatopbg" style="">
+			<view style="height:20px;padding-top: ${StatusBar}px;"></view>
 			<!-- <image style="width: 100%;height: 280upx;margin-bottom: -200upx;" src="../../static/home/head_jk.png" mode="scaleToFill"></image> -->
 			<view class="flex justify-around">
 				<view @click="onTagTop(index)" v-for="(item,index) in tagTopList" :key="index" :class="index==tagTop?'tagTop-active':'tagTop'">
@@ -8,7 +9,7 @@
 				</view>
 			</view>
 		</view>
-		<view style="height: 100upx;"></view>
+		<view style="height: 140upx;"></view>
 				
 		<swiper class=" screen-swiper square-dot home-swiper" :indicator-dots="true" :circular="true"
 		 :autoplay="true" interval="5000" duration="500" indicator-color="#fff" indicator-active-color="#fff">

@@ -70,36 +70,31 @@
 			},
 			loadData(){
 				let t= this;
-				uni.showLoading({
-					title:'加载中。。。',
-					success() {
-						t.S({
-							url:"adv",
-							data:{
-								location:'start'
-							},
-							callback:function(res){
-								// console.log(res);
-								uni.hideLoading();
-								if(res.statusCode===200){
-									console.log(JSON.stringify(res.data))
-									let data = res.data;
-									if(data.status==1){
-										t.swiperList = data.data;
-									}else{
-										t.$utils.msg(data.msg);
-									}
-								}else{
-									if(res.statusCode==401){
-										t.TO({
-											url:'/pages/charge/login'
-										})
-									}else{
-										t.$utils.msg(res.errMsg);
-									}
-								}
+				t.S({
+					url:"adv",
+					data:{
+						location:'start'
+					},
+					callback:function(res){
+						// console.log(res);
+						uni.hideLoading();
+						if(res.statusCode===200){
+							console.log(JSON.stringify(res.data))
+							let data = res.data;
+							if(data.status==1){
+								t.swiperList = data.data;
+							}else{
+								t.$utils.msg(data.msg);
 							}
-						})
+						}else{
+							if(res.statusCode==401){
+								t.TO({
+									url:'/pages/charge/login'
+								})
+							}else{
+								t.$utils.msg(res.errMsg);
+							}
+						}
 					}
 				})
 				

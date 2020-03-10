@@ -7,26 +7,30 @@
 			</view>
 			
 			<view v-for="(item,index) in list" :key="index" class="margin-lr-item card margin-top">
-				<view class="card-desc">创建时间:{{item.orderAt}}</view>
-				<view class="margin-left-sm margin-top-sm">
-					<view class="flex">
-						<view class="card-desc margin-right-lg">预约项目</view>
-						<view class="name-connect flex-treble">{{item.content}}</view>
+				<view class="card-desc flex-sub">创建时间:{{$utils.dateUtils.format(item.createdAt)}}</view>
+				<view class="flex align-center">
+					<view class="margin-left-sm margin-top-sm flex-sub">
+						<view class="flex">
+							<view class="card-desc margin-right-lg">预约项目</view>
+							<view class="name-connect flex-treble">{{item.content}}</view>
+						</view>
+						<view class="flex">
+							<view class="card-desc margin-right-lg">推荐医院</view>
+							<view class="name-connect flex-treble">{{item.hospName==null?'待定':item.hospName}}</view>
+						</view>
+						<view class="flex">
+							<view class="card-desc margin-right-lg">备注</view>
+							<view class="name-connect flex-treble">{{item.remark}}</view>
+						</view>
+						<view class="flex">
+							<view class="card-desc margin-right-lg">预约人</view>
+							<view class="name-connect flex-treble">{{item.name}}-{{item.phone}}</view>
+						</view>
 					</view>
-					<view class="flex">
-						<view class="card-desc margin-right-lg">推荐医院</view>
-						<view class="name-connect flex-treble">{{item.hospName}}</view>
-					</view>
-					<view class="flex">
-						<view class="card-desc margin-right-lg">备注</view>
-						<view class="name-connect flex-treble">{{item.remark}}</view>
-					</view>
-					<view class="flex">
-						<view class="card-desc margin-right-lg">预约人</view>
-						<view class="name-connect flex-treble">{{item.name}}-{{item.phone}}</view>
+					<view>
+						<image @click="goPage" class="phone" mode="scaleToFill" src="../../static/my/phone.png"></image>
 					</view>
 				</view>
-				
 			</view>
 			
 	</view>
@@ -60,6 +64,11 @@
 		},
 		methods: {
 			...mapMutations(['TO','S','SET']),
+			goPage(){
+				uni.navigateTo({
+					url:"/pages/my/exclusiveService/exclusiveService"
+				})
+			},
 			loadData(){
 				let t = this;
 				uni.showLoading({
@@ -97,4 +106,8 @@
 
 <style>
 	@import url("../../css/mall.css");
+	.phone{
+		width: 60upx;
+		height: 60upx;
+	}
 </style>
