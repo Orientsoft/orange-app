@@ -1,5 +1,5 @@
 <template>
-	<view class="container ">
+	<view>
 		<swiper class="screen-swiper square-dot home-swiper" :indicator-dots="true" :circular="true"
 		 :autoplay="true" interval="5000" duration="500" indicator-color="#fcabab">
 			<swiper-item v-for="(item,index) in swiperList" :key="index" @tap="TO({url:item.link_url})">

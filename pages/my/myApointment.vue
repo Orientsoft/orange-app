@@ -28,7 +28,7 @@
 						</view>
 					</view>
 					<view>
-						<image @click="goPage" class="phone" mode="scaleToFill" src="../../static/my/phone.png"></image>
+						<image @click="goPage" class="phone" mode="scaleToFill" src="../../static/my/call.png"></image>
 					</view>
 				</view>
 			</view>

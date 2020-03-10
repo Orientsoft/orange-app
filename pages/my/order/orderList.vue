@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<cu-custom :isBack="false" bgColor="bg-orange-lg title-white">
+		<cu-custom :isBack="false" bgColor="bg-white">
 			<block slot="content">我的订单</block>
 		</cu-custom>
 		<view class="bg-white">
-		<view class="gray-shadow"></view>
+		<!-- <view class="gray-shadow"></view> -->
 		<view class="space-s"></view>
 		<view class="flex justify-around">
 			<view @click="onTag2(index)" v-for="(item,index) in tagList2" :key="index" :class="index==tag2?'tag2-active':'tag2'">
